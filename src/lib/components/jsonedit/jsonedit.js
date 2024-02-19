@@ -876,7 +876,7 @@ export default function JsonEdit({ DataIn, variant = "default", buttons, devSite
                     return <>
 
                         <div className="w-full flex-row flex h-full">
-                            <div className="h-full flex flex-col p-4">
+                            <div className="h-full flex flex-col" style={{ padding: "1rem" }}>
                                 {HistoryCache[0].index > 0 && <>
                                     <Button label="undo" variant={buttons} onClick={undo} />
                                     <div className="h-4" />
