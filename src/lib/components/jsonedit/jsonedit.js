@@ -349,7 +349,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
     const remove = (index) => {
         Popup.fire({
             z: z + 1,
-            text: "are you shure you want to remove this item off the menu?",
+            text: "are you shure you want to remove this node?",
             canClose: true,
             background: "blur",
             confirmButton: {
@@ -429,7 +429,8 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                                 Button: {
                                     label: "",
                                     variant: "default",
-                                    href: ""
+                                    href: "",
+                                    style: ""
                                 }
                             }
                         case "Array":
@@ -443,6 +444,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                         case "Table":
                             return {
                                 Table: {
+                                    style: "",
                                     head: [
                                         {
                                             __Hide: true,
@@ -491,7 +493,9 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                         case "Layout":
                             return {
 
+
                                 Layout: {
+                                    style: "",
                                     type: "default",
                                     children: [
                                         {
@@ -505,7 +509,9 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                             }
                         case "Text":
                             return {
+
                                 Text: {
+                                    style: "",
                                     variant: "default",
                                     pre: "",
                                     title: "",
@@ -521,6 +527,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                         case "Accordion":
                             return {
                                 Accordion: {
+                                    style: "",
                                     variant: "default",
                                     tabs: [
                                         {
@@ -541,6 +548,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                         case "Nav":
                             return {
                                 Nav: {
+                                    style: "",
                                     variant: "default",
                                     tabs: [
                                         {
@@ -561,6 +569,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                         case "List":
                             return {
                                 List: {
+                                    style: "",
                                     variant: "default",
                                     items: [
                                         {
@@ -866,7 +875,7 @@ export default function JsonEdit({ DataIn, variant = "default", buttons, devSite
                                 </pre>
                             </div>
                         </div>
-                        <div className="w-full flex min-h-[50px] justify-start p-4">
+                        <div className="w-full flex min-h-[50px] justify-start" style={{ padding: "1rem" }}>
                             <Button label="back" variant={buttons} onClick={() => [setJsonError(false), setTab("normal")]} />
                             <div className="m-auto" />
                             {jsonData && jsonData != JSON.stringify(Global, null, 4) && <Button label="set new data" variant={buttons} onClick={saveJson} />}
@@ -911,10 +920,26 @@ export default function JsonEdit({ DataIn, variant = "default", buttons, devSite
                             <div className={"overflow-auto w-full editer-" + variant}>
                                 <Build variant={variant} button={buttons} Permisions={Permissions} Global={Global} Data={Global} setData={appendData} />
                             </div>
-                            {showDev && <Resizable defaultSize={{ width: 400 }} className={`flex editer-${variant}-history h-full flex flex-col max-h-full`} style={{ borderLeft: "1px solid" }}>
+                            {showDev && <Resizable handleClasses={{
+                                top: "pointer-events-none",
+                                bottom: "pointer-events-none",
+                                topRight: "pointer-events-none",
+                                bottomRight: "pointer-events-none",
+                                bottomLeft: "pointer-events-none",
+                                topLeft: "pointer-events-none",
+                            }} defaultSize={{ width: 400 }} className={`flex editer-${variant}-history h-full flex flex-col max-h-full`} style={{ borderLeft: "1px solid" }}>
                                 <iframe id={iframeId} className="w-full h-full" src={devSites} />
                             </Resizable>}
-                            {showHistory && <Resizable defaultSize={{ width: 400 }} className={`flex editer-${variant}-history  flex flex-col max-h-full`} style={{ borderLeft: "1px solid", height: "100% !important" }}>
+                            {showHistory && <Resizable
+                                handleClasses={{
+                                    top: "pointer-events-none",
+                                    bottom: "pointer-events-none",
+                                    topRight: "pointer-events-none",
+                                    bottomRight: "pointer-events-none",
+                                    bottomLeft: "pointer-events-none",
+                                    topLeft: "pointer-events-none",
+                                }}
+                                defaultSize={{ width: 400 }} className={`flex editer-${variant}-history  flex flex-col max-h-full`} style={{ borderLeft: "1px solid", height: "100% !important" }}>
                                 <div className={"text-[1.5rem] w-full px-4 flex"} style={{ background: "#99999920" }}>
                                     History <div className="w-full text-right">{HistoryCache.length - 1}</div>
                                 </div>

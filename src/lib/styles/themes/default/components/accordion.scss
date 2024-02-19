@@ -1,30 +1,33 @@
-@keyframes grow-tab {
+.accordion {
+  &-default {
+    --accordion-bg: #eee;
+    --accordion-button-text: black;
+    --accordion-button-active-text: white;
+    --accordion-button-bg: white;
+    --accordion-button-active-bg: black;
+  }
+
+  .accordion-button {
+    @apply relative z-10 bg-[var(--accordion-button-bg)] text-[var(--accordion-button-text)] h-[50px] min-h-[50px] max-h-[50px] flex justify-center items-center cursor-pointer;
+
+    &-active {
+      @apply bg-[var(--accordion-button-active-bg)] text-[var(--accordion-button-active-text)];
+    }
+  }
+
+  @keyframes grow-tab {
     from {
-        max-height: 50px;
+      max-height: 50px;
     }
 
     to {
-        max-height: 1000px;
+      max-height: 1000px;
     }
-}
+  }
 
-.accordion {
-    &-default {
-        @apply overflow-hidden bg-slate-100 shadow-lg;
-
-        .accordion-button {
-            @apply relative z-10 bg-white h-[50px] min-h-[50px] max-h-[50px] flex justify-center items-center cursor-pointer;
-
-            &-active {
-                @apply bg-black text-white;
-            }
-        }
-
-        .tab {
-            @apply overflow-hidden;
-            animation: grow-tab 1s;
-        }
-    }
-
-    @apply rounded-xl overflow-hidden;
+  .tab {
+    @apply overflow-hidden;
+    animation: grow-tab 1s;
+  }
+  @apply overflow-hidden bg-[var(--accordion-bg)] shadow-lg;
 }

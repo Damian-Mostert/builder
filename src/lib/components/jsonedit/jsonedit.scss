@@ -17,15 +17,14 @@
       outline: 0.5px solid #333;
     }
     &-history {
-      @apply h-full w-full flex overflow-auto flex-col;
+      @apply h-full w-full flex overflow-auto flex-col overflow-hidden;
       color: var(--11th-copper);
     }
   }
 }
 
-
 .editer-string {
-  @apply w-full text-current focus:outline-none cursor-text bg-transparent text-left shadow-none;
+  @apply w-full text-current focus:outline-none cursor-text bg-transparent shadow-none text-center pt-4;
 
   &:empty:before {
     color: #505050;
@@ -175,4 +174,8 @@
   .array-next {
     transform: rotate(0deg);
   }
+}
+
+.pointer-events-none {
+  pointer-events: none;
 }
