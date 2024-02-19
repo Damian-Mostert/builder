@@ -1,0 +1,11 @@
+.form{
+    @apply flex flex-wrap;
+    h2{
+        @apply w-full text-center text-[2rem];
+    }
+    &-variant{
+        &-white-bg{
+            @apply p-8 rounded-xl bg-white;
+        }
+    }
+}

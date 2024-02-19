@@ -1,0 +1,79 @@
+.layout {
+    &-default {
+        @apply w-full flex py-8;
+
+        &-container {
+            @apply m-auto w-full max-w-[var(--screen)] px-8 flex flex-wrap h-max;
+        }
+    }
+
+    &-split {
+        @apply w-full flex py-8;
+
+        &-container {
+            @apply m-auto w-full max-w-[var(--screen)] px-8 flex h-max;
+
+            @media screen and (max-width:$screen) {
+                @apply flex-wrap;
+            }
+        }
+
+        &-half {
+            @apply w-full flex;
+
+            &-container {
+                @apply w-full flex h-max;
+
+                .half-body-l {
+                    max-width: calc(var(--screen) / 2);
+                    margin-left: auto;
+                    padding: 2rem;
+                    width: 100%;
+
+                    @media screen and (max-width:$screen) {
+                        max-width: none;
+                    }
+                }
+
+                .half-body-r {
+                    max-width: calc(var(--screen) / 2);
+                    margin-right: auto;
+                    padding: 2rem;
+                    width: 100%;
+
+                    @media screen and (max-width:$screen) {
+                        max-width: none;
+                    }
+                }
+
+                .half-full {
+                    @apply w-1/2;
+
+                    @media screen and (max-width:$screen) {
+                        @apply w-full;
+                    }
+                }
+
+                @media screen and (max-width:$screen) {
+                    @apply flex-wrap;
+                }
+            }
+        }
+    }
+
+    &-center {
+        @apply w-full flex p-8;
+
+        &-container {
+            @apply flex justify-center items-center w-full h-max;
+        }
+    }
+
+    &-flex {
+        @apply w-full flex py-8;
+
+        &-container {
+            @apply w-full flex;
+        }
+    }
+}

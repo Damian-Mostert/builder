@@ -1,0 +1,28 @@
+//imports;
+
+//normalize;
+@import "./normalize.scss";
+
+//fonts;
+@import "./fonts/fonts.css";
+
+//components;
+@import "./components/accordion.scss";
+@import "./components/button.scss";
+@import "./components/carusel.scss";
+@import "./components/form.scss";
+@import "./components/input.scss";
+@import "./components/layout.scss";
+@import "./components/nav.scss";
+@import "./components/paralax.scss";
+@import "./components/popup.scss";
+@import "./components/slider.scss";
+@import "./components/table.scss";
+@import "./components/list.scss";
+@import "./components/text.scss";
+
+//scrollbar;
+@import "./scrollbar.scss";
+
+//animations
+@import "./animations.scss";

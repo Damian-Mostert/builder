@@ -1,0 +1,41 @@
+//keep the same as md variable in tailwind config for layouts;
+
+$screen: 1124px; //md;
+
+:root {
+    --screen: 1124px; //md;
+
+    //body;
+    --body-color: #e2e8f0;
+    --text-color: #544141;
+    --font: Hero-Light-Light;
+
+    //scrollbar config;
+    --scroll-bar-bg-color: grey;
+    --scroll-bar-thumb-color: black;
+
+    //popup config;
+    --popup-text: black;
+    --popup-background: white;
+
+}
+
+body {
+    @apply m-0 p-0 w-full h-screen bg-[var(--body-color)] text-[1rem];
+    letter-spacing: 2px;
+    color: var(--text-color);
+    font-family: var(--font);
+}
+
+main {
+    @apply flex flex-col w-full h-full;
+}
+
+//just a div block, copys all contents
+.inherit{
+    display: contents;
+    background-color: inherit;
+    width: fit-content;
+    height: fit-content;
+    color:currentColor
+}

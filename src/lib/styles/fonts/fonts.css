@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Hero-Light-Light";
+    src: url("./HeroLight-Light.otf") format("OpenType");
+}
+
+@font-face {
+    font-family: "Hero-Light-Regular";
+    src: url("./HeroLight-Regular.otf") format("OpenType");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("./montserrat.ttf") format("TrueType");
+}

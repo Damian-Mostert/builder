@@ -1,0 +1,13 @@
+.transition {
+    &-fast {
+        transition: all 0.5s;
+    }
+
+    &-meidium {
+        transition: all 1s;
+    }
+
+    &-slow {
+        transition: all 1.5s;
+    }
+}

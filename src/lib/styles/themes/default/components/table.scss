@@ -1,0 +1,36 @@
+.table-component {
+    @apply w-full;
+
+    &-variant {
+        &-default {
+            
+            thead {
+                background-color:#ddd;
+
+                td {
+                    text-align: center;
+                    padding: 0.4rem;
+                    &:nth-child(2n) {
+                            background-color: #eee;
+                        }
+                }
+            }
+
+            tbody {
+
+                td {
+                    text-align: center;
+                }
+
+                tr {
+                    background-color: #fff;
+
+                    &:nth-child(2n) {
+                        background-color: #eee;
+                    }
+                }
+            }
+            @apply rounded-md overflow-hidden;
+        }
+    }
+}

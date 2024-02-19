@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@db": ["src/lib/db/index"],
+      "@app/*": ["src/app/*"],
+      "@config": ["src/lib/config/index"],
+      "@modules": ["src/lib/modules/index"],
+      "@components": ["src/lib/components/index"],
+      "@styles": ["src/lib/styles/styles.scss"]
+    }
+  }
+}

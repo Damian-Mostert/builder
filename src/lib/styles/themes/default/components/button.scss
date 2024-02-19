@@ -1,0 +1,15 @@
+//basic button class
+.button {
+  &-variant {
+    &-default {
+      transition: 0.5s all;
+      @apply bg-slate-300 text-[var(--text-color)] shadow-lg;
+
+      &:hover {
+        @apply bg-gray-600 text-white;
+      }
+    }
+  }
+  @apply min-w-[110px]  py-2 px-4 flex justify-center items-center relative cursor-pointer text-[12px] lg:text-[16px] rounded-[10px] tracking-widest uppercase;
+
+}

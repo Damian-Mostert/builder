@@ -1,0 +1,56 @@
+.input {
+    &-variant {
+        &-default {
+            --ipnut-font-size:1.2rem;
+            --label-font-size: 0.8rem;
+            --label-text: #333;
+            --input-bg: #333;
+            --input-text: white;
+            --error-label-text: red;
+        }
+    }
+
+    &-size {
+        &-full {
+            --input-width: 100%;
+        }
+
+        &-half {
+            --input-width: 50%;
+        }
+
+        &-half\:md\:full { 
+            --input-width: 100%;
+
+            @media screen and (min-width:$screen) {
+                --input-width: 50%;
+            }
+        }
+    }
+
+    &-type {
+        &-text {}
+
+        &-email {}
+
+        &-textarea {}
+
+    }
+
+    &-container {
+        @apply w-[var(--input-width)] mt-4;
+
+        label {
+            @apply w-full text-[var(--label-text)] pl-1;
+            font-size: var(--label-font-size);
+        }
+    }
+
+    &-error {
+        @apply w-full text-[var(--error-label-text)] pl-1 pt-1;
+        font-size: var(--label-font-size);
+    }
+
+    @apply w-full rounded-md bg-[var(--input-bg)] text-[var(--input-text)] active:outline-none focus:outline-none p-1;
+    font-size: var(--input-font-size);
+}

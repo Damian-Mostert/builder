@@ -1,0 +1,29 @@
+.list {
+    &-variant {
+        &-default {
+            @apply w-full pt-4 flex flex-wrap text-[1rem];
+
+            li {
+                &::before {
+                    content: ">";
+                    @apply px-2;
+                }
+
+                @apply w-full pt-2 text-[0.9rem];
+            }
+        }
+
+        &-dots {
+            @apply w-full pt-4 flex flex-wrap text-[1rem];
+
+            li {
+                &::before {
+                    content: "•";
+                    @apply px-2;
+                }
+
+                @apply w-full pt-2 text-[0.9rem];
+            }
+        }
+    }
+}
