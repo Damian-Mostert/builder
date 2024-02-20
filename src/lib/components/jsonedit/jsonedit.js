@@ -940,13 +940,15 @@ export default function JsonEdit({ DataIn, variant = "default", buttons, devSite
                                     topLeft: "pointer-events-none",
                                 }}
                                 defaultSize={{ width: 400 }} className={`flex editer-${variant}-history  flex flex-col max-h-full`} style={{ borderLeft: "1px solid", height: "100% !important" }}>
-                                <div className={"text-[1.5rem] w-full px-4 flex"} style={{ background: "#99999920" }}>
-                                    History <div className="w-full text-right">{HistoryCache.length - 1}</div>
-                                </div>
-                                <div className=" overflow-auto">
-                                    {[...HistoryCache].map((item, index) => {
-                                        return <div key={index} style={{ filter: (HistoryCache[0].index < index) ? "opacity(50%)" : "" }} className={"history-key"} >{ReadLog(item)}</div>;
-                                    }).reverse()}
+                                <div className="w-full h-full">
+                                    <div className={"text-[1.5rem] w-full flex"} style={{ background: "#99999920", padding: "1rem" }}>
+                                        History <div className="w-full text-right">{HistoryCache.length - 1}</div>
+                                    </div>
+                                    <div className="h-full" style={{ overflow: "auto" }}>
+                                        {[...HistoryCache].map((item, index) => {
+                                            return <div key={index} style={{ filter: (HistoryCache[0].index < index) ? "opacity(50%)" : "", padding: "1rem" }} className={"history-key"} >{ReadLog(item)}</div>;
+                                        }).reverse()}
+                                    </div>
                                 </div>
                             </Resizable>}
                         </div>

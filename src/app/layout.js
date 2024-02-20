@@ -6,6 +6,8 @@ import Provider from "./api/auth/[...nextauth]/client-provider"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 
+import { Analytics } from '@vercel/analytics/react';
+
 export default async function RootLayout({ children }) {
   return (
     <Provider session={await getServerSession(authOptions)}>
@@ -17,6 +19,7 @@ export default async function RootLayout({ children }) {
           <main>
             {children}
           </main>
+          <Analytics />
         </body>
       </html>
     </Provider>
