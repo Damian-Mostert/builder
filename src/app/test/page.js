@@ -1,7 +1,10 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Tree, TreeNode } from 'react-organizational-chart';
+
+import { Analytics, track } from '@vercel/analytics/react';
+
 
 const object = [
     {
@@ -74,6 +77,11 @@ function Node({ id, index, item, update }) {
 function Builder() {
     const [data, setData] = React.useState(object);
 
+    useEffect(() => {
+        track("test", {
+            data: "Hello world",
+        });
+    }, [])
 
     function update(path, operation, object,) {
         // Validate path format
