@@ -81,6 +81,7 @@ function Builder() {
         track("test", {
             data: "Hello world",
         });
+        console.log("event tracked")
     }, [])
 
     function update(path, operation, object,) {
