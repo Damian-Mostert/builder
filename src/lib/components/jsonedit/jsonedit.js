@@ -317,6 +317,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
 
     const dragNdDrop = (Key, targetKey) => {
         if (targetKey && targetKey != Key) {
+
             let built = ""; for (let x = 0; x < Key.split("-:::-").length - 1; x++) {
                 let path = Key.split("-:::-")[x];
                 built += path.length ? "[`" + path + "`]" : "";
@@ -386,7 +387,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                         <option value={"String"}>String</option>
                         <option value={"Button"}>Button</option>
                         <option value={"Layout"}>Layout</option>
-                        <option value={"Text"}>Text</option>
+                        <option value={"TextBox"}>TextBox</option>
                         <option value={"Accordion"}>Accordion</option>
                         <option value={"Nav"}>Nav</option>
                         <option value={"List"}>List</option>
@@ -507,10 +508,10 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
                                     ]
                                 },
                             }
-                        case "Text":
+                        case "TextBox":
                             return {
 
-                                Text: {
+                                TextBox: {
                                     style: "",
                                     variant: "default",
                                     pre: "",
@@ -620,7 +621,7 @@ function ArrayElement({ z, Index, Key, variant, button, Permisions, Global, setD
 
     return <div key="obj" className={`${Config?.className ? Config?.className : "editer-array"}`}>
         {Data.map((item, index) => {
-            if (item.__Hide && index == 0) return <div key={Key + "-:::-" + index} />
+            if (item.__Hide && index == 0) return <div key={Key + "-:::-" + index} className="drag-container" />
             return <Draggable key={Key + "-:::-" + index} handle={".DRAG" + Id.replace(/ /g, "___").replace(/&/g, "_AND_") + "-" + index} position={{ x: 0, y: 0 }} grid={[32, 32]} onStop={() => onDragStop({ Key, index })()}>
                 <div id={"Editer-ArrayKey-" + Id.replace(/ /g, "___").replace(/&/g, "_AND_") + "-" + index} htmlkey={Key + "-:::-" + index} className={`array-key ${item?.__KeyClassName ? item.__KeyClassName : ""}`}>
                     {Config?.edit && (Permisions ? Permisions.Update : true) && <>

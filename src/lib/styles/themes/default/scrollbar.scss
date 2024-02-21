@@ -1,15 +1,15 @@
 ::-webkit-scrollbar {
-    @apply w-[6px] h-[6px];
+  @apply w-[10px] h-[10px];
 
-    &-button {
-        @apply w-0 h-0 hover:bg-[var(--scroll-bar-thumb-color)];
-    }
+  &-button {
+    @apply w-0 h-0 hover:bg-[var(--scroll-bar-thumb-color)];
+  }
 
-    &-thumb {
-        @apply border-none bg-[var(--scroll-bar-thumb-color)] hover:bg-[var(--scroll-bar-thumb-color)] active:bg-[var(--scroll-bar-thumb-color)];
-    }
+  &-thumb {
+    @apply border-none bg-[var(--scroll-bar-thumb-color)] hover:bg-[var(--scroll-bar-thumb-color)] active:bg-[var(--scroll-bar-thumb-color)];
+  }
 
-    &-track {
-        @apply border-none bg-[var(--scroll-bar-bg-color)] hover:bg-[var(--scroll-bar-bg-color)] active:bg-[var(--scroll-bar-bg-color)];
-    }
+  &-track {
+    @apply border-none bg-[var(--scroll-bar-bg-color)] hover:bg-[var(--scroll-bar-bg-color)] active:bg-[var(--scroll-bar-bg-color)];
+  }
 }

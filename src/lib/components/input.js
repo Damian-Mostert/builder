@@ -10,7 +10,7 @@ const Input = forwardRef(function Input({
     errorMessage = "This input is required.",
     size = "full",
     className = "",
-    ...props 
+    ...props
 }, ref) {
 
     const [cacheValue, setCacheValue] = useState(value);
@@ -46,6 +46,8 @@ const Input = forwardRef(function Input({
 
     const handleBlur = () => setValue("" + cacheValue);
 
+    const handleInstantChange = (ev) => setValue(ev.target.value);
+
     const handleFocus = () => setError(null);
 
     const handleChange = ev => setCacheValue(ev.target.value);
@@ -61,6 +63,13 @@ const Input = forwardRef(function Input({
                     </>
                 case "select":
                     return <>
+                        {label && <label className="label">{label}</label>}
+                        <select value={Value} onChange={handleInstantChange}>
+                            {props.options && props.options.map((item, index) => {
+                                return <option key={index} value={item.value}>{item.label}</option>
+                            })}
+                        </select>
+                        {error && <div className="input-error">{error}</div>}
                     </>
                 case "file":
                     return <>
@@ -77,4 +86,4 @@ const Input = forwardRef(function Input({
 
 })
 
-export {Input};
+export { Input };

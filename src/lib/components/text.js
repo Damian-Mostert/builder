@@ -1,6 +1,6 @@
 "use client";
 
-export function Text({
+export function TextBox({
     pre,
     title,
     paragraphs = [],

@@ -1,16 +1,20 @@
 import { BuildBody } from "@modules";
 
-export function Layout({ type = "default", children, section = false, className = "", ...props}) {
-    if (section) {
-        return <section className={`layout-${type} ${className}`} {...props}>
-            <div className={`layout-${type}-container`}>
-                {BuildBody(children)}
+export function Layout({ type = "default", children, className = "", ...props }) {
+    if (type.startsWith("split")) {
+        return <div className={`layout-${type} ${className}`} {...props}>
+            <div className={`layout-${type}-container-a`}>
+                {BuildBody(children[0])}
             </div>
-        </section>
+            <div className={`layout-${type}-container-b`}>
+                {BuildBody(children[1])}
+            </div>
+        </div>
+
     }
-    return <section className={`layout-${type} ${className}`} {...props}>
+    return <div className={`layout-${type} ${className}`} {...props}>
         <div className={`layout-${type}-container`}>
             {BuildBody(children)}
         </div>
-    </section>
+    </div>
 }

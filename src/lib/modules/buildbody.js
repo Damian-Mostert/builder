@@ -29,7 +29,6 @@ export function BuildBody(body, config) {
                     return item;
                 }).join("")] = item[1]
             });
-            console.log(styles)
             return <div key={index} className="inherit">
                 <COMPONENT  {...body[Component]} style={styles} />
             </div>

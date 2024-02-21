@@ -5,10 +5,6 @@ import { Popup } from "@components";
 export function body() {
     return [
         {
-            "__Hide": true,
-            "edit": true
-        },
-        {
             "Header": {}
         },
         {
@@ -17,20 +13,13 @@ export function body() {
                 "type": "default",
                 "children": [
                     {
-                        "__Hide": true,
-                        "edit": true
-                    },
-                    {
-                        "Text": {
+                        "TextBox": {
                             "style": "",
                             "variant": "default",
                             "pre": "asdasdad",
                             "title": "asdasdasdasd",
                             "paragraphs": [
-                                {
-                                    "__Hide": true,
-                                    "edit": true
-                                },
+
                                 "dasd asdsdfs dfsd sdf",
                                 "sdf sdf sf fasdfsdff asdfsdf sdfsdf dsfdsf safddfgdfg dfgfdsgsdasdf afdsf ",
                                 "dsf dsf dsfsdfs dklhf sdhf sajkh fsdjkfh sdjk hsdkljfhasdlf hsdjkfh sdl hslvashd lf sa dlifu sdhfiulsg dk sgah"
@@ -43,55 +32,78 @@ export function body() {
         {
             "Layout": {
                 "style": "",
-                "type": "split",
+                "type": "default",
                 "children": [
                     {
-                        "__Hide": true,
-                        "edit": true
+                        "TextBox": {
+                            "style": "",
+                            "variant": "default",
+                            "pre": "asdasdad",
+                            "title": "asdasdasdasd",
+                            "paragraphs": [
+
+                                "dasd asdsdfs dfsd sdf",
+                                "sdf sdf sf fasdfsdff asdfsdf sdfsdf dsfdsf safddfgdfg dfgfdsgsdasdf afdsf ",
+                                "dsf dsf dsfsdfs dklhf sdhf sajkh fsdjkfh sdjk hsdkljfhasdlf hsdjkfh sdl hslvashd lf sa dlifu sdhfiulsg dk sgah"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "Layout": {
+                "style": "",
+                "type": "split-half-r",
+                "children": [
+                    {
+                        "Division": {
+                            "style": "background:red;width:100%;height:100%",
+                            children: []
+                        }
                     },
                     {
-                        "Text": {
+                        "TextBox": {
                             "style": "",
                             "variant": "default",
                             "pre": "sdasdas d",
                             "title": "asdasdasd",
                             "paragraphs": [
-                                {
-                                    "__Hide": true,
-                                    "edit": true
-                                },
+
+                                "sdf dgdfg sdgdf s",
+                                "d fgfd gsdfg dfgfds gfd"
+                            ]
+                        }
+                    },
+
+                ]
+            }
+        },
+        {
+            "Layout": {
+                "style": "",
+                "type": "split-half-l",
+                "children": [
+                    {
+                        "TextBox": {
+                            "style": "",
+                            "variant": "default",
+                            "pre": "sdasdas d",
+                            "title": "asdasdasd",
+                            "paragraphs": [
                                 "sdf dgdfg sdgdf s",
                                 "d fgfd gsdfg dfgfds gfd"
                             ]
                         }
                     },
                     {
-                        "Layout": {
-                            "style": "background:red;margin-top:1rem;",
-                            "type": "default",
-                            "children": [
-                                {
-                                    "__Hide": true,
-                                    "edit": true
-                                },
-                                {
-                                    "Text": {
-                                        "style": "sdfsdfsd",
-                                        "variant": "default",
-                                        "pre": "fsdfsdfsd",
-                                        "title": "sdfsdfsdf",
-                                        "paragraphs": [
-                                            {
-                                                "__Hide": true,
-                                                "edit": true
-                                            },
-                                            "dsf gfs dfgdfs gsdfgsd"
-                                        ]
-                                    }
-                                }
-                            ]
+                        "Division": {
+                            "style": "background:red;width:100%;height:100%;",
+                            children: []
                         }
-                    }
+                    },
+
+
                 ]
             }
         },

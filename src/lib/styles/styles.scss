@@ -4,5 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @import "./themes/default/default.scss";
+
+//important classes
+.react-draggable-dragging {
+  @apply relative;
+  z-index: 999;
+}
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
