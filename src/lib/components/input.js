@@ -10,10 +10,10 @@ const Input = forwardRef(function Input({
     errorMessage = "This input is required.",
     size = "full",
     className = "",
+    onChange = () => { },
     ...props
 }, ref) {
 
-    const [cacheValue, setCacheValue] = useState(value);
 
     const [Value, setValue] = useState(value);
 
@@ -44,13 +44,12 @@ const Input = forwardRef(function Input({
         }
     });
 
-    const handleBlur = () => setValue("" + cacheValue);
 
-    const handleInstantChange = (ev) => setValue(ev.target.value);
+    const handleInstantChange = (ev) => {
+        setValue(ev.target.value);
+        onChange(ev.target.value);
+    };
 
-    const handleFocus = () => setError(null);
-
-    const handleChange = ev => setCacheValue(ev.target.value);
 
     return <div className={`input-container input-variant-${variant} input-type-${type} input-size-${size} ${className}`} {...props}>
         {function () {
@@ -58,13 +57,14 @@ const Input = forwardRef(function Input({
                 case "text": case "name": case "email": case "date": case "password":
                     return <>
                         {label && <label className="label">{label}</label>}
-                        <input className="input" ref={ref} value={cacheValue} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} />
+                        <input className="input" ref={ref} value={Value} onChange={handleInstantChange} />
                         {error && <div className="input-error">{error}</div>}
                     </>
                 case "select":
                     return <>
                         {label && <label className="label">{label}</label>}
                         <select value={Value} onChange={handleInstantChange}>
+                            <option value={-1}>Please select a item</option>
                             {props.options && props.options.map((item, index) => {
                                 return <option key={index} value={item.value}>{item.label}</option>
                             })}

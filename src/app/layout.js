@@ -16,6 +16,7 @@ export default async function RootLayout({ children }) {
       <html lang="en">
         <head>
           <title>Console</title>
+
         </head>
         <body>
           <main>

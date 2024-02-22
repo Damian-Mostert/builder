@@ -40,7 +40,7 @@
   }
 
   &-container {
-    @apply w-[var(--input-width)] mt-4;
+    @apply w-[var(--input-width)] mt-4 text-left;
 
     label {
       @apply w-full text-[var(--label-text)] pl-1;

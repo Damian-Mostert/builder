@@ -31,7 +31,7 @@ export function Nav({ orientation = "left", indexes = [], tabs = [], tab = "", v
             </div>
             <div className="nav-tab">
                 <div className="nav-tab-body">
-                    {BuildBody(tabs[TabIndex] ? tabs[TabIndex] : {})}
+                    {tabs[TabIndex] ? tabs[TabIndex] : {}}
                 </div>
             </div>
         </div>

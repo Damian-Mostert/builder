@@ -1,3 +1,3 @@
-export function Paragraph({ text }) {
-    return <p></p>
+export function Paragraph({ text, ...props }) {
+    return <p {...props}>{text}</p>
 }

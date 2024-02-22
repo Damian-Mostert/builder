@@ -1,38 +1,29 @@
 import Components from "@components";
 
+export function BuildBody(body) {
 
-export function BuildBody(body, config) {
     if (Array.isArray(body)) {
-        return <>
-            {body.map((item, index) => {
-                return <div key={index} className="inherit">
-                    <BuildBody {...item} />
-                </div>
-            })}
-        </>;
+        return (
+            <>
+                {body.map((item, index) => {
+                    return (
+                        <div key={index} className="inherit">
+                            <BuildBody {...item} />
+                        </div>
+                    );
+                })}
+            </>
+        );
     }
-    return <>
-        {Object.keys(body).map((Component, index) => {
-            const COMPONENT = Components[Component];
-            let style = body[Component].style;
-            const styleArray = (style ? style.split(";").map((item) => {
-                return item.split(":");
-            }) : []);
-            let styles = {
+    if (body) {
+        const COMPONENT = Components[body.__component];
+        return (
+            <>
+                <div className="inherit">
+                    <COMPONENT {...body.__props} children={BuildBody(body.children)} />
+                </div>
+            </>
+        );
 
-            };
-            styleArray.forEach(item => {
-                styles[item[0].split("-").map((item, index) => {
-                    if (index) {
-                        return item.charAt(0).toUpperCase() + item.slice(1);
-                    }
-                    return item;
-                }).join("")] = item[1]
-            });
-            return <div key={index} className="inherit">
-                <COMPONENT  {...body[Component]} style={styles} />
-            </div>
-        })
-        }
-    </>
+    }
 }

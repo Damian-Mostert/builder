@@ -1,16 +1,29 @@
-import Image from "next/image";
-import { default as LINK } from "next/link";
-import { useState } from "react";
 
+import { default as LINK } from "next/link";
+import { useEffect, useState } from "react";
+
+
+function Video({ children, ...props }) {
+    return <video {...props} />
+}
+
+function Image({ children, ...props }) {
+    return <img {...props} />
+}
 
 function Link({ children, ...props }) {
     return <LINK {...props}>
-        {BuildBody(children)}
+        {children}
     </LINK>
 }
 
-function ShowState({ children, stateId }) {
+function ShowState({ children, id }) {
     const [show, setShow] = useState();
+
+    useEffect(() => {
+
+    }, []);
+
     return <>
         {show && children}
     </>
@@ -38,8 +51,8 @@ import { BuildBody } from "@modules";
 import { Paragraph } from "./paragraph";
 import { Section } from "./section";
 import { Division } from "./division";
+import { IAM } from "aws-sdk";
 
-export { default as JsonEdit, Remake, remove__Editor } from "./jsonedit/jsonedit";
 //export
-export { ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, Paralax, Slider, Carousel };
-export default { ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, Paralax, Slider, Carousel };
+export { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, Paralax, Slider, Carousel };
+export default { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, Paralax, Slider, Carousel };

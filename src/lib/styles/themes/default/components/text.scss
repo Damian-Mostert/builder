@@ -1,43 +1,42 @@
 .text {
-    &-variant {
-        &-default {
-            --pre-heading-size: 0.9rem;
-            --pre-heading-color: green;
-            --pre-heading-align: start;
-            --heading-size: 1.2rem;
-            --heading-color: black;
-            --heading-align: start;
-            --text-color: black;
-            --text-align: justify;
-
-        }
+  &-variant {
+    &-default {
+      --pre-heading-size: 0.9rem;
+      --pre-heading-color: green;
+      --pre-heading-align: start;
+      --heading-size: 1.2rem;
+      --heading-color: black;
+      --heading-align: start;
+      --text-color: black;
+      --text-align: justify;
     }
+  }
 
-    &-pre-heading {
-        font-size: var(--pre-heading-size);
-        color: var(--pre-heading-color);
-        margin-bottom: -0.9rem;
-        letter-spacing: 1px;
-        text-align: var(--pre-heading-align);
-        width: 100%;
-    }
+  &-pre-heading {
+    font-size: var(--pre-heading-size);
+    color: var(--pre-heading-color);
+    margin-bottom: -0.9rem;
+    letter-spacing: 1px;
+    text-align: var(--pre-heading-align);
+    width: 100%;
+  }
 
-    &-heading {
-        margin-top: 0.5rem;
-        font-size: var(--heading-size);
-        color: var(--heading-color);
-        letter-spacing: 3px;
-        text-align: var(--heading-align);
-        width: 100%;
-    }
+  &-heading {
+    margin-top: 0.5rem;
+    font-size: var(--heading-size);
+    color: var(--heading-color);
+    letter-spacing: 3px;
+    text-align: var(--heading-align);
+    width: 100%;
+  }
 
-    &-p {
-        @apply mt-2 p-0;
-        color: var(--text-color);
-        letter-spacing: 2px;
-        text-align: var(--text-align);
-        width: 100%;
-    }
+  p {
+    @apply mt-2 p-0;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    text-align: var(--text-align);
+    width: 100%;
+  }
 
-    width:100%;
+  width: 100%;
 }

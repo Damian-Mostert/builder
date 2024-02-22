@@ -18,7 +18,7 @@ export function Accordion({ className = "", indexes = [], tabs = [], tab = "", v
                     </div>
 
                     <div className={`w-full h-full overflow-auto  `} style={{ transition: "all 1s", maxHeight: TabIndex == index ? "1000px" : "0px" }}>
-                        {BuildBody(tabs[TabIndex] &&index == TabIndex ? tabs[TabIndex]:{})}
+                        {tabs[TabIndex] &&index == TabIndex ? tabs[TabIndex]:{}}
                     </div>
                 </div>
             })}

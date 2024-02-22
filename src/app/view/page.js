@@ -1,17 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { body } from "../body"
+
+import { useState, useEffect, useRef } from "react";
 import { BuildBody, useInViewClass } from "@modules";
-import { remove__Editor } from "@components";
 
 export default function View() {
     useInViewClass();
-    const [data, setData] = useState(body());
+
+    const containerRef = useRef();
+
+    const [data, setData] = useState([]);
     useEffect(() => {
         const handleMessage = event => {
             console.log(JSON.parse(event.data));
             setData(JSON.parse(event.data));
+
         };
         window.addEventListener("message", handleMessage);
         return () => {
@@ -19,7 +22,7 @@ export default function View() {
         };
     }, []);
 
-    return <>
-        {BuildBody(remove__Editor(data))}
-    </>
+    return <div ref={containerRef} className="w-full h-full">
+        {BuildBody((data))}
+    </div>
 }
