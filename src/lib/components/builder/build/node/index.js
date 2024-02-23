@@ -97,16 +97,21 @@ export function Node({ id, index, item, update }) {
             }}>
                 <div id={id + "---" + index} className='rounded-xl bg-slate-950 max-w-[500px] relative' style={{ marginTop: id == "root" ? "-2rem" : "" }}>
                     <h2 className={`bg-slate-800 p-1 flex items-center justify-center  ${id == "root" ? "rounded-xl" : "rounded-t-xl"}`} >
-                        {id != "root" && <div onClick={() => Popup.fire({
-                            icon: "warn",
-                            background: "blur",
-                            confirmButton: true,
-                            canClose: true,
-                            text: "Are you sure you want to remove this " + item.__component + "?"
-                        }).then(res => {
-                            if (res.confirmed)
-                                update(id + "---" + index, "remove")
-                        })} className='cursor-pointer absolute left-2  bg-red-500 p-2 rounded-full text-white flex justify-center items-center'></div>}
+                        {id != "root" &&
+                            <div onClick={() => Popup.fire({
+                                icon: "warn",
+                                background: "blur",
+                                confirmButton: true,
+                                canClose: true,
+                                text: "Are you sure you want to remove this " + item.__component + "?"
+                            }).then(res => {
+                                if (res.confirmed)
+                                    update(id + "---" + index, "remove")
+                            })} className='cursor-pointer absolute left-2  bg-red-500 p-2 rounded-full text-white flex justify-center items-center'></div>}
+
+                        {id != "root" &&
+                            <div onClick={() => update(id + "---" + index, "copy")} className='cursor-pointer absolute right-2  bg-blue-300 p-2 rounded-full text-white flex justify-center items-center'></div>}
+
                         <div className={`w-full ${"handle-" + id + "---" + index} h-full text-center`}>
                             {item.__component}
                         </div>

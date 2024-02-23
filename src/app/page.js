@@ -1,4 +1,7 @@
+"use client";
+
 import Builder from "src/lib/components/builder"
+import { Popup } from '@components';
 
 export default function () {
     return <>
@@ -12,5 +15,6 @@ export default function () {
                 }
             ]
         }} />
+        <Popup />
     </>
 }

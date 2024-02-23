@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { Tree } from 'react-organizational-chart';
-import { Popup } from '@components';
+import { Button, Popup } from '@components';
 import { Resizable } from 're-resizable';
 
 import { Build } from './build';
@@ -10,19 +10,38 @@ import { Build } from './build';
 
 
 function Builder({
-    template
+    template,
+    onSave
 }) {
 
-    const [data, setData] = React.useState(template);
+    const [history, setHistory] = React.useState([template]);
+    const [historyIndex, setHistoryIndex] = React.useState(0);
 
-    useEffect(() => {
+    function setData(data) {
+        const newData = Remake(data);
+        setHistory(prev => [...prev.slice(0, historyIndex + 1), newData]);
+        setHistoryIndex(prev => prev + 1);
+
         document.getElementById("web-frame").contentWindow.postMessage(
-            JSON.stringify(data.children[0].children),
+            JSON.stringify(newData.children[0].children),
             '*'
         );
-    }, [data]);
+    }
+    function undo() {
+        if (historyIndex > 0) {
+            setHistoryIndex(prev => prev - 1);
+        }
+    }
+
+    function redo() {
+        if (historyIndex < history.length - 1) {
+            setHistoryIndex(prev => prev + 1);
+        }
+    }
 
     function update(path, operation, object,) {
+        const data = history[historyIndex];
+
         // Validate path format
         if (!path.startsWith("root---")) {
             throw new Error(`Invalid path format: ${path}`);
@@ -72,6 +91,14 @@ function Builder({
                     return arguments[0];
                     `).replace(/.children.children/g, ".children").replace(/,./g, "."))(Remake(data), object)));
                     break;
+                case "copy":
+                    setData(Remake(Function((`
+                    let duplication = {...arguments[0].children${indexes.map(index => { return ".children[" + index + "]" }).join()}};
+                    console.log(duplication)
+                    arguments[0].children${indexes.map((index, i) => (i == indexes.length - 1 ? "" : ".children[" + index + "]")).join()}.children.push(duplication);
+                    return arguments[0];
+                    `).replace(/.children.children/g, ".children").replace(/,./g, "."))(Remake(data), object)));
+                    break;
                 default:
                     throw new Error(`Invalid operation: ${operation}`);
             }
@@ -84,32 +111,38 @@ function Builder({
 
     useEffect(enableZoomBox, []);
 
-    return <div className='w-full h-full flex '>
-        <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-hidden ">
-            <div className='page-drag drag-me p-4  h-full w-full text-white '>
-                <div id='drag-me' style={{ width: "300%", height: "300%" }}>
-                    <Tree lineBorderRadius='100px' lineWidth='4px' lineColor='#84CC16'>
-                        {Build({ obj: data, update, data })}
-                    </Tree>
+    return <div className='flex flex-col w-full h-full'>
+        <div className='w-full bg-gray-800 border border-gray-900 flex p-1'>
+            <Button onClick={redo} label="↪" className="!bg-gray-600 !text-white !border border-gray-700" />
+            <Button onClick={undo} label="↩" className="ml-1 !bg-gray-600 !text-white !border border-gray-700" />
+            <Button onClick={onSave} label="Save" className="ml-auto !bg-gray-600 !text-white !border border-gray-700" />
+        </div>
+        <div className='w-full h-full flex '>
+            <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-hidden ">
+                <div className='page-drag drag-me p-4  h-full w-full text-white '>
+                    <div id='drag-me' style={{ width: "300%", height: "300%" }}>
+                        <Tree lineBorderRadius='100px' lineWidth='4px' lineColor='#84CC16'>
+                            {Build({ obj: history[historyIndex], update, data: history[historyIndex] })}
+                        </Tree>
+                    </div>
                 </div>
             </div>
-        </div>
-        <Resizable
-            className='h-full overflow-hidden'
-            style={{ borderLeft: "2px solid grey" }}
-            handleClasses={{
-                top: "pointer-events-none",
-                bottom: "pointer-events-none",
-                topRight: "pointer-events-none",
-                bottomRight: "pointer-events-none",
-                bottomLeft: "pointer-events-none",
-                topLeft: "pointer-events-none",
-            }}
-            defaultSize={{ width: 400 }}>
-            <iframe id="web-frame" src="/view" className='w-full h-full ' />
-        </Resizable>
-        <Popup />
-    </div >
+            <Resizable
+                className='h-full overflow-hidden'
+                style={{ borderLeft: "2px solid grey" }}
+                handleClasses={{
+                    top: "pointer-events-none",
+                    bottom: "pointer-events-none",
+                    topRight: "pointer-events-none",
+                    bottomRight: "pointer-events-none",
+                    bottomLeft: "pointer-events-none",
+                    topLeft: "pointer-events-none",
+                }}
+                defaultSize={{ width: 400 }}>
+                <iframe id="web-frame" src="/view" className='w-full h-full ' />
+            </Resizable>
+        </div >
+    </div>
 };
 
 export default Builder;
