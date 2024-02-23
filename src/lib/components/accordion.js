@@ -1,10 +1,11 @@
 "use client";
+import { Input } from "./input";
 
 import { useState } from "react";
 
 import { BuildBody } from "@modules";
 
-export function Accordion({ className = "", indexes = [], tabs = [], tab = "", variant = "default", inDepthStyles = [],...props }) {
+function Accordion({ className = "", indexes = [], tabs = [], tab = "", variant = "default", inDepthStyles = [], ...props }) {
 
     const [TabIndex, setIndex] = useState(indexes.indexOf(tab));
 
@@ -18,7 +19,7 @@ export function Accordion({ className = "", indexes = [], tabs = [], tab = "", v
                     </div>
 
                     <div className={`w-full h-full overflow-auto  `} style={{ transition: "all 1s", maxHeight: TabIndex == index ? "1000px" : "0px" }}>
-                        {tabs[TabIndex] &&index == TabIndex ? tabs[TabIndex]:{}}
+                        {tabs[TabIndex] && index == TabIndex ? tabs[TabIndex] : {}}
                     </div>
                 </div>
             })}
@@ -26,3 +27,47 @@ export function Accordion({ className = "", indexes = [], tabs = [], tab = "", v
 
     </>
 };
+
+Accordion.Options = function Options({ update, data }) {
+    return <div className='p-2'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="variant" value={data.variant}
+                type="select"
+                options={[
+                    {
+                        label: "default",
+                        value: "default"
+                    }
+                ]}
+                onChange={variant => {
+                    update({
+                        ...data,
+                        variant
+                    })
+                }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="class" value={data.className}
+                onChange={className => {
+                    update({
+                        ...data,
+                        className
+                    })
+                }} />
+        </div>
+        <div variant="builder" className='w-[300px] m-auto'>
+            <Input label="value" value={data.label} onChange={value => {
+                update({
+                    ...data,
+                    value
+                })
+            }} />
+        </div>
+    </div>
+}
+
+Accordion.canAppend = [
+
+];
+
+export { Accordion };

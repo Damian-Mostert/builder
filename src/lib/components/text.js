@@ -1,6 +1,7 @@
 "use client";
+import { Input } from "./input";
 
-export function TextBox({
+function TextBox({
     pre,
     title,
     children = [],
@@ -14,3 +15,32 @@ export function TextBox({
         {children}
     </div>
 }
+
+TextBox.Options = function Options({ update, data }) {
+    return <div className='py-2 flex flex-wrap'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="Pre title" value={data.pre} onChange={pre => {
+                update({
+                    ...data,
+                    pre
+                })
+            }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="title" value={data.title} onChange={title => {
+                update({
+                    ...data,
+                    title
+                })
+            }} />
+        </div>
+    </div>
+}
+
+TextBox.canAppend = [
+    "Paragraph",
+    "Button",
+    "Input"
+];
+
+export { TextBox };

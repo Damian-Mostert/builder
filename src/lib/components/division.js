@@ -1,7 +1,40 @@
-import { BuildBody } from "../modules/buildbody";
+import { Input } from "./input";
 
-export function Division({ children, ...props }) {
+function Division({ children, ...props }) {
     return <div {...props}>
         {children}
     </div>
 }
+
+Division.Options = function Options({ update, data }) {
+    return <div className='py-2 flex flex-wrap'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="class" value={data.className}
+                onChange={className => {
+                    update({
+                        ...data,
+                        className
+                    })
+                }} />
+        </div>
+    </div>
+}
+
+Division.canAppend = [
+    "Division",
+    "TextBox",
+    "Image",
+    "Video",
+    "Layout",
+    "Section",
+    "Form",
+    "Input",
+    "Button",
+    "Nav",
+    "Accordion",
+    "List",
+    "Slider",
+    "Carousel"
+];
+
+export { Division };

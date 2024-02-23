@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {Button} from "./button";
-import {Input} from "./input";
+import { Button } from "./button";
+import { Input } from "./input";
 
-export function Form({
+function Form({
     className = "",
     title = "",
     variant = "default",
@@ -45,3 +45,47 @@ export function Form({
         <Button {...submitButton} />
     </form>
 }
+
+Form.Options = function Options({ update, data }) {
+    return <div className='p-2'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="variant" value={data.variant}
+                type="select"
+                options={[
+                    {
+                        label: "default",
+                        value: "default"
+                    }
+                ]}
+                onChange={variant => {
+                    update({
+                        ...data,
+                        variant
+                    })
+                }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="class" value={data.className}
+                onChange={className => {
+                    update({
+                        ...data,
+                        className
+                    })
+                }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="value" value={data.label} onChange={value => {
+                update({
+                    ...data,
+                    value
+                })
+            }} />
+        </div>
+    </div>
+}
+
+Form.canAppend = [
+    "Input"
+];
+
+export { Form };

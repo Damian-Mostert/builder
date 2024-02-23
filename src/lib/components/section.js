@@ -1,6 +1,6 @@
-import { BuildBody } from "@modules";
+import { Input } from "./input"
 
-export function Section({ type = "default", children, className = "", ...props }) {
+function Section({ type = "default", children, className = "", ...props }) {
     if (type.startsWith("split")) {
         return <section className={`section-${type} ${className}`} {...props}>
             <div className={`section-${type}-container-a`}>
@@ -19,3 +19,53 @@ export function Section({ type = "default", children, className = "", ...props }
     </section>
 
 }
+
+Section.Options = function Options({ update, data }) {
+    return <div className='py-2 flex flex-wrap'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="type" type="select" value={data.value} size="full" options={[
+                {
+                    label: "default",
+                    value: "default",
+                },
+                {
+                    label: "split",
+                    value: "split",
+                },
+                {
+                    label: "split half right",
+                    value: "split-half-r",
+                },
+                {
+                    label: "split half left",
+                    value: "split-half-l",
+                },
+                {
+                    label: "center",
+                    value: "center",
+                },
+                {
+                    label: "flex",
+                    value: "flex",
+                }
+            ]} onChange={type => {
+                update({
+                    ...data,
+                    type
+                })
+            }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="class" value={data.className} onChange={className => {
+                update({
+                    ...data,
+                    className
+                })
+            }} />
+        </div>
+
+
+    </div>
+}
+
+export { Section }

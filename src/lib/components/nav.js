@@ -4,9 +4,8 @@ import { useState } from "react";
 
 import { Popup } from "@components";
 
-import { BuildBody } from "@modules";
 
-export function Nav({ orientation = "left", indexes = [], tabs = [], tab = "", variant = "default", warnOnExit, setWarnOnExit, className = "" ,...props}) {
+function Nav({ orientation = "left", indexes = [], tabs = [], tab = "", variant = "default", warnOnExit, setWarnOnExit, className = "", ...props }) {
     const [TabIndex, setIndex] = useState(indexes.indexOf(tab));
     return <>
         <div className={`nav nav-orientation-${orientation} ${"nav-variant-" + variant} ${className}`} {...props}>
@@ -37,3 +36,42 @@ export function Nav({ orientation = "left", indexes = [], tabs = [], tab = "", v
         </div>
     </>
 }
+Nav.Options = function Options({ update, data }) {
+    return <div className='p-2'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="variant" value={data.variant}
+                type="select"
+                options={[
+                    {
+                        label: "default",
+                        value: "default"
+                    }
+                ]}
+                onChange={variant => {
+                    update({
+                        ...data,
+                        variant
+                    })
+                }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="class" value={data.className}
+                onChange={className => {
+                    update({
+                        ...data,
+                        className
+                    })
+                }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="value" value={data.label} onChange={value => {
+                update({
+                    ...data,
+                    value
+                })
+            }} />
+        </div>
+    </div>
+}
+
+export { Nav };

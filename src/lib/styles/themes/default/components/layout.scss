@@ -18,15 +18,17 @@
         width: 100%;
         @media screen and (max-width: $screen) {
           @apply w-full;
+          max-width: none;
         }
       }
       &-b {
         max-width: calc(var(--screen) / 2);
-        margin-left: auto;
+        margin-right: auto;
         padding: 1rem 2rem;
         width: 100%;
         @media screen and (max-width: $screen) {
           @apply w-full;
+          max-width: none;
         }
       }
     }

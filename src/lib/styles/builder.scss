@@ -1,0 +1,47 @@
+.input-variant-builder {
+  background-color: transparent;
+  label {
+    color: white;
+  }
+  .input {
+    background: #444 !important;
+  }
+  select {
+    background: #444;
+  }
+}
+
+.button-variant-builder {
+  background-color: #555;
+  &-invert {
+    color: black;
+    background-color: #eee;
+  }
+}
+
+.button-variant-builder-toggle {
+  width: 1rem;
+  height: 1rem;
+  max-width: 1rem;
+  max-height: 1rem;
+  font-size: 0px;
+  border-radius: 50%;
+  background-color: #555;
+  min-width: 1rem !important;
+  padding: 0px;
+  &-invert {
+    padding: 0px;
+
+    min-width: none !important;
+    min-width: 1rem !important;
+
+    color: black;
+    background-color: #eee;
+    font-size: 0px;
+    width: 1rem;
+    height: 1rem;
+    max-width: 1rem;
+    max-height: 1rem;
+    border-radius: 50%;
+  }
+}
