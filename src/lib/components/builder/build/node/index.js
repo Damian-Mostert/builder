@@ -64,7 +64,6 @@ export function Node({ id, index, item, update }) {
                 "Video",
                 "List",
                 "Slider",
-                "Carousel",
                 "Accordion",
                 "Nav",
                 "Form",

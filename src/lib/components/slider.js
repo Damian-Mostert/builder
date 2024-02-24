@@ -1,28 +1,84 @@
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Input } from "./input";
 
-function Slider({ variant, children }) {
+function Slider({ variant, children, ...props }) {
 
-
-
-    var settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
+    console.log(props)
 
     return <div className={`slider-${variant}`}>
-        <Slick {...settings}>
+        <Slick {...props}>
             {children.props.children}
         </Slick>
     </div>
 }
 
-Slider.Options = function Options() {
-    return
+Slider.Options = function Options({ update, data }) {
+    return <div className='py-2 flex flex-wrap'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="infinite" type="select" value={data.value} size="full" options={[
+                {
+                    label: "Yes",
+                    value: true,
+                },
+                {
+                    label: "No",
+                    value: false,
+                }
+            ]} onChange={infinite => {
+                update({
+                    ...data,
+                    infinite: infinite == "true" ? true : false
+                })
+            }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="dots" type="select" value={data.value} size="full" options={[
+                {
+                    label: "Yes",
+                    value: true,
+                },
+                {
+                    label: "No",
+                    value: false,
+                }
+            ]} onChange={dots => {
+                update({
+                    ...data,
+                    dots:dots == "true" ? true :false
+                })
+            }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="arrows" type="select" value={data.value} size="full" options={[
+                {
+                    label: "Yes",
+                    value: true,
+                },
+                {
+                    label: "No",
+                    value: false,
+                }
+            ]} onChange={arrows => {
+                update({
+                    ...data,
+                    arrows: arrows == "true" ? true : false
+                })
+            }} />
+        </div>
+
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="class" value={data.className} onChange={className => {
+                update({
+                    ...data,
+                    className
+                })
+            }} />
+        </div>
+
+
+    </div>
 }
 
 Slider.canAppend = [

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tree } from 'react-organizational-chart';
 import { Button, Popup } from '@components';
 import { Resizable } from 're-resizable';
@@ -14,8 +14,21 @@ function Builder({
     onSave
 }) {
 
-    const [history, setHistory] = React.useState([template]);
+    const [history, setHistory] = React.useState([
+        {
+            children: [
+                {
+                    __component: "Root",
+                    children: [
+                        ...template
+                    ]
+                }
+            ]
+        }
+    ]);
+
     const [historyIndex, setHistoryIndex] = React.useState(0);
+
 
     function setData(data) {
         const newData = Remake(data);
@@ -27,14 +40,36 @@ function Builder({
             '*'
         );
     }
+
+
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
+        frame.addEventListener("load", () => {
+            setTimeout(() => {
+                frame.contentWindow.postMessage(
+                    JSON.stringify(template),
+                    '*'
+                );
+            }, 100)
+        })
+    }, []);
+
     function undo() {
         if (historyIndex > 0) {
+            document.getElementById("web-frame").contentWindow.postMessage(
+                JSON.stringify(history[historyIndex - 1].children[0].children),
+                '*'
+            );
             setHistoryIndex(prev => prev - 1);
         }
     }
 
     function redo() {
         if (historyIndex < history.length - 1) {
+            document.getElementById("web-frame").contentWindow.postMessage(
+                JSON.stringify(history[historyIndex + 1].children[0].children),
+                '*'
+            );
             setHistoryIndex(prev => prev + 1);
         }
     }
@@ -111,25 +146,48 @@ function Builder({
 
     useEffect(enableZoomBox, []);
 
+    const [EditBody,setEditBody] = useState(function(){})
+
     return <div className='flex flex-col w-full h-full'>
-        <div className='w-full bg-gray-800 border border-gray-900 flex p-1'>
-            <Button onClick={redo} label="↪" className="!bg-gray-600 !text-white !border border-gray-700" />
-            <Button onClick={undo} label="↩" className="ml-1 !bg-gray-600 !text-white !border border-gray-700" />
-            <Button onClick={onSave} label="Save" className="ml-auto !bg-gray-600 !text-white !border border-gray-700" />
+        <div className='w-full bg-gray-800 border border-gray-900 flex items-center '>
+            <button onClick={undo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↪</button>
+            <div className='h-2/3 w-[1px] bg-white ml-4' />
+            <button onClick={redo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↩</button>
+            <div className='h-2/3 w-[1px] bg-white ml-4' />
         </div>
         <div className='w-full h-full flex '>
-            <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-hidden ">
+            <Resizable
+                onResize={() => {
+                    const dragContainer = document.getElementById('drag-container');
+                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2.5;
+                }}
+                className='h-full overflow-hidden flex flex-col  bg-gray-800 border border-gray-900 '
+                handleClasses={{
+                    top: "pointer-events-none",
+                    bottom: "pointer-events-none",
+                    topRight: "pointer-events-none",
+                    bottomRight: "pointer-events-none",
+                    bottomLeft: "pointer-events-none",
+                    topLeft: "pointer-events-none",
+                }}
+                defaultSize={{ width: 200 }}>
+                
+            </Resizable>
+            <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto ">
                 <div className='page-drag drag-me p-4  h-full w-full text-white '>
-                    <div id='drag-me' style={{ width: "300%", height: "300%" }}>
-                        <Tree lineBorderRadius='100px' lineWidth='4px' lineColor='#84CC16'>
+                    <div id='drag-me' className='drag-me flex justify-center' style={{ width: "300%", height: "300%",scale:"0.7" }}>
+                        <Tree className="flex justify-center" lineBorderRadius='100px' lineWidth='4px' lineColor='#84CC16'>
                             {Build({ obj: history[historyIndex], update, data: history[historyIndex] })}
                         </Tree>
                     </div>
                 </div>
             </div>
             <Resizable
-                className='h-full overflow-hidden'
-                style={{ borderLeft: "2px solid grey" }}
+                onResize={() => {
+                    const dragContainer = document.getElementById('drag-container');
+                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2.5;
+                }}
+                className='h-full overflow-hidden flex flex-col'
                 handleClasses={{
                     top: "pointer-events-none",
                     bottom: "pointer-events-none",
@@ -164,8 +222,13 @@ export const Remake = (data) => {
 const enableZoomBox = () => {
     const dragContainer = document.getElementById('drag-container');
 
-    // Scroll horizontally to the middle of the element
-    dragContainer.scrollLeft = dragContainer.scrollWidth / 3;
+    const resize = () => {
+        dragContainer.scrollLeft = dragContainer.scrollWidth / 2.5;
+    }
+
+    resize();
+
+    window.addEventListener("resize", resize)
 
     let isDragging = false;
     let startX, startY; // Initial drag coordinates
@@ -294,5 +357,6 @@ const enableZoomBox = () => {
         document.removeEventListener('touchmove', handleTouchMove);
         document.removeEventListener('touchend', handleTouchEnd);
         dragContainer.removeEventListener("wheel", handleMouseWheel);
+        window.removeEventListener("resize", resize);
     };
 }

@@ -51,7 +51,6 @@ import { TextBox } from "./text";
 import { List, ListItem } from "./list";
 import { Parallax } from "./parallax";
 import { Slider } from "./slider";
-import { Carousel } from "./carousel";
 import { Paragraph } from "./paragraph";
 import { Section } from "./section";
 import { Division } from "./division";
@@ -59,5 +58,5 @@ import { Image } from "./image";
 import { Video } from "./video";
 
 //export
-export { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider, Carousel };
-export default { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider, Carousel };
+export { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export default { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };

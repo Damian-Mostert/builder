@@ -1,6 +1,6 @@
 import { Node } from "./node/index.js";
 
-export function Build({ obj, id = "root", update, data }) {
+export function Build({ obj, id = "root", update, }) {
     return <>
         {id != "root" && obj.map((item, index) => {
             return <Node key={index} id={id} index={index} item={item} update={update} />

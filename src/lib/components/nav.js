@@ -6,6 +6,7 @@ import { Popup } from "@components";
 
 
 function Nav({ orientation = "left", indexes = [], tabs = [], tab = "", variant = "default", warnOnExit, setWarnOnExit, className = "", ...props }) {
+    
     const [TabIndex, setIndex] = useState(indexes.indexOf(tab));
     return <>
         <div className={`nav nav-orientation-${orientation} ${"nav-variant-" + variant} ${className}`} {...props}>
