@@ -8,7 +8,7 @@ import Components from '@components';
 
 import { Build } from "..";
 
-export function Node({ id, index, item, update }) {
+export function Node({ id, index, item, update, expand }) {
 
     const [closest, setClosest] = useState(null);
 
@@ -47,6 +47,13 @@ export function Node({ id, index, item, update }) {
 
     const [open, setOpen] = React.useState(false);
 
+    useEffect(() => {
+        if (expand && item.children) {
+            setOpen(true)
+        } else {
+            setOpen(false);
+        }
+    }, [expand]);
 
     var Options = Components[item.__component]?.Options;
     if (!Options)
@@ -136,7 +143,7 @@ export function Node({ id, index, item, update }) {
             <div className='bg-[#222] w-4 h-6 absolute' style={{ left: "calc(50% - 0.5rem)", marginTop: "-20px" }} />
         }
         {(item.__component == "Root" || open) && <>
-            <Build obj={item.children} id={id + "---" + index} key={id + "---" + index} update={update}
+            <Build obj={item.children} id={id + "---" + index} key={id + "---" + index} update={update} expand={expand}
             />
         </>}
     </TreeNode>

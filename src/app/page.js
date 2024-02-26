@@ -5,7 +5,7 @@ import { Popup, Navigation } from '@components';
 
 export default function () {
     return <>
-        <main>
+        <main className="w-screen h-screen fixed top-0 left-0" style={{ maxHeight: "100vh", maxWidth: "100vw" }}>
             <Navigation.Header />
             <Builder template={[
                 {
@@ -281,7 +281,7 @@ export default function () {
 
             }} />
             <Popup />
+
         </main>
-        <Navigation.Footer />
     </>
 }

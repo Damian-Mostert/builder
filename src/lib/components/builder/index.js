@@ -148,11 +148,15 @@ function Builder({
 
     const [EditBody, setEditBody] = useState(function () { })
 
+    const [expand, setExpand] = useState(false);
+
     return <div className='flex flex-col w-full h-full'>
         <div className='w-full bg-gray-800 border border-gray-900 flex items-center '>
             <button onClick={undo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↪</button>
             <div className='h-2/3 w-[1px] bg-white ml-4' />
             <button onClick={redo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↩</button>
+            <div className='h-2/3 w-[1px] bg-white ml-4' />
+            <button onClick={() => expand ? setExpand(false) : setExpand(true)} className='ml-4 text-sm text-white'>{expand ? "COLLAPSE ALL" : "EXPAND ALL"}</button>
             <div className='h-2/3 w-[1px] bg-white ml-4' />
         </div>
         <div className='w-full h-full flex '>
@@ -202,9 +206,9 @@ function Builder({
             </Resizable>
             <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto ">
                 <div className='page-drag drag-me p-4  h-full w-full text-white '>
-                    <div id='drag-me' className='drag-me flex justify-center' style={{ width: "300%", height: "300%", scale: "0.7" }}>
+                    <div id='drag-me' className='drag-me flex justify-center' style={{ width: "300%", height: "300%", scale: "0.8" }}>
                         <Tree className="flex justify-center" lineBorderRadius='100px' lineWidth='4px' lineColor='#84CC16'>
-                            {Build({ obj: history[historyIndex], update, data: history[historyIndex] })}
+                            <Build obj={history[historyIndex]} update={update} expand={expand} />
                         </Tree>
                     </div>
                 </div>
@@ -355,8 +359,6 @@ const enableZoomBox = () => {
         // Calculate the scale change based on the wheel delta
         var delta = Math.max(-1, Math.min(1, (event.deltaY || -event.detail)));
         var scaleChange = delta * 0.1; // Adjust as needed
-
-        // Apply the scale change
         var currentScale = parseFloat(container.style.transform.replace("scale(", "").replace(")", ""));
 
 
@@ -364,6 +366,10 @@ const enableZoomBox = () => {
             currentScale = 1;
         }
         var newScale = currentScale + scaleChange;
+
+        if (newScale <= 0.2) {
+            return
+        }
         container.style.transform = "scale(" + newScale + ")";
 
         // Calculate the scroll position change based on the scale change
