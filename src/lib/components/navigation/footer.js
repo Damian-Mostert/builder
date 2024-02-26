@@ -1,7 +1,7 @@
 import "./footer.scss";
 
 export function Footer() {
-    return <footer className="footer">
+    return <footer className="main-footer">
         SOME | FOOTER
     </footer>;
 }

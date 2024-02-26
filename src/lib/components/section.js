@@ -1,23 +1,23 @@
-import { Input } from "./input"
+import { BuildBody } from "@modules";
+import { Input } from "./input";
 
 function Section({ type = "default", children, className = "", ...props }) {
     if (type.startsWith("split")) {
-        return <section className={`section-${type} ${className}`} {...props}>
-            <div className={`section-${type}-container-a`}>
+        return <section className={`layout-${type} ${className}`} {...props}>
+            <div className={`layout-${type}-container-a`}>
                 {children.props.children[0]}
             </div>
-            <div className={`section-${type}-container-b`}>
+            <div className={`layout-${type}-container-b`}>
                 {children.props.children[1]}
             </div>
         </section>
 
     }
-    return <section className={`section-${type} ${className}`} {...props}>
-        <div className={`section-${type}-container`}>
+    return <section className={`layout-${type} ${className}`} {...props}>
+        <div className={`layout-${type}-container`}>
             {children}
         </div>
     </section>
-
 }
 
 Section.Options = function Options({ update, data }) {
@@ -68,4 +68,12 @@ Section.Options = function Options({ update, data }) {
     </div>
 }
 
-export { Section }
+Section.canAppend = [
+    "Division",
+    "TextBox",
+    "Paragraph",
+    "Image",
+    "Video"
+];
+
+export { Section };

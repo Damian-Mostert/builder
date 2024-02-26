@@ -35,6 +35,9 @@
 
     &-half-r {
       @apply w-full flex flex-wrap;
+      @media screen and (max-width: $screen) {
+        @apply flex-col-reverse;
+      }
       &-container {
         &-a {
           @apply w-1/2;

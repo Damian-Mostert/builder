@@ -59,6 +59,8 @@ export function Node({ id, index, item, update }) {
             background: "blur",
             canClose: true,
             modal: NewItem(Components[item.__component] ? Components[item.__component].canAppend : [
+                "Header",
+                "Footer",
                 "Division",
                 "Image",
                 "Video",

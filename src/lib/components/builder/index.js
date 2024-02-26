@@ -146,7 +146,7 @@ function Builder({
 
     useEffect(enableZoomBox, []);
 
-    const [EditBody,setEditBody] = useState(function(){})
+    const [EditBody, setEditBody] = useState(function () { })
 
     return <div className='flex flex-col w-full h-full'>
         <div className='w-full bg-gray-800 border border-gray-900 flex items-center '>
@@ -161,7 +161,7 @@ function Builder({
                     const dragContainer = document.getElementById('drag-container');
                     dragContainer.scrollLeft = dragContainer.scrollWidth / 2.5;
                 }}
-                className='h-full overflow-hidden flex flex-col  bg-gray-800 border border-gray-900 '
+                className='h-full overflow-hidden flex flex-col  bg-gray-800 border border-gray-900 p-4'
                 handleClasses={{
                     top: "pointer-events-none",
                     bottom: "pointer-events-none",
@@ -170,12 +170,39 @@ function Builder({
                     bottomLeft: "pointer-events-none",
                     topLeft: "pointer-events-none",
                 }}
-                defaultSize={{ width: 200 }}>
-                
+                defaultSize={{ width: 300 }}>
+                <h3 className='pt-4 text-white'>
+                    Icon
+                </h3>
+                <input />
+                <h3 className='pt-4 text-white'>
+                    Title
+                </h3>
+                <input />
+                <h3 className='pt-4 text-white'>
+                    Description
+                </h3>
+                <input />
+                <h3 className='pt-4 text-white'>
+                    website links
+                </h3>
+                <input />
+                <h3 className='pt-4 text-white'>
+                    Media links
+                </h3>
+                <input />
+                <h3 className='pt-4 text-white'>
+                    Functions
+                </h3>
+                <textarea />
+                <h3 className='pt-4 text-white'>
+                    CSS
+                </h3>
+                <textarea />
             </Resizable>
             <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto ">
                 <div className='page-drag drag-me p-4  h-full w-full text-white '>
-                    <div id='drag-me' className='drag-me flex justify-center' style={{ width: "300%", height: "300%",scale:"0.7" }}>
+                    <div id='drag-me' className='drag-me flex justify-center' style={{ width: "300%", height: "300%", scale: "0.7" }}>
                         <Tree className="flex justify-center" lineBorderRadius='100px' lineWidth='4px' lineColor='#84CC16'>
                             {Build({ obj: history[historyIndex], update, data: history[historyIndex] })}
                         </Tree>
@@ -322,6 +349,7 @@ const enableZoomBox = () => {
 
     // Function to handle the mouse wheel event
     function handleMouseWheel(event) {
+        event.preventDefault();
         // Get the container element
         var container = document.getElementById("drag-me");
         // Calculate the scale change based on the wheel delta

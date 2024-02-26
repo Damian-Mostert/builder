@@ -20,9 +20,7 @@ export default async function RootLayout({ children }) {
 
         </head>
         <body>
-          <main>
-            {children}
-          </main>
+          {children}
           <Analytics />
         </body>
       </html>

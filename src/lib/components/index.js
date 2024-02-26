@@ -13,13 +13,11 @@ function ShowState({ children, id }) {
     const [show, setShow] = useState();
 
     useEffect(() => {
-        const customEvent = new CustomEvent('State', {
+        const customEvent = new CustomEvent('State-' + id, {
             detail: { message: 'State triggered' }
         });
 
-        const handleState = (event) => {
-
-        };
+        const handleState = _ => show ? setShow(false) : setShow(true)
 
         window.addEventListener("State", handleState)
         window.dispatchEvent(customEvent);
@@ -35,8 +33,9 @@ function ShowState({ children, id }) {
 }
 
 //header,footer
-import { Header } from "./navigation/header";
-import { Footer } from "./navigation/footer";
+import { Navigation } from "./navigation";
+import { Header } from "./header";
+import { Footer } from "./footer";
 
 //general components
 import { Button } from "./button";
@@ -58,5 +57,5 @@ import { Image } from "./image";
 import { Video } from "./video";
 
 //export
-export { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
-export default { Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Header, Footer, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export { Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export default { Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
