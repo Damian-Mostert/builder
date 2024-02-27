@@ -93,9 +93,9 @@ export function Node({ id, index, item, update, expand }) {
 
 
 
-    return <TreeNode key={id + "---" + index} label={
+    return <TreeNode className="fade-in" key={id + "---" + index} label={
 
-        <div className='w-full flex justify-center page-drag'>
+        <div className='w-full flex justify-center page-drag '>
             <Draggable handle={".handle-" + id + "---" + index} position={{ x: 0, y: 0 }} grid={[32, 32]} onStop={(ev) => {
 
                 setTimeout(() => {

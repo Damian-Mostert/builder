@@ -1,11 +1,9 @@
 "use client";
 
 import Builder from "src/lib/components/builder"
-import { Popup, Navigation, Button } from '@components';
-import { useState } from "react";
+import { Popup, Navigation } from '@components';
 
-export default function () {
-
+export default function BUILD() {
 
     return <div className="flex flex-col w-screen h-screen">
         <Navigation.Header />
