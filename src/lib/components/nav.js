@@ -58,6 +58,36 @@ Nav.Options = function Options({ update, data }) {
                 }} />
         </div>
         <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="orientation" value={data.orientation}
+                type="select"
+                options={[
+                    {
+                        label: "left",
+                        value: "left"
+                    },
+                    {
+                        label: "top",
+                        value: "top"
+                    },
+                    {
+                        label: "right",
+                        value: "right"
+                    },
+                    {
+                        label: "bottom",
+                        value: "bottom"
+                    }
+
+
+                ]}
+                onChange={orientation => {
+                    update({
+                        ...data,
+                        orientation
+                    })
+                }} />
+        </div>
+        <div className='w-[300px] m-auto'>
             <Input variant="builder" label="class" value={data.className}
                 onChange={className => {
                     update({

@@ -74,14 +74,14 @@ export default function BUILD() {
                 {
                     __component: "Parallax",
                     __props: {
-                        className: "w-full h-[250px]"
+                        className: "w-full h-[250px] bg-purple-200"
                     },
                     children: [
                         {
                             __component: "Image",
                             __props: {
                                 src: "/vercel.svg",
-                                className:"p-4"
+                                className: "p-4"
                             }
                         }
                     ]
@@ -89,7 +89,7 @@ export default function BUILD() {
                 {
                     __component: "Layout",
                     __props: {
-                        className: "lg:mt-8",
+                        className: "",
                         type: "split-half-r"
                     },
                     children: [
@@ -166,7 +166,7 @@ export default function BUILD() {
                 {
                     __component: "Layout",
                     __props: {
-                        className: "lg:mt-8",
+                        className: "",
                         type: "split-half-l"
                     },
                     children: [
@@ -242,12 +242,27 @@ export default function BUILD() {
                     ]
                 },
                 {
+                    __component: "Parallax",
+                    __props: {
+                        className: "w-full h-[250px] bg-yellow-200"
+                    },
+                    children: [
+                        {
+                            __component: "Image",
+                            __props: {
+                                src: "/vercel.svg",
+                                className: "p-4"
+                            }
+                        }
+                    ]
+                },
+                {
                     __component: "Slider",
                     __props: {
                         arrows: false,
                         dots: false,
                         infante: true,
-                        className: "mt-8"
+                        className: ""
                     },
                     children: [
                         {
@@ -311,7 +326,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-red-200 p-8"
+                                        className: "bg-red-200 p-8  h-full  flex items-center"
                                     },
                                     children: [
                                         {
@@ -333,7 +348,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-red-200 p-8"
+                                        className: "bg-yellow-200 p-8  h-full  flex items-center"
                                     },
                                     children: [
                                         {
@@ -355,7 +370,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-red-200 p-8"
+                                        className: "bg-pink-200 p-8  h-full  flex items-center"
                                     },
                                     children: [
                                         {
@@ -377,7 +392,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-red-200 p-8"
+                                        className: "bg-red-200 p-8  h-full flex items-center"
                                     },
                                     children: [
                                         {
@@ -389,6 +404,21 @@ export default function BUILD() {
                                     ]
                                 },
                             ]
+                        }
+                    ]
+                },
+                {
+                    __component: "Parallax",
+                    __props: {
+                        className: "w-full h-[250px] bg-pink-200"
+                    },
+                    children: [
+                        {
+                            __component: "Image",
+                            __props: {
+                                src: "/vercel.svg",
+                                className: "p-4"
+                            }
                         }
                     ]
                 },
@@ -408,7 +438,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-red-200 p-8"
+                                        className: "bg-red-200 p-8 h-full flex items-center items-center"
                                     },
                                     children: [
                                         {
@@ -430,7 +460,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-green-200 p-8"
+                                        className: "bg-green-200 p-8 h-full flex items-center items-center"
                                     },
                                     children: [
                                         {
@@ -452,7 +482,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-yellow-200 p-8"
+                                        className: "bg-yellow-200 p-8 h-full flex items-center items-center"
                                     },
                                     children: [
                                         {
@@ -474,7 +504,7 @@ export default function BUILD() {
                                 {
                                     __component: "Division",
                                     __props: {
-                                        className: "bg-purple-200 p-8"
+                                        className: "bg-purple-200 p-8 h-full flex items-center items-center"
                                     },
                                     children: [
                                         {
