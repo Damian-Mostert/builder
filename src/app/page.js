@@ -1,12 +1,16 @@
 "use client";
 
 import Builder from "src/lib/components/builder"
-import { Popup, Navigation } from '@components';
+import { Popup, Navigation, Button } from '@components';
+import { useState } from "react";
 
 export default function () {
-    return <>
-        <main className="w-screen h-screen fixed top-0 left-0" style={{ maxHeight: "100vh", maxWidth: "100vw" }}>
-            <Navigation.Header />
+
+
+    return <div className="flex flex-col w-screen h-screen">
+        <Navigation.Header />
+        <main className="w-full h-full overflow-auto" >
+
             <Builder template={[
                 {
                     __component: "Header",
@@ -277,11 +281,205 @@ export default function () {
 
                     ]
                 },
+                {
+                    __component: "Accordion",
+                    __props: {
+                        orientation: "top",
+                        icon: "/vercel.svg"
+                    },
+                    children: [
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-red-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-red-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-red-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-red-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        }
+                    ]
+                },
+                {
+                    __component: "Nav",
+                    __props: {
+                        orientation: "top",
+                        icon: "/vercel.svg"
+                    },
+                    children: [
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-red-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-green-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-yellow-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            __component: "IndexItem",
+                            __props: {
+                                title: "test",
+                            },
+                            children: [
+                                {
+                                    __component: "Division",
+                                    __props: {
+                                        className: "bg-purple-200 p-8"
+                                    },
+                                    children: [
+                                        {
+                                            __component: "Image",
+                                            __props: {
+                                                src: "/vercel.svg"
+                                            }
+                                        }
+                                    ]
+                                },
+                            ]
+                        }
+                    ]
+                },
             ]} onSave={(data) => {
 
             }} />
             <Popup />
 
         </main>
-    </>
+    </div>
 }

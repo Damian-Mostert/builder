@@ -138,7 +138,7 @@ export function Node({ id, index, item, update, expand }) {
         </div>
     }>
         {
-            (Components[item.__component]?.canAppend || item.__component == "Root") && <div onClick={handleNewItem} style={{ left: "calc(50% - 0.5rem)", marginTop: item?.children?.length > 1 ? "-0.5rem" : "-1rem" }} className='cursor-pointer absolute z-10 bg-lime-500 p-2 rounded-full text-white flex justify-center items-center' />
+            (Components[item.__component]?.canAppend || item.__component == "Root") && <div onClick={handleNewItem} style={{ left: "calc(50% - 0.5rem)", marginTop: item?.children?.length > 1 ? "-0.5rem" : "-1rem" }} className='cursor-pointer absolute z-10 bg-purple-500 p-2 rounded-full text-white flex justify-center items-center' />
             ||
             <div className='bg-[#222] w-4 h-6 absolute' style={{ left: "calc(50% - 0.5rem)", marginTop: "-20px" }} />
         }

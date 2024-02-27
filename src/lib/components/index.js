@@ -55,7 +55,8 @@ import { Section } from "./section";
 import { Division } from "./division";
 import { Image } from "./image";
 import { Video } from "./video";
+import { IndexItem } from "./indexItem";
 
 //export
-export { Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
-export default { Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export { IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export default { IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };

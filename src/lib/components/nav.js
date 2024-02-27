@@ -4,14 +4,16 @@ import { useState } from "react";
 
 import { Popup } from "@components";
 
+import { Input } from "./input";
 
-function Nav({ orientation = "left", indexes = [], tabs = [], tab = "", variant = "default", warnOnExit, setWarnOnExit, className = "", ...props }) {
-    
-    const [TabIndex, setIndex] = useState(indexes.indexOf(tab));
+import { BuildBody } from "../modules/buildbody";
+
+function Nav({ orientation = "left", children, variant = "default", warnOnExit, setWarnOnExit, className = "", ...props }) {
+    const [TabIndex, setIndex] = useState(0);
     return <>
         <div className={`nav nav-orientation-${orientation} ${"nav-variant-" + variant} ${className}`} {...props}>
             <div className="nav-indexes">
-                {indexes.map((label, index) => {
+                {children?.props?.children?.map((item, index) => {
                     return <div key={index} onClick={async () => {
                         if (warnOnExit) {
                             let result = await Popup.fire(warnOnExit);
@@ -24,14 +26,14 @@ function Nav({ orientation = "left", indexes = [], tabs = [], tab = "", variant 
                         }
                     }} className={`nav-index ${index === TabIndex ? "nav-index-active" : ""}`} >
                         <span>
-                            {label}
+                            {item?.props?.__props?.title}
                         </span>
                     </div>
                 })}
             </div>
             <div className="nav-tab">
                 <div className="nav-tab-body">
-                    {tabs[TabIndex] ? tabs[TabIndex] : {}}
+                    {children?.props?.children?.[TabIndex]?.props?.children && BuildBody(children?.props?.children?.[TabIndex]?.props?.children)}
                 </div>
             </div>
         </div>
@@ -64,15 +66,11 @@ Nav.Options = function Options({ update, data }) {
                     })
                 }} />
         </div>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="value" value={data.label} onChange={value => {
-                update({
-                    ...data,
-                    value
-                })
-            }} />
-        </div>
     </div>
 }
+
+Nav.canAppend = [
+    "IndexItem",
+]
 
 export { Nav };

@@ -41,17 +41,21 @@ function Builder({
         );
     }
 
+    const sendData = () => {
+        const frame = document.getElementById("web-frame");
+        setTimeout(() => {
+            frame.contentWindow.postMessage(
+                JSON.stringify(template),
+                '*'
+            );
+        }, 100)
+
+    };
 
     useEffect(() => {
         const frame = document.getElementById("web-frame");
-        frame.addEventListener("load", () => {
-            setTimeout(() => {
-                frame.contentWindow.postMessage(
-                    JSON.stringify(template),
-                    '*'
-                );
-            }, 100)
-        })
+        frame.addEventListener("load", sendData)
+
     }, []);
 
     function undo() {
@@ -146,26 +150,18 @@ function Builder({
 
     useEffect(enableZoomBox, []);
 
-    const [EditBody, setEditBody] = useState(function () { })
-
     const [expand, setExpand] = useState(false);
 
     return <div className='flex flex-col w-full h-full'>
-        <div className='w-full bg-gray-800 border border-gray-900 flex items-center '>
-            <button onClick={undo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↪</button>
-            <div className='h-2/3 w-[1px] bg-white ml-4' />
-            <button onClick={redo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↩</button>
-            <div className='h-2/3 w-[1px] bg-white ml-4' />
-            <button onClick={() => expand ? setExpand(false) : setExpand(true)} className='ml-4 text-sm text-white'>{expand ? "COLLAPSE ALL" : "EXPAND ALL"}</button>
-            <div className='h-2/3 w-[1px] bg-white ml-4' />
-        </div>
+
         <div className='w-full h-full flex '>
             <Resizable
                 onResize={() => {
                     const dragContainer = document.getElementById('drag-container');
-                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2.5;
+                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2;
+                    dragContainer.scrollTop = 500;
                 }}
-                className='h-full overflow-hidden flex flex-col  bg-gray-800 border border-gray-900 p-4'
+                className='h-full overflow-hidden flex flex-col bg-gray-800 border border-gray-900'
                 handleClasses={{
                     top: "pointer-events-none",
                     bottom: "pointer-events-none",
@@ -175,48 +171,70 @@ function Builder({
                     topLeft: "pointer-events-none",
                 }}
                 defaultSize={{ width: 300 }}>
-                <h3 className='pt-4 text-white'>
-                    Icon
-                </h3>
-                <input />
-                <h3 className='pt-4 text-white'>
-                    Title
-                </h3>
-                <input />
-                <h3 className='pt-4 text-white'>
-                    Description
-                </h3>
-                <input />
-                <h3 className='pt-4 text-white'>
-                    website links
-                </h3>
-                <input />
-                <h3 className='pt-4 text-white'>
-                    Media links
-                </h3>
-                <input />
-                <h3 className='pt-4 text-white'>
-                    Functions
-                </h3>
-                <textarea />
-                <h3 className='pt-4 text-white'>
-                    CSS
-                </h3>
-                <textarea />
+                <div className='overflow-auto p-2 w-full'>
+                    <h3 className='pt-4 text-white '>
+                        Icon
+                    </h3>
+                    <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Meta icon' />
+                    <h3 className='pt-4 text-white'>
+                        Title
+                    </h3>
+                    <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Meta title' />
+                    <h3 className='pt-4 text-white '>
+                        Description
+                    </h3>
+                    <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Meta description' />
+                    <h3 className='pt-4 text-white '>
+                        website links
+                    </h3>
+
+                    <h3 className='pt-4 text-white'>
+                        Media links
+                    </h3>
+
+                    <h3 className='pt-4 text-white '>
+                        Functions
+                    </h3>
+                    <textarea className='bg-black text-green-500 focus:outline-none p-4 resize-none h-96 w-full' />
+                    <h3 className='pt-4 text-white '>
+                        CSS
+                    </h3>
+                    <textarea className='bg-black text-green-500 focus:outline-none p-4 resize-none h-96 w-full' />
+
+                </div>
             </Resizable>
-            <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto ">
-                <div className='page-drag drag-me p-4  h-full w-full text-white '>
-                    <div id='drag-me' className='drag-me flex justify-center' style={{ width: "300%", height: "300%", scale: "0.8" }}>
-                        <Tree className="flex justify-center" lineBorderRadius='100px' lineWidth='4px' lineColor='#84CC16'>
-                            <Build obj={history[historyIndex]} update={update} expand={expand} />
-                        </Tree>
+
+            <div className='w-full h-full relative'>
+                <div className='absolute top-0 left-0 w-full h-full flex flex-col'>
+                    <div className='w-full h-max bg-gray-800 border border-gray-900 flex items-center '>
+                        <button onClick={undo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↪</button>
+                        <div className='h-2/3 w-[1px] bg-white ml-4' />
+                        <button onClick={redo} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↩</button>
+                        <div className='h-2/3 w-[1px] bg-white ml-4' />
+                        <button onClick={() => expand ? setExpand(false) : setExpand(true)} className='ml-4 text-sm text-white'>{expand ? "COLLAPSE ALL" : "EXPAND ALL"}</button>
+                        <div className='h-2/3 w-[1px] bg-white ml-auto' />
+                        <button onClick={() => expand ? setExpand(false) : setExpand(true)} className='ml-4 text-sm text-white'>Help</button>
+                        <div className='h-2/3 w-[1px] bg-white mx-4' />
+                    </div>
+                    <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto ">
+                        <div className='page-drag drag-me p-4  h-full w-full text-white '>
+                            <div id='drag-me' className='drag-me flex justify-center' style={{ width: "1000%", height: "1000%", scale: "0.8" }}>
+                                <Tree className="flex justify-center" lineBorderRadius='10px' lineWidth='4px' lineColor='purple'>
+                                    <Build obj={history[historyIndex]} update={update} expand={expand} />
+                                </Tree>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
             <Resizable
                 onResize={() => {
                     const dragContainer = document.getElementById('drag-container');
-                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2.5;
+                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2;
+                    dragContainer.scrollTop = 500;
+
                 }}
                 className='h-full overflow-hidden flex flex-col'
                 handleClasses={{
@@ -228,7 +246,35 @@ function Builder({
                     topLeft: "pointer-events-none",
                 }}
                 defaultSize={{ width: 400 }}>
-                <iframe id="web-frame" src="/view" className='w-full h-full ' />
+                <div className='w-full h-full relative'>
+                    <div className='flex w-full h-full flex-col absolute top-0 left-0'>
+                        <div className='w-full h-max bg-gray-800 border border-gray-900 flex items-center '>
+                            <button onClick={() => {
+                                const f = document.getElementById("web-frame").contentWindow;
+                                f.history.back();
+                                sendData();
+
+                            }} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↪</button>
+                            <div className='h-2/3 w-[1px] bg-white ml-4' />
+                            <button onClick={() => {
+                                const f = document.getElementById("web-frame").contentWindow;
+                                f.history.forward();
+                                sendData();
+
+                            }} className='ml-4 text-sm text-white' style={{ transform: "rotate(180deg)" }}>↩</button>
+                            <div className='h-2/3 w-[1px] bg-white ml-4' />
+                            <button onClick={() => {
+                                const f = document.getElementById("web-frame").contentWindow;
+                                f.location.reload();
+                                sendData();
+
+
+                            }} className='ml-4 text-xs text-white'>↺</button>
+                            <div className='h-2/3 w-[1px] bg-white ml-4' />
+                        </div>
+                        <iframe id="web-frame" src="/view" className='w-full h-full ' />
+                    </div>
+                </div>
             </Resizable>
         </div >
     </div>
@@ -254,7 +300,8 @@ const enableZoomBox = () => {
     const dragContainer = document.getElementById('drag-container');
 
     const resize = () => {
-        dragContainer.scrollLeft = dragContainer.scrollWidth / 2.5;
+        dragContainer.scrollLeft = dragContainer.scrollWidth / 2;
+        dragContainer.scrollTop = 500;
     }
 
     resize();

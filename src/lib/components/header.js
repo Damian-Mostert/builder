@@ -39,8 +39,8 @@ function Header({ icon = "/vercel.svg", orientation = "top", mobileOrientation =
 
     useEffect(() => {
         if (showMobileMenu)
-            return document.body.classList.add("overflow-hidden")
-        document.body.classList.remove("overflow-hidden")
+            return document.body.classList.add("overflow-hidden");
+        document.body.classList.remove("overflow-hidden");
     }, [showMobileMenu])
 
     return <>
@@ -71,7 +71,7 @@ function Header({ icon = "/vercel.svg", orientation = "top", mobileOrientation =
                 <div className="header-mobile-icon-container">
                     <img src={icon} />
                 </div>
-                <svg id="hamburger" className={`w-[40px] h-[40px] mr-4 ${showMobileMenu ? "activeHamburger" : ""}`} viewBox="0 0 60 40" onClick={toggleNav}>
+                <svg id="hamburger" className={`w-[40px] h-[40px] ${showMobileMenu ? "activeHamburger" : ""}`} viewBox="0 0 60 40" onClick={toggleNav}>
                     <g stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
                         <path id="top-line" d="M10,10 L50,10 Z"></path>
                         <path id="middle-line" d="M10,20 L50,20 Z"></path>

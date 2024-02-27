@@ -34,6 +34,7 @@
     "react-json-editor-ajrm": "^2.5.14",
     "react-json-editor-viewer": "^1.0.7",
     "react-organizational-chart": "^2.2.1",
+    "react-parallax": "^3.5.1",
     "react-quick-pinch-zoom": "^5.1.0",
     "react-quill": "^2.0.0",
     "react-resizable": "^3.0.5",

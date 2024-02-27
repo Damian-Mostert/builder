@@ -15,7 +15,7 @@ Video.Options = function Options({ update, data }) {
                 }} />
         </div>
         <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="src" value={data.label} onChange={src => {
+            <Input variant="builder" label="src" value={data.src} onChange={src => {
                 update({
                     ...data,
                     src

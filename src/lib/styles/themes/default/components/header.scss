@@ -8,6 +8,7 @@
   // Variant styles (e.g., .header-primary, .header-secondary)
   &-variant {
     &-default {
+      --background-sub: #ededed;
       --background: white;
       --text: black;
     }
@@ -25,7 +26,7 @@
     }
     .sheader {
       @apply overflow-hidden absolute top-full left-0 w-screen;
-      background-color: var(--background);
+      background-color: var(--background-sub);
       color: var(--text);
     }
     &-icon-container {
@@ -90,13 +91,28 @@
   // Dropdown styles
   &-dropdown {
     @apply relative;
+    .header-title {
+      cursor: default;
+    }
     &-links {
       @apply hidden shadow-lg;
     }
     &:hover {
       .header-dropdown-links {
-        background-color: var(--background);
-        @apply top-full absolute block;
+        .header-title {
+          cursor: pointer;
+        }
+        @keyframes menu-in {
+          from {
+            transform: translateX(-10px);
+          }
+          to {
+            transform: translateX(0px);
+          }
+        }
+        background-color: var(--background-sub);
+        animation: menu-in 0.5s;
+        @apply top-full absolute block -z-[10] overflow-hidden rounded-b-lg;
       }
     }
 

@@ -23,7 +23,7 @@ function Section({ type = "default", children, className = "", ...props }) {
 Section.Options = function Options({ update, data }) {
     return <div className='py-2 flex flex-wrap'>
         <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="type" type="select" value={data.value} size="full" options={[
+            <Input variant="builder" label="type" type="select" value={data.type} size="full" options={[
                 {
                     label: "default",
                     value: "default",
