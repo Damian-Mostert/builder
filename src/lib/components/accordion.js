@@ -54,14 +54,6 @@ Accordion.Options = function Options({ update, data }) {
                     })
                 }} />
         </div>
-        <div variant="builder" className='w-[300px] m-auto'>
-            <Input label="value" value={data.label} onChange={value => {
-                update({
-                    ...data,
-                    value
-                })
-            }} />
-        </div>
     </div>
 }
 
