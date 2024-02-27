@@ -34,7 +34,6 @@ Division.canAppend = [
     "Accordion",
     "List",
     "Slider",
-    "Carousel"
 ];
 
 export { Division };

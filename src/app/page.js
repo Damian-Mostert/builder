@@ -17,6 +17,7 @@ export default function BUILD() {
                         icon: "/vercel.svg"
                     }
                 },
+
                 {
                     __component: "Slider",
                     __props: {
@@ -68,6 +69,21 @@ export default function BUILD() {
                             ]
                         },
 
+                    ]
+                },
+                {
+                    __component: "Parallax",
+                    __props: {
+                        className: "w-full h-[250px]"
+                    },
+                    children: [
+                        {
+                            __component: "Image",
+                            __props: {
+                                src: "/vercel.svg",
+                                className:"p-4"
+                            }
+                        }
                     ]
                 },
                 {

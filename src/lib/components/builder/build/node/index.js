@@ -79,7 +79,8 @@ export function Node({ id, index, item, update, expand }) {
                 "Input",
                 "Button",
                 "Layout",
-                "Section"
+                "Section",
+                "Parallax"
             ])
         }).then(res => {
             if (!res.close) {

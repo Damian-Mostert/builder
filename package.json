@@ -38,6 +38,7 @@
     "react-quick-pinch-zoom": "^5.1.0",
     "react-quill": "^2.0.0",
     "react-resizable": "^3.0.5",
+    "react-scroll-parallax": "^3.4.5",
     "react-slick": "^0.30.2",
     "react-tailwindcss-datetimepicker": "^1.1.0",
     "react-zoom-pan-pinch": "^3.4.2",
