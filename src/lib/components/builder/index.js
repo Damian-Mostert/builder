@@ -6,13 +6,32 @@ import { Button, Popup } from '@components';
 import { Resizable } from 're-resizable';
 
 import { Build } from './build';
-
+import StyleEditor from 'react-style-editor';
 
 
 function Builder({
-    template,
+    links = [],
+    template = {},
+    classNames = ``,
     onSave
 }) {
+
+    const [Links, setLinks] = useState(links);
+
+    const [ClassNames, setClassNames] = useState(classNames);
+
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
+        setTimeout(() => {
+            frame.contentWindow.postMessage(
+                JSON.stringify({
+                    type: "styles",
+                    classNames: ClassNames
+                }),
+                '*'
+            );
+        }, 100)
+    }, [ClassNames]);
 
     const [history, setHistory] = React.useState([
         {
@@ -29,14 +48,16 @@ function Builder({
 
     const [historyIndex, setHistoryIndex] = React.useState(0);
 
-
-    function setData(data) {
+    const setData = (data) => {
         const newData = Remake(data);
         setHistory(prev => [...prev.slice(0, historyIndex + 1), newData]);
         setHistoryIndex(prev => prev + 1);
 
         document.getElementById("web-frame").contentWindow.postMessage(
-            JSON.stringify(newData.children[0].children),
+            JSON.stringify({
+                type: "template",
+                template: newData.children[0].children
+            }),
             '*'
         );
     }
@@ -45,7 +66,10 @@ function Builder({
         const frame = document.getElementById("web-frame");
         setTimeout(() => {
             frame.contentWindow.postMessage(
-                JSON.stringify(template),
+                JSON.stringify({
+                    type: "template",
+                    template
+                }),
                 '*'
             );
         }, 100)
@@ -55,10 +79,38 @@ function Builder({
     useEffect(() => {
         const frame = document.getElementById("web-frame");
         frame.addEventListener("load", sendData)
+        frame.addEventListener("load", () => {
+            setTimeout(() => {
+                frame.contentWindow.postMessage(
+                    JSON.stringify({
+                        type: "links",
+                        links: Links
+                    }),
+                    '*'
+                );
 
+            }, 100);
+        })
     }, []);
 
-    function undo() {
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
+        frame.addEventListener("load", () => {
+            setTimeout(() => {
+                frame.contentWindow.postMessage(
+                    JSON.stringify({
+                        type: "links",
+                        links: Links
+                    }),
+                    '*'
+                );
+            }, 100)
+        })
+    }, [Links]);
+
+
+
+    const undo = () => {
         if (historyIndex > 0) {
             document.getElementById("web-frame").contentWindow.postMessage(
                 JSON.stringify(history[historyIndex - 1].children[0].children),
@@ -68,7 +120,7 @@ function Builder({
         }
     }
 
-    function redo() {
+    const redo = () => {
         if (historyIndex < history.length - 1) {
             document.getElementById("web-frame").contentWindow.postMessage(
                 JSON.stringify(history[historyIndex + 1].children[0].children),
@@ -78,7 +130,11 @@ function Builder({
         }
     }
 
-    function update(path, operation, object,) {
+    const openHelp = () => {
+
+    };
+
+    const update = (path, operation, object) => {
         const data = history[historyIndex];
 
         // Validate path format
@@ -187,20 +243,25 @@ function Builder({
                     <h3 className='pt-4 text-white '>
                         website links
                     </h3>
-
-                    <h3 className='pt-4 text-white'>
-                        Media links
-                    </h3>
-
+                    {Links.map((item, index) => {
+                        return <div className='p-4'>
+                            <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Title' />
+                            <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Url' />
+                        </div>
+                    })}
+                    <div className='w-full text-center text-white'>
+                        [ INSERT LINK ]
+                    </div>
                     <h3 className='pt-4 text-white '>
-                        Functions
+                        CLASS NAMES
                     </h3>
-                    <textarea className='bg-black text-green-500 focus:outline-none p-4 resize-none h-96 w-full' />
-                    <h3 className='pt-4 text-white '>
-                        CSS
-                    </h3>
-                    <textarea className='bg-black text-green-500 focus:outline-none p-4 resize-none h-96 w-full' />
-
+                    <StyleEditor
+                        className="bg-slate-400 min-h-32"
+                        defaultValue={ClassNames}
+                        onChange={val => {
+                            setClassNames(val);
+                        }}
+                    />
                 </div>
             </Resizable>
 
@@ -213,14 +274,16 @@ function Builder({
                         <div className='h-2/3 w-[1px] bg-white ml-4' />
                         <button onClick={() => expand ? setExpand(false) : setExpand(true)} className='ml-4 text-sm text-white'>{expand ? "COLLAPSE ALL" : "EXPAND ALL"}</button>
                         <div className='h-2/3 w-[1px] bg-white ml-auto' />
-                        <button onClick={() => expand ? setExpand(false) : setExpand(true)} className='ml-4 text-sm text-white'>Help</button>
+                        <button onClick={onSave} className='ml-4 text-sm text-white'>save</button>
+                        <div className='h-2/3 w-[1px] bg-white mx-4' />
+                        <button onClick={openHelp} className='ml-4 text-sm text-white'>Help</button>
                         <div className='h-2/3 w-[1px] bg-white mx-4' />
                     </div>
                     <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto ">
                         <div className='page-drag drag-me p-4  h-full w-full text-white '>
                             <div id='drag-me' className='drag-me flex justify-center' style={{ width: "1000%", height: "1000%", scale: "0.8" }}>
                                 <Tree className="flex justify-center" lineBorderRadius='10px' lineWidth='4px' lineColor='purple'>
-                                    <Build obj={history[historyIndex]} update={update} expand={expand} />
+                                    <Build obj={history[historyIndex]} update={update} expand={expand} links={Links} />
                                 </Tree>
                             </div>
                         </div>

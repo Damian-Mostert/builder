@@ -9,7 +9,30 @@ export default function BUILD() {
         <Navigation.Header />
         <main className="w-full h-full overflow-auto" >
 
-            <Builder template={[
+            <Builder links={[
+                {
+                    href: "/",
+                    label: "hello world"
+                },
+                {
+                    href: "/",
+                    label: "hello world"
+                },
+                {
+                    href: "/",
+                    label: "hello world"
+                },
+                {
+                    label: "hello world",
+                    links: [
+                        {
+                            href: "/",
+                            label: "hello world"
+                        },
+
+                    ]
+                }
+            ]} template={[
                 {
                     __component: "Header",
                     __props: {

@@ -5,32 +5,10 @@ import { useEffect, useState } from "react";
 import { Input } from "./input"
 import { Device } from "@modules";
 
-const links = [
-    {
-        href: "/",
-        label: "hello world"
-    },
-    {
-        href: "/",
-        label: "hello world"
-    },
-    {
-        href: "/",
-        label: "hello world"
-    },
-    {
-        label: "hello world",
-        links: [
-            {
-                href: "/",
-                label: "hello world"
-            },
+function Header({ icon = "/vercel.svg", orientation = "top", mobileOrientation = "left", variant = "default", links = [] }) {
 
-        ]
-    }
-]
+    console.log(links);
 
-function Header({ icon = "/vercel.svg", orientation = "top", mobileOrientation = "left", variant = "default" }) {
     const window = Device();
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);

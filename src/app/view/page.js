@@ -5,14 +5,31 @@ import { useState, useEffect, useRef } from "react";
 import { BuildBody } from "@modules";
 
 export default function View() {
-    const containerRef = useRef();
 
-    const [data, setData] = useState([]);
+    const [template, setTemplate] = useState([]);
+    const [links, setLinks] = useState([]);
+    const [mediaLinks, setMediaLinks] = useState([]);
+    const [classNames, setClassNames] = useState(``);
+
+
     useEffect(() => {
         const handleMessage = event => {
-
-            setData(JSON.parse(event.data));
-
+            let message = JSON.parse(event.data);
+            console.info(message);
+            switch (message.type) {
+                case "template":
+                    setTemplate(message.template);
+                    break;
+                case "mediaLinks":
+                    setMediaLinks(message.mediaLinks)
+                    break;
+                case "links":
+                    setLinks(message.links)
+                    break;
+                case "styles":
+                    setClassNames(message.classNames)
+                    break
+            }
         };
         window.addEventListener("message", handleMessage);
         return () => {
@@ -20,7 +37,10 @@ export default function View() {
         };
     }, []);
 
-    return <div ref={containerRef} className="w-full h-full">
-        {BuildBody((data))}
+    return <div>
+        <style>
+            {classNames}
+        </style>
+        <BuildBody links={links} mediaLinks={mediaLinks} template={template} />
     </div>
 }

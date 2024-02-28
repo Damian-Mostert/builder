@@ -1,15 +1,13 @@
 import Components from "@components";
 
-export function BuildBody(body) {
-
-    if (Array.isArray(body))
+export function BuildBody({ template, links, mediaLinks }) {
+    if (Array.isArray(template))
         return <>
-            {body.map((item, index) => <BuildBody key={index} {...item} />)}
+            {template.map((item, index) => <BuildBody key={index} links={links} mediaLinks={mediaLinks} template={item} {...item} />)}
         </>
-    if (body) {
 
-        const COMPONENT = Components[body.__component];
-        return <COMPONENT {...body.__props} children={BuildBody(body.children)} />
-
+    if (template) {
+        const COMPONENT = Components[template.__component];
+        return <COMPONENT {...template.__props} links={links} mediaLinks={mediaLinks} children={BuildBody({ template: template.children, links, mediaLinks })} />
     }
 }

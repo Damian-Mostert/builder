@@ -8,7 +8,7 @@ import Components from '@components';
 
 import { Build } from "..";
 
-export function Node({ id, index, item, update, expand }) {
+export function Node({ id, index, item, update, expand, links }) {
 
     const [closest, setClosest] = useState(null);
 
@@ -144,7 +144,7 @@ export function Node({ id, index, item, update, expand }) {
             <div className='bg-[#222] w-4 h-6 absolute' style={{ left: "calc(50% - 0.5rem)", marginTop: "-20px" }} />
         }
         {(item.__component == "Root" || open) && <>
-            <Build obj={item.children} id={id + "---" + index} key={id + "---" + index} update={update} expand={expand}
+            <Build obj={item.children} id={id + "---" + index} key={id + "---" + index} update={update} expand={expand} links={links}
             />
         </>}
     </TreeNode>
