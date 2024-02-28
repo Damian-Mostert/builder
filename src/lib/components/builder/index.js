@@ -4,19 +4,28 @@ import React, { useEffect, useState } from 'react';
 import { Tree } from 'react-organizational-chart';
 import { Button, Popup } from '@components';
 import { Resizable } from 're-resizable';
-
 import { Build } from './build';
 import StyleEditor from 'react-style-editor';
-
+import Editor from 'react-simple-code-editor';
+import { highlight, languages } from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 function Builder({
     links = [],
+    mediaLinks = [],
     template = {},
     classNames = ``,
+    code = ``,
     onSave
 }) {
 
+    const [Code, setCode] = useState(code);
+
     const [Links, setLinks] = useState(links);
+
+    const [MediaLinks, setMediaLinks] = useState(mediaLinks);
 
     const [ClassNames, setClassNames] = useState(classNames);
 
@@ -95,6 +104,19 @@ function Builder({
 
     useEffect(() => {
         const frame = document.getElementById("web-frame");
+        setTimeout(() => {
+            frame.contentWindow.postMessage(
+                JSON.stringify({
+                    type: "script",
+                    script: Code
+                }),
+                '*'
+            );
+        }, 100)
+    }, [Code]);
+
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
         frame.addEventListener("load", () => {
             setTimeout(() => {
                 frame.contentWindow.postMessage(
@@ -107,6 +129,21 @@ function Builder({
             }, 100)
         })
     }, [Links]);
+
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
+        frame.addEventListener("load", () => {
+            setTimeout(() => {
+                frame.contentWindow.postMessage(
+                    JSON.stringify({
+                        type: "mediaLinks",
+                        mediaLinks: MediaLinks
+                    }),
+                    '*'
+                );
+            }, 100)
+        })
+    }, [MediaLinks]);
 
 
 
@@ -128,6 +165,10 @@ function Builder({
             );
             setHistoryIndex(prev => prev + 1);
         }
+    }
+
+    const newLink = () => {
+
     }
 
     const openHelp = () => {
@@ -249,7 +290,7 @@ function Builder({
                             <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Url' />
                         </div>
                     })}
-                    <div className='w-full text-center text-white'>
+                    <div className='w-full text-center text-white' onClick={newLink}>
                         [ INSERT LINK ]
                     </div>
                     <h3 className='pt-4 text-white '>
@@ -260,6 +301,19 @@ function Builder({
                         defaultValue={ClassNames}
                         onChange={val => {
                             setClassNames(val);
+                        }}
+                    />
+                    <h3 className='pt-4 text-white '>
+                        INLINE SCRIPT
+                    </h3>
+                    <Editor
+                        value={Code}
+                        onValueChange={code => setCode(code)}
+                        highlight={code => highlight(code, languages.js)}
+                        padding={10}
+                        style={{
+                            fontFamily: '"Fira code", "Fira Mono", monospace',
+                            fontSize: 12,
                         }}
                     />
                 </div>

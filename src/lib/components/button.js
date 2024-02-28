@@ -8,6 +8,8 @@ function Button({
   variant = "default",
   href,
   onClick = null,
+  functions = {},
+  functionToCall,
   target,
   className,
   ...props
@@ -29,7 +31,7 @@ function Button({
       {!href && !target && (
         <button
           className={`button button-variant-${variant} ${className}`}
-          onClick={onClick}
+          onClick={functionToCall ? functions[functionToCall] : onClick}
           htmlFor={target}
           {...props}
         >
@@ -40,7 +42,7 @@ function Button({
       {!href && target && (
         <label
           className={`button button-variant-${variant} ${className}`}
-          onClick={onClick}
+          onClick={functionToCall ? functions[functionToCall] : onClick}
           htmlFor={target}
           {...props}
         >
@@ -67,6 +69,15 @@ Button.Options = function Options({ update, data }) {
           update({
             ...data,
             variant
+          })
+        }} />
+    </div>
+    <div className='w-[300px] m-auto'>
+      <Input variant="builder" label="function to call" value={data.functionToCall}
+        onChange={functionToCall => {
+          update({
+            ...data,
+            functionToCall
           })
         }} />
     </div>

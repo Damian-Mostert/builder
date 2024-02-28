@@ -10,7 +10,9 @@ export default function View() {
     const [links, setLinks] = useState([]);
     const [mediaLinks, setMediaLinks] = useState([]);
     const [classNames, setClassNames] = useState(``);
+    const [functions, setFunctions] = useState({
 
+    });
 
     useEffect(() => {
         const handleMessage = event => {
@@ -29,6 +31,17 @@ export default function View() {
                 case "styles":
                     setClassNames(message.classNames)
                     break
+                case "script":
+                    try{
+                        let res = Function(message.script)();
+                        console.log(res);
+                        setFunctions(res);
+    
+                    }catch(e){
+
+                    }
+                    break
+
             }
         };
         window.addEventListener("message", handleMessage);
@@ -41,6 +54,6 @@ export default function View() {
         <style>
             {classNames}
         </style>
-        <BuildBody links={links} mediaLinks={mediaLinks} template={template} />
+        <BuildBody links={links} mediaLinks={mediaLinks} template={template} functions={functions} />
     </div>
 }
