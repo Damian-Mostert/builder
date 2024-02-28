@@ -127,12 +127,6 @@ function Builder({
                     '*'
                 );
             }, 100)
-        })
-    }, [Links]);
-
-    useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        frame.addEventListener("load", () => {
             setTimeout(() => {
                 frame.contentWindow.postMessage(
                     JSON.stringify({
@@ -142,8 +136,43 @@ function Builder({
                     '*'
                 );
             }, 100)
+            setTimeout(() => {
+                frame.contentWindow.postMessage(
+                    JSON.stringify({
+                        type: "script",
+                        script: Code
+                    }),
+                    '*'
+                );
+            }, 100)
         })
+    }, []);
+
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
+        setTimeout(() => {
+            frame.contentWindow.postMessage(
+                JSON.stringify({
+                    type: "mediaLinks",
+                    mediaLinks: MediaLinks
+                }),
+                '*'
+            );
+        }, 100)
     }, [MediaLinks]);
+
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
+        setTimeout(() => {
+            frame.contentWindow.postMessage(
+                JSON.stringify({
+                    type: "links",
+                    links: Links
+                }),
+                '*'
+            );
+        }, 100)
+    }, [Links]);
 
 
 
@@ -307,6 +336,7 @@ function Builder({
                         INLINE SCRIPT
                     </h3>
                     <Editor
+                        className="bg-amber-300 min-h-32"
                         value={Code}
                         onValueChange={code => setCode(code)}
                         highlight={code => highlight(code, languages.js)}

@@ -18,7 +18,10 @@ function Accordion({ className = "", variant = "default", inDepthStyles = [], ch
                         {item?.props?.__props?.title}
                     </div>
                     <div className={`w-full h-full overflow-auto  `} style={{ transition: "all 1s", maxHeight: TabIndex == index ? "1000px" : "0px" }}>
-                        {TabIndex == index && children?.props?.children?.[TabIndex]?.props?.children && BuildBody(children?.props?.children?.[TabIndex]?.props?.children)}
+                        {TabIndex == index && children?.props?.children?.[TabIndex]?.props?.children && BuildBody({
+                            template: children?.props?.children?.[TabIndex]?.props?.children,
+                            ...props
+                        })}
                     </div>
                 </div>
             })}

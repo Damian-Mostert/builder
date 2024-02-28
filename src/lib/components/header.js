@@ -7,8 +7,6 @@ import { Device } from "@modules";
 
 function Header({ icon = "/vercel.svg", orientation = "top", mobileOrientation = "left", variant = "default", links = [] }) {
 
-    console.log(links);
-
     const window = Device();
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -16,10 +14,10 @@ function Header({ icon = "/vercel.svg", orientation = "top", mobileOrientation =
     const toggleNav = () => showMobileMenu ? setShowMobileMenu(false) : setShowMobileMenu(true);
 
     useEffect(() => {
-        if (showMobileMenu)
+        if (showMobileMenu && window.md)
             return document.body.classList.add("overflow-hidden");
         document.body.classList.remove("overflow-hidden");
-    }, [showMobileMenu])
+    }, [showMobileMenu, window])
 
     return <>
         {window.lg && <header className={`header header-variant-${variant} `}>

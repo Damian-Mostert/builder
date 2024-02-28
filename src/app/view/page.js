@@ -32,12 +32,12 @@ export default function View() {
                     setClassNames(message.classNames)
                     break
                 case "script":
-                    try{
+                    try {
                         let res = Function(message.script)();
                         console.log(res);
                         setFunctions(res);
-    
-                    }catch(e){
+
+                    } catch (e) {
 
                     }
                     break
@@ -50,10 +50,10 @@ export default function View() {
         };
     }, []);
 
-    return <div>
+    return <>
         <style>
             {classNames}
         </style>
         <BuildBody links={links} mediaLinks={mediaLinks} template={template} functions={functions} />
-    </div>
+    </>
 }

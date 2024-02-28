@@ -33,7 +33,10 @@ function Nav({ orientation = "left", children, variant = "default", warnOnExit, 
             </div>
             <div className="nav-tab">
                 <div className="nav-tab-body">
-                    {children?.props?.children?.[TabIndex]?.props?.children && BuildBody(children?.props?.children?.[TabIndex]?.props?.children)}
+                    {children?.props?.children?.[TabIndex]?.props?.children && BuildBody({
+                        template: children?.props?.children?.[TabIndex]?.props?.children,
+                        ...props
+                    })}
                 </div>
             </div>
         </div>
