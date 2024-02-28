@@ -616,37 +616,7 @@ const enableZoomBox = () => {
 
     // Remove event listeners on cleanup:
 
-    // Function to handle the mouse wheel event
-    function handleMouseWheel(event) {
-        event.preventDefault();
-        // Get the container element
-        var container = document.getElementById("drag-me");
-        // Calculate the scale change based on the wheel delta
-        var delta = Math.max(-1, Math.min(1, (event.deltaY || -event.detail)));
-        var scaleChange = delta * 0.1; // Adjust as needed
-        var currentScale = parseFloat(container.style.transform.replace("scale(", "").replace(")", ""));
 
-
-        if (isNaN(currentScale)) {
-            currentScale = 1;
-        }
-        var newScale = currentScale + scaleChange;
-
-        if (newScale <= 0.2) {
-            return
-        }
-        container.style.transform = "scale(" + newScale + ")";
-
-        // Calculate the scroll position change based on the scale change
-        var containerRect = container.getBoundingClientRect();
-        var scrollChangeX = event.clientX - containerRect.left;
-        var scrollChangeY = event.clientY - containerRect.top;
-        container.scrollLeft += scrollChangeX * scaleChange;
-        container.scrollTop += scrollChangeY * scaleChange;
-    }
-
-    // Add event listener for mouse wheel
-    dragContainer.addEventListener("wheel", handleMouseWheel);
 
     return () => {
         dragContainer.removeEventListener('mousedown', handleMouseDown);
@@ -655,7 +625,6 @@ const enableZoomBox = () => {
         dragContainer.removeEventListener('touchstart', handleTouchStart);
         document.removeEventListener('touchmove', handleTouchMove);
         document.removeEventListener('touchend', handleTouchEnd);
-        dragContainer.removeEventListener("wheel", handleMouseWheel);
         window.removeEventListener("resize", resize);
     };
 }
