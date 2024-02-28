@@ -4,12 +4,15 @@
 import { useState, useEffect, useRef } from "react";
 import { BuildBody } from "@modules";
 import { Popup, getState, hideState, showState } from "@components";
+import { links, mediaLinks, functions, pages } from "@config";
 
-export default function View() {
+import fs from "fs";
 
-    const [template, setTemplate] = useState([]);
-    const [links, setLinks] = useState([]);
-    const [mediaLinks, setMediaLinks] = useState([]);
+export default function View({ url }) {
+    const [template, setTemplate] = useState(pages[url]);
+    const [Links, setLinks] = useState(links);
+    const [MediaLinks, setMediaLinks] = useState(mediaLinks);
+
     const [classNames, setClassNames] = useState(``);
     const [functions, setFunctions] = useState({});
 
@@ -57,7 +60,7 @@ export default function View() {
         <style>
             {classNames}
         </style>
-        <BuildBody links={links} mediaLinks={mediaLinks} template={template} functions={functions} />
+        <BuildBody links={Links} mediaLinks={MediaLinks} template={template} functions={functions} />
         <Popup />
     </>
 }

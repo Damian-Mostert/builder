@@ -76,7 +76,7 @@ export function Node({ id, index, item, update, expand, links, functions }) {
                 "Accordion",
                 "Nav",
                 "Form",
-                "Input",
+
                 "Button",
                 "Layout",
                 "Section",

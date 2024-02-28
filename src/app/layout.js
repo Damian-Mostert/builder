@@ -17,7 +17,11 @@ export default async function RootLayout({ children }) {
       <html lang="en">
         <head>
           <title>Console</title>
-
+          <link
+            id="tailwind"
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet"
+          />
         </head>
         <body>
           {children}

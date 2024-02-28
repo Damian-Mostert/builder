@@ -21,6 +21,8 @@ const getState = (id) => (window.States[id].show);
 
 function ShowState({ children, id, active }) {
 
+
+
     const [show, setShow] = useState(active);
 
     useEffect(() => {
@@ -35,6 +37,18 @@ function ShowState({ children, id, active }) {
 
     }, [show]);
 
+    useEffect(() => {
+        let Active;
+
+        if (typeof active == "string") {
+            Active = active == "false" ? false : true
+        } else {
+            Active = active
+        }
+
+        setShow(Active);
+    }, [active]);
+
     return <>
         {show && children}
     </>
@@ -48,7 +62,6 @@ ShowState.canAppend = [
     "Layout",
     "Section",
     "Form",
-    "Input",
     "Button",
     "Nav",
     "Accordion",
@@ -65,6 +78,26 @@ ShowState.Options = function Options({ data, update }) {
                     id
                 })
             }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="Show / Hide" value={data.active}
+                type="select"
+                options={[
+                    {
+                        label: "Show",
+                        value: true
+                    },
+                    {
+                        label: "Hide",
+                        value: false
+                    }
+                ]}
+                onChange={active => {
+                    update({
+                        ...data,
+                        active
+                    })
+                }} />
         </div>
     </div>
 }

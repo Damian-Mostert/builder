@@ -2,6 +2,12 @@
 
 import Builder from "src/lib/components/builder"
 import { Popup, Navigation } from '@components';
+import { useEffect } from "react";
+
+import {
+    links,
+    mediaLinks
+} from "@config";
 
 const CODE = `
 TEST(){ //on button add function to call
@@ -27,9 +33,10 @@ Submit(values){
 `;
 
 export default function BUILD() {
-
+    useEffect(() => {
+        document.getElementById("tailwind")?.remove();
+    }, [])
     return <div className="flex flex-col w-screen h-screen">
-        <Navigation.Header />
         <main className="w-full h-full overflow-auto" >
             <Builder
                 mediaLinks={{

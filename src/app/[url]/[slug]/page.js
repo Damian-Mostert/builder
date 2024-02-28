@@ -4,5 +4,5 @@
 import { Page } from "@modules";
 
 export default function View({ params }) {
-    return <Page url={params.url} />
+    return <Page url={params.slug} />
 }

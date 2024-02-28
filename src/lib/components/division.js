@@ -29,7 +29,7 @@ Division.canAppend = [
     "Layout",
     "Section",
     "Form",
-    "Input",
+
     "Button",
     "Nav",
     "Accordion",

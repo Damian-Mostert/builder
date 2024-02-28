@@ -11,11 +11,10 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
+import { links, mediaLinks, functions, pages } from "@config";
+
 
 function Builder({
-    links = [],
-    mediaLinks = [],
-    template = {},
     classNames = ``,
     code = ``,
     onSave
@@ -64,7 +63,7 @@ function Builder({
                 {
                     __component: "Root",
                     children: [
-                        ...template
+                        ...pages["/"]
                     ]
                 }
             ]
@@ -93,7 +92,7 @@ function Builder({
             frame.contentWindow.postMessage(
                 JSON.stringify({
                     type: "template",
-                    template
+                    template: pages["/"]
                 }),
                 '*'
             );
@@ -334,8 +333,8 @@ function Builder({
             <Resizable
                 onResize={() => {
                     const dragContainer = document.getElementById('drag-container');
-                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2;
-                    dragContainer.scrollTop = 500;
+                    dragContainer.scrollLeft = (dragContainer.scrollWidth / 5) * 3;
+                    dragContainer.scrollTop = (dragContainer.scrollHeight / 7) * 2;
                 }}
                 className='h-full overflow-hidden flex flex-col bg-gray-800 border border-gray-900'
                 handleClasses={{
@@ -434,9 +433,9 @@ function Builder({
                         <button onClick={openHelp} className='ml-4 text-sm text-white'>Help</button>
                         <div className='h-2/3 w-[1px] bg-white mx-4' />
                     </div>
-                    <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto ">
+                    <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto">
                         <div className='page-drag drag-me p-4  h-full w-full text-white '>
-                            <div id='drag-me' className='drag-me flex justify-center' style={{ width: "1000%", height: "1000%", scale: "0.8" }}>
+                            <div id='drag-me' className='drag-me flex justify-center' style={{ width: "1000%", height: "1000%", scale: "0.5" }}>
                                 <Tree className="flex justify-center" lineBorderRadius='10px' lineWidth='4px' lineColor='purple'>
                                     <Build obj={history[historyIndex]} update={update} expand={expand} links={Links} functions={functions} />
                                 </Tree>
@@ -450,8 +449,8 @@ function Builder({
             <Resizable
                 onResize={() => {
                     const dragContainer = document.getElementById('drag-container');
-                    dragContainer.scrollLeft = dragContainer.scrollWidth / 2;
-                    dragContainer.scrollTop = 500;
+                    dragContainer.scrollLeft = (dragContainer.scrollWidth / 5) * 3;
+                    dragContainer.scrollTop = (dragContainer.scrollHeight / 7) * 2;
 
                 }}
                 className='h-full overflow-hidden flex flex-col'
@@ -490,7 +489,7 @@ function Builder({
                             }} className='ml-4 text-xs text-white'>↺</button>
                             <div className='h-2/3 w-[1px] bg-white ml-4' />
                         </div>
-                        <iframe id="web-frame" src="/edit/view" className='w-full h-full ' />
+                        <iframe id="web-frame" src="/" className='w-full h-full ' />
                     </div>
                 </div>
             </Resizable>
@@ -518,8 +517,8 @@ const enableZoomBox = () => {
     const dragContainer = document.getElementById('drag-container');
 
     const resize = () => {
-        dragContainer.scrollLeft = dragContainer.scrollWidth / 2;
-        dragContainer.scrollTop = 500;
+        dragContainer.scrollLeft = (dragContainer.scrollWidth / 5) * 3;
+        dragContainer.scrollTop = (dragContainer.scrollHeight / 7) * 2;
     }
 
     resize();
