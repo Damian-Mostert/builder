@@ -27,7 +27,11 @@ function Builder({
 
     useEffect(() => {
         try {
-            setFunctions(Function(Code)());
+            setFunctions(Function(`
+                        return {
+                            ${Code}
+                        }                        
+                        `)());
         } catch (e) { }
     }, [Code]);
 

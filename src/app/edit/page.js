@@ -4,10 +4,10 @@ import Builder from "src/lib/components/builder"
 import { Popup, Navigation } from '@components';
 
 const CODE = `
-function TEST(){ //on button add function to call
+TEST(){ //on button add function to call
     alert("Hello world")
 }
-return {TEST}`;
+`;
 
 export default function BUILD() {
 

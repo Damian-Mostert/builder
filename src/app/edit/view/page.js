@@ -17,7 +17,6 @@ export default function View() {
     useEffect(() => {
         const handleMessage = event => {
             let message = JSON.parse(event.data);
-            console.info(message);
             switch (message.type) {
                 case "template":
                     setTemplate(message.template);
@@ -33,9 +32,11 @@ export default function View() {
                     break
                 case "script":
                     try {
-                        let res = Function(message.script)();
-                        console.log(res);
-                        setFunctions(res);
+                        setFunctions(Function(`
+                        return {
+                            ${message.script}
+                        }                        
+                        `)());
 
                     } catch (e) {
 
