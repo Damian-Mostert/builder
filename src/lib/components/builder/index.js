@@ -23,6 +23,14 @@ function Builder({
 
     const [Code, setCode] = useState(code);
 
+    const [functions, setFunctions] = useState({});
+
+    useEffect(() => {
+        try {
+            setFunctions(Function(Code)());
+        } catch (e) { }
+    }, [Code]);
+
     const [Links, setLinks] = useState(JSON.stringify(links, null, 4));
 
     const [MediaLinks, setMediaLinks] = useState(JSON.stringify(mediaLinks, null, 4));
@@ -422,7 +430,7 @@ function Builder({
                         <div className='page-drag drag-me p-4  h-full w-full text-white '>
                             <div id='drag-me' className='drag-me flex justify-center' style={{ width: "1000%", height: "1000%", scale: "0.8" }}>
                                 <Tree className="flex justify-center" lineBorderRadius='10px' lineWidth='4px' lineColor='purple'>
-                                    <Build obj={history[historyIndex]} update={update} expand={expand} links={Links} />
+                                    <Build obj={history[historyIndex]} update={update} expand={expand} links={Links} functions={functions} />
                                 </Tree>
                             </div>
                         </div>
@@ -474,7 +482,7 @@ function Builder({
                             }} className='ml-4 text-xs text-white'>↺</button>
                             <div className='h-2/3 w-[1px] bg-white ml-4' />
                         </div>
-                        <iframe id="web-frame" src="/view" className='w-full h-full ' />
+                        <iframe id="web-frame" src="/edit/view" className='w-full h-full ' />
                     </div>
                 </div>
             </Resizable>

@@ -8,7 +8,7 @@ import Components from '@components';
 
 import { Build } from "..";
 
-export function Node({ id, index, item, update, expand, links }) {
+export function Node({ id, index, item, update, expand, links, functions }) {
 
     const [closest, setClosest] = useState(null);
 
@@ -81,7 +81,7 @@ export function Node({ id, index, item, update, expand, links }) {
                 "Layout",
                 "Section",
                 "Parallax"
-            ])
+            ], functions)
         }).then(res => {
             if (!res.close) {
                 setOpen(true);
@@ -126,7 +126,7 @@ export function Node({ id, index, item, update, expand, links }) {
                         </div>
                     </h2>
                     {item.__component != "Root" && <div className="w-full p-4">
-                        <Options update={UpdateThis} data={item.__props} />
+                        <Options update={UpdateThis} data={item.__props} functions={functions} />
                     </div>}
                     {Components[item.__component]?.canAppend && item.__component != "Root" && <div className='w-full flex'>
                         <Button variant={`builder-toggle${open ? "-invert" : ""}`} onClick={() => open ? setOpen(false) : setOpen(true)} className="m-auto mb-2" />
@@ -145,6 +145,7 @@ export function Node({ id, index, item, update, expand, links }) {
         }
         {(item.__component == "Root" || open) && <>
             <Build obj={item.children} id={id + "---" + index} key={id + "---" + index} update={update} expand={expand} links={links}
+                functions={functions}
             />
         </>}
     </TreeNode>

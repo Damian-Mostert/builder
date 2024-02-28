@@ -54,7 +54,7 @@ function Button({
   );
 }
 
-Button.Options = function Options({ update, data }) {
+Button.Options = function Options({ update, data, functions }) {
   return <div className='p-2'>
     <div className='w-[300px] m-auto'>
       <Input variant="builder" label="variant" value={data.variant}
@@ -74,6 +74,13 @@ Button.Options = function Options({ update, data }) {
     </div>
     <div className='w-[300px] m-auto'>
       <Input variant="builder" label="function to call" value={data.functionToCall}
+        type="select"
+        options={Object.keys(functions).map(item => {
+          return {
+            label: item,
+            value: item
+          }
+        })}
         onChange={functionToCall => {
           update({
             ...data,

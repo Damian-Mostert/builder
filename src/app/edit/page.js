@@ -3,18 +3,25 @@
 import Builder from "src/lib/components/builder"
 import { Popup, Navigation } from '@components';
 
+const CODE = `
+function TEST(){ //on button add function to call
+    alert("Hello world")
+}
+return {TEST}`;
+
 export default function BUILD() {
 
     return <div className="flex flex-col w-screen h-screen">
         <Navigation.Header />
         <main className="w-full h-full overflow-auto" >
             <Builder
-                code={`
-function TEST(){
-    console.log("HI x")
-}
-return {TEST}
-                `}
+                mediaLinks={{
+                    twitter: "",
+                    faceBook: "",
+                    instagram: "",
+                    linkedIn: ""
+                }}
+                code={CODE}
                 classNames=".test{}"
                 links={[
                     {
@@ -48,7 +55,13 @@ return {TEST}
                             icon: "/vercel.svg"
                         }
                     },
-
+                    {
+                        __component: "Button",
+                        __props: {
+                            label: "HELLO WORLD",
+                            functionToCall: "TEST"
+                        }
+                    },
                     {
                         __component: "Slider",
                         __props: {

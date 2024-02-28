@@ -5,7 +5,7 @@ import { Resizable } from 're-resizable';
 import Draggable from 'react-draggable';
 import Components from '@components';
 
-export function NewItem(canAppend) {
+export function NewItem(canAppend, functions) {
     return function ({ Resolve }) {
         const componentRef = useRef();
 
@@ -48,7 +48,7 @@ export function NewItem(canAppend) {
                         return <></>
                     }
                 }
-                return <Options data={data} update={setData} />
+                return <Options data={data} update={setData} functions={functions} />
 
             }()}
             <Button variant='builder' label="Create" onClick={Return} className={"m-auto mt-4"} />
