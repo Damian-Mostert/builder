@@ -79,6 +79,7 @@ Slider.Options = function Options({ update, data }) {
 }
 
 Slider.canAppend = [
+    "ShowState",
     "Division"
 ];
 

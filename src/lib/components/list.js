@@ -44,6 +44,7 @@ List.Options = function Options({ update, data }) {
 }
 
 List.canAppend = [
+    "ShowState",
     "ListItem"
 ]
 

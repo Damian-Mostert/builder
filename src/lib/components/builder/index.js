@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Tree } from 'react-organizational-chart';
-import { Button, Popup } from '@components';
+import { Button, Popup, getState, hideState, showState } from '@components';
 import { Resizable } from 're-resizable';
 import { Build } from './build';
 import StyleEditor from 'react-style-editor';
@@ -28,11 +28,15 @@ function Builder({
     useEffect(() => {
         try {
             setFunctions(Function(`
+                        const [Popup,getState,hideState,showState] = arguments;
                         return {
                             ${Code}
                         }                        
-                        `)());
-        } catch (e) { }
+                        `)(Popup, getState, hideState, showState));
+        } catch (e) {
+
+            console.warn(e)
+        }
     }, [Code]);
 
     const [Links, setLinks] = useState(JSON.stringify(links, null, 4));

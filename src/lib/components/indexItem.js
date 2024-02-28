@@ -23,6 +23,7 @@ IndexItem.Options = function Options({ data, update }) {
 }
 
 IndexItem.canAppend = [
+    "ShowState",
     "Division",
 ]
 

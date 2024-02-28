@@ -9,28 +9,67 @@ function Link({ children, ...props }) {
     </LINK>
 }
 
-function ShowState({ children, id }) {
-    const [show, setShow] = useState();
+const showState = (id) => {
+    window.States[id].setShow(true)
+};
+
+const hideState = (id) => {
+    window.States[id].setShow(false)
+};
+
+const getState = (id) => (window.States[id].show);
+
+function ShowState({ children, id, active }) {
+
+    const [show, setShow] = useState(active);
 
     useEffect(() => {
-        const customEvent = new CustomEvent('State-' + id, {
-            detail: { message: 'State triggered' }
-        });
+        if (!window.states)
+            window.States = {}
 
-        const handleState = _ => show ? setShow(false) : setShow(true)
 
-        window.addEventListener("State", handleState)
-        window.dispatchEvent(customEvent);
-
-        return () => {
-            window.removeEventListener("State", handleState);
+        window.States[id] = {
+            show,
+            setShow,
         }
-    }, []);
+
+    }, [show]);
 
     return <>
         {show && children}
     </>
 }
+
+ShowState.canAppend = [
+    "Division",
+    "TextBox",
+    "Image",
+    "Video",
+    "Layout",
+    "Section",
+    "Form",
+    "Input",
+    "Button",
+    "Nav",
+    "Accordion",
+    "List",
+    "Slider",
+];
+
+ShowState.Options = function Options({ data, update }) {
+    return <div className='p-2'>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="id" value={data.id} onChange={id => {
+                update({
+                    ...data,
+                    id
+                })
+            }} />
+        </div>
+    </div>
+}
+
+
 
 //header,footer
 import { Navigation } from "./navigation";
@@ -45,7 +84,7 @@ import { Popup } from "./popup";
 import { Layout } from "./layout";
 import { Input } from "./input";
 import { Table } from "./table";
-import { Form } from "./form";
+import { Form, InputElement } from "./form";
 import { TextBox } from "./text";
 import { List, ListItem } from "./list";
 import { Parallax } from "./parallax";
@@ -58,5 +97,5 @@ import { Video } from "./video";
 import { IndexItem } from "./indexItem";
 
 //export
-export { IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
-export default { IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export { InputElement, getState, hideState, showState, IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export default { InputElement, getState, hideState, showState, IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };

@@ -21,6 +21,7 @@ Division.Options = function Options({ update, data }) {
 }
 
 Division.canAppend = [
+    "ShowState",
     "Division",
     "TextBox",
     "Image",

@@ -1,24 +1,38 @@
 import { useState } from "react";
 import { Button } from "./button";
 import { Input } from "./input";
+import { useRef } from "react";
 
 function Form({
     className = "",
     title = "",
     variant = "default",
-    inputs = [],
+    children = [],
     toggle = false,
     submitButton = {
         label: "submit",
         variant: "default"
     },
     onSubmit = () => { },
+    functionToCall,
+    functions,
     ...props
 }) {
 
     const [submited, setSubmitted] = useState(false)
 
     const [busy, setBusy] = useState(false);
+
+    const refs = [
+        useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(),
+    ];
+
+    const inputs = children.props.children.map((item, index) => {
+        return {
+            ...item.props.__props,
+            ref: refs[index]
+        }
+    });
 
     const handleSubmit = async ev => {
         if (!busy) {
@@ -31,7 +45,7 @@ function Form({
                 return input.ref.current.value;
             });
             if (valid) {
-                setSubmitted(await onSubmit(values));
+                setSubmitted(functionToCall ? await functions[functionToCall](inputs) : await onSubmit(values));
             }
             setBusy(false);
         }
@@ -42,25 +56,34 @@ function Form({
         {inputs.map((item, index) => {
             return <Input key={index} {...item} />
         })}
-        <Button {...submitButton} />
+        <Button {...submitButton} className="mt-4 mx-auto" />
     </form>
 }
 
-Form.Options = function Options({ update, data }) {
+Form.Options = function Options({ update, data, functions }) {
     return <div className='p-2'>
         <div className='w-[300px] m-auto'>
             <Input variant="builder" label="variant" value={data.variant}
                 type="select"
                 options={[
                     {
-                        label: "default",
-                        value: "default"
+                        label: "white-bg",
+                        value: "white-bg"
                     }
                 ]}
                 onChange={variant => {
                     update({
                         ...data,
                         variant
+                    })
+                }} />
+        </div>
+        <div className='w-[300px] m-auto'>
+            <Input variant="builder" label="title" value={data.title}
+                onChange={title => {
+                    update({
+                        ...data,
+                        title
                     })
                 }} />
         </div>
@@ -74,18 +97,35 @@ Form.Options = function Options({ update, data }) {
                 }} />
         </div>
         <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="value" value={data.label} onChange={value => {
-                update({
-                    ...data,
-                    value
-                })
-            }} />
+            <Input variant="builder" label="function to call" value={data.functionToCall}
+                type="select"
+                options={Object.keys(functions).map(item => {
+                    return {
+                        label: item,
+                        value: item
+                    }
+                })}
+                onChange={functionToCall => {
+                    update({
+                        ...data,
+                        functionToCall
+                    })
+                }} />
         </div>
     </div>
 }
 
 Form.canAppend = [
-    "Input"
+    "ShowState",
+    "InputElement"
 ];
 
-export { Form };
+function InputElement(props) {
+    return {
+        ...props,
+    }
+}
+
+InputElement.Options = Input.Options;
+
+export { Form, InputElement };

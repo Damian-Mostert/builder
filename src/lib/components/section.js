@@ -69,6 +69,7 @@ Section.Options = function Options({ update, data }) {
 }
 
 Section.canAppend = [
+    "ShowState",
     "Division",
     "TextBox",
     "Paragraph",

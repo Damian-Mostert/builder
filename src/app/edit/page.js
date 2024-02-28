@@ -5,7 +5,24 @@ import { Popup, Navigation } from '@components';
 
 const CODE = `
 TEST(){ //on button add function to call
-    alert("Hello world")
+    Popup.fire({
+        icon:"approved",
+        title:"HELLO WORLD",
+        text:"test",
+        canClose:true,
+        background:"blur"
+    })
+},
+TOGGLE(){
+    let active = getState("test");
+    if(active){
+        hideState("test")
+    }else{
+        showState("test")
+    }
+},
+Submit(values){
+    console.log(values)
 }
 `;
 
@@ -563,6 +580,67 @@ export default function BUILD() {
                             }
                         ]
                     },
+                    {
+                        __component: "Division",
+                        __props: {
+                            className: "bg-yellow-200 p-8"
+                        },
+                        children: [
+                            {
+                                __component: "Button",
+                                __props: {
+                                    functionToCall: "TOGGLE"
+                                }
+                            },
+                            {
+                                __component: "ShowState",
+                                __props: {
+                                    active: false,
+                                    id: "test",
+
+                                },
+                                children: [
+                                    {
+                                        __component: "Image",
+                                        __props: {
+                                            src: "/vercel.svg"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        __component: "Form",
+                        __props: {
+                            title: "test",
+                            variant: "white-bg",
+                            className: "m-4",
+                            functionToCall: "Submit"
+                        },
+                        children: [
+                            {
+                                __component: "InputElement",
+                                __props: {
+                                    value: "test"
+                                }
+                            },
+                            {
+                                __component: "InputElement",
+                                __props: {
+                                    value: "test"
+                                }
+                            },
+                            {
+                                __component: "InputElement",
+                                __props: {
+                                    value: "test"
+                                }
+                            }
+
+
+                        ]
+                    }
                 ]}
                 onSave={(data) => {
 

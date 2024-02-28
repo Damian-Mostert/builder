@@ -69,6 +69,7 @@ Layout.Options = function Options({ update, data }) {
 }
 
 Layout.canAppend = [
+    "ShowState",
     "Division",
     "TextBox",
     "Paragraph",

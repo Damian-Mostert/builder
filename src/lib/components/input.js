@@ -11,8 +11,9 @@ const Input = forwardRef(function Input({
     size = "full",
     className = "",
     onChange = () => { },
+    ref = useRef(),
     ...props
-}, ref) {
+}, Ref) {
 
 
     const [Value, setValue] = useState(value);
@@ -36,7 +37,7 @@ const Input = forwardRef(function Input({
         return true;
     }
 
-    useImperativeHandle(ref, function () {
+    useImperativeHandle(Ref, function () {
         return {
             value: Value,
             setValue: setValue,
@@ -57,7 +58,7 @@ const Input = forwardRef(function Input({
                 case "text": case "name": case "email": case "date": case "password":
                     return <>
                         {label && <label className="label">{label}</label>}
-                        <input className="input" ref={ref} value={Value} onChange={handleInstantChange} />
+                        <input className="input" value={Value} onChange={handleInstantChange} />
                         {error && <div className="input-error">{error}</div>}
                     </>
                 case "select":

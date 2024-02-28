@@ -3,6 +3,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { BuildBody } from "@modules";
+import { Popup, getState, hideState, showState } from "@components";
 
 export default function View() {
 
@@ -10,9 +11,7 @@ export default function View() {
     const [links, setLinks] = useState([]);
     const [mediaLinks, setMediaLinks] = useState([]);
     const [classNames, setClassNames] = useState(``);
-    const [functions, setFunctions] = useState({
-
-    });
+    const [functions, setFunctions] = useState({});
 
     useEffect(() => {
         const handleMessage = event => {
@@ -32,13 +31,16 @@ export default function View() {
                     break
                 case "script":
                     try {
+
                         setFunctions(Function(`
+                        const [Popup,getState,hideState,showState] = arguments;
                         return {
                             ${message.script}
                         }                        
-                        `)());
+                        `)(Popup, getState, hideState, showState));
 
                     } catch (e) {
+                        console.warn(e)
 
                     }
                     break
@@ -56,5 +58,6 @@ export default function View() {
             {classNames}
         </style>
         <BuildBody links={links} mediaLinks={mediaLinks} template={template} functions={functions} />
+        <Popup />
     </>
 }
