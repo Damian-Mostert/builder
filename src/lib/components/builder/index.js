@@ -23,9 +23,9 @@ function Builder({
 
     const [Code, setCode] = useState(code);
 
-    const [Links, setLinks] = useState(links);
+    const [Links, setLinks] = useState(JSON.stringify(links, null, 4));
 
-    const [MediaLinks, setMediaLinks] = useState(mediaLinks);
+    const [MediaLinks, setMediaLinks] = useState(JSON.stringify(mediaLinks, null, 4));
 
     const [ClassNames, setClassNames] = useState(classNames);
 
@@ -90,10 +90,16 @@ function Builder({
         frame.addEventListener("load", sendData)
         frame.addEventListener("load", () => {
             setTimeout(() => {
+                let parsed = [];
+                try {
+                    parsed = JSON.parse(Links)
+                } catch (e) {
+
+                }
                 frame.contentWindow.postMessage(
                     JSON.stringify({
                         type: "links",
-                        links: Links
+                        links: parsed
                     }),
                     '*'
                 );
@@ -119,19 +125,33 @@ function Builder({
         const frame = document.getElementById("web-frame");
         frame.addEventListener("load", () => {
             setTimeout(() => {
+                let parsed = [];
+                try {
+                    parsed = JSON.parse(Links)
+                } catch (e) {
+
+                }
+
                 frame.contentWindow.postMessage(
                     JSON.stringify({
                         type: "links",
-                        links: Links
+                        links: parsed
                     }),
                     '*'
                 );
             }, 100)
             setTimeout(() => {
+                let parsed = [];
+                try {
+                    parsed = JSON.parse(MediaLinks)
+                } catch (e) {
+
+                }
+
                 frame.contentWindow.postMessage(
                     JSON.stringify({
                         type: "mediaLinks",
-                        mediaLinks: MediaLinks
+                        mediaLinks: parsed
                     }),
                     '*'
                 );
@@ -151,10 +171,17 @@ function Builder({
     useEffect(() => {
         const frame = document.getElementById("web-frame");
         setTimeout(() => {
+            let parsed = [];
+            try {
+                parsed = JSON.parse(MediaLinks)
+            } catch (e) {
+
+            }
+
             frame.contentWindow.postMessage(
                 JSON.stringify({
                     type: "mediaLinks",
-                    mediaLinks: MediaLinks
+                    mediaLinks: parsed
                 }),
                 '*'
             );
@@ -164,10 +191,17 @@ function Builder({
     useEffect(() => {
         const frame = document.getElementById("web-frame");
         setTimeout(() => {
+            let parsed = [];
+            try {
+                parsed = JSON.parse(Links)
+            } catch (e) {
+
+            }
+
             frame.contentWindow.postMessage(
                 JSON.stringify({
                     type: "links",
-                    links: Links
+                    links: parsed
                 }),
                 '*'
             );
@@ -296,7 +330,7 @@ function Builder({
                     bottomLeft: "pointer-events-none",
                     topLeft: "pointer-events-none",
                 }}
-                defaultSize={{ width: 300 }}>
+                defaultSize={{ width: 400 }}>
                 <div className='overflow-auto p-2 w-full'>
                     <h3 className='pt-4 text-white '>
                         Icon
@@ -311,22 +345,43 @@ function Builder({
                     </h3>
                     <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Meta description' />
                     <h3 className='pt-4 text-white '>
-                        website links
+                        WEBSITE LINKS
                     </h3>
-                    {Links.map((item, index) => {
-                        return <div className='p-4'>
-                            <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Title' />
-                            <input className='bg-transparent text-white focus:outline-none p-2 w-full' placeholder='Url' />
-                        </div>
-                    })}
-                    <div className='w-full text-center text-white' onClick={newLink}>
-                        [ INSERT LINK ]
-                    </div>
+                    <Editor
+                        className="bg-black min-h-32"
+                        value={Links}
+                        onValueChange={code => {
+                            setLinks(code)
+                        }}
+                        highlight={code => highlight(code, languages.js)}
+                        padding={10}
+                        style={{
+                            fontFamily: '"Fira code", "Fira Mono", monospace',
+                            fontSize: 12,
+                        }}
+                    />
+                    <h3 className='pt-4 text-white '>
+                        MEDIA LINKS
+                    </h3>
+                    <Editor
+                        className="bg-black min-h-32"
+                        value={MediaLinks}
+                        onValueChange={code => {
+                            setMediaLinks(code)
+                        }}
+                        highlight={code => highlight(code, languages.js)}
+                        padding={10}
+                        style={{
+                            fontFamily: '"Fira code", "Fira Mono", monospace',
+                            fontSize: 12,
+                        }}
+                    />
+
                     <h3 className='pt-4 text-white '>
                         CLASS NAMES
                     </h3>
                     <StyleEditor
-                        className="bg-slate-400 min-h-32"
+                        className="bg-white min-h-32"
                         defaultValue={ClassNames}
                         onChange={val => {
                             setClassNames(val);
@@ -336,7 +391,7 @@ function Builder({
                         INLINE SCRIPT
                     </h3>
                     <Editor
-                        className="bg-amber-300 min-h-32"
+                        className="bg-black min-h-32"
                         value={Code}
                         onValueChange={code => setCode(code)}
                         highlight={code => highlight(code, languages.js)}

@@ -15,7 +15,7 @@ function TEST(){
 }
 return {TEST}
                 `}
-                classNames="test{}"
+                classNames=".test{}"
                 links={[
                     {
                         href: "/",
@@ -550,7 +550,8 @@ return {TEST}
                             }
                         ]
                     },
-                ]} onSave={(data) => {
+                ]}
+                onSave={(data) => {
 
                 }} />
             <Popup />
