@@ -63,7 +63,7 @@ function Builder({
                 {
                     __component: "Root",
                     children: [
-                        ...pages["/"]
+                        ...pages["/view"]
                     ]
                 }
             ]
@@ -92,7 +92,7 @@ function Builder({
             frame.contentWindow.postMessage(
                 JSON.stringify({
                     type: "template",
-                    template: pages["/"]
+                    template: pages["/view"]
                 }),
                 '*'
             );
@@ -489,7 +489,7 @@ function Builder({
                             }} className='ml-4 text-xs text-white'>↺</button>
                             <div className='h-2/3 w-[1px] bg-white ml-4' />
                         </div>
-                        <iframe id="web-frame" src="/" className='w-full h-full ' />
+                        <iframe id="web-frame" src="/view" className='w-full h-full ' />
                     </div>
                 </div>
             </Resizable>

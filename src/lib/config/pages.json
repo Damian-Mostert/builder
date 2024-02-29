@@ -1,5 +1,5 @@
 {
-  "/": [
+  "/view": [
     {
       "__component": "Header",
       "__props": {

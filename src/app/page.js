@@ -1,3 +1,14 @@
+/* "use client";
+
+
+import { Page } from "@modules";
+
+export default function View() {
+    return <Page url="/" />
+}
+
+*/
+
 "use client";
 
 import Builder from "src/lib/components/builder"
@@ -657,13 +668,3 @@ export default function BUILD() {
         </main>
     </div>
 }
-
-/* "use client";
-
-
-import { Page } from "@modules";
-
-export default function View() {
-    return <Page url="/" />
-}
- */
