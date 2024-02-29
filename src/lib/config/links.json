@@ -1,6 +1,22 @@
 [
-    {
-        "label": "Home",
-        "href": "/"
-    }
+  {
+    "label": "Edit website",
+    "href": "/edit"
+  },
+  {
+    "label": "Home",
+    "href": "/"
+  },
+  {
+    "label": "Test",
+    "href": "/test"
+  },
+  {
+    "label": "Test2",
+    "href": "/test2"
+  },
+  {
+    "label": "Test3",
+    "href": "/test3"
+  }
 ]

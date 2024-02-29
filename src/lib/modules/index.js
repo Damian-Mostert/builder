@@ -8,6 +8,4 @@ export { Location } from "./location";
 
 export { BuildBody } from "./buildbody";
 
-export { default as Page } from "./page";
-
 export { Device };

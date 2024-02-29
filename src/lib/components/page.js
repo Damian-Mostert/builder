@@ -6,8 +6,6 @@ import { BuildBody } from "@modules";
 import { Popup, getState, hideState, showState } from "@components";
 import { links, mediaLinks, functions, pages } from "@config";
 
-import fs from "fs";
-
 export default function View({ url }) {
     const [template, setTemplate] = useState(pages[url]);
     const [Links, setLinks] = useState(links);

@@ -1,609 +1,174 @@
 {
-  "/view": [
-    {
-      "__component": "Header",
-      "__props": {
-        "orientation": "top",
-        "icon": "/vercel.svg"
-      }
-    },
-    {
-      "__component": "Button",
-      "__props": {
-        "label": "HELLO WORLD",
-        "functionToCall": "TEST"
-      }
-    },
-    {
-      "__component": "Slider",
-      "__props": {
-        "arrows": false,
-        "dots": false,
-        "infante": true
-      },
-      "children": [
+    "/": [
         {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-green-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
+            "__component": "Header",
+            "__props": {
+                "orientation": "top",
+                "icon": "/vercel.svg"
             }
-          ]
         },
         {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-yellow-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        },
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-red-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__component": "Parallax",
-      "__props": {
-        "className": "w-full h-[250px] bg-purple-200"
-      },
-      "children": [
-        {
-          "__component": "Image",
-          "__props": {
-            "src": "/vercel.svg",
-            "className": "p-4"
-          }
-        }
-      ]
-    },
-    {
-      "__component": "Layout",
-      "__props": {
-        "className": "",
-        "type": "split-half-r"
-      },
-      "children": [
-        {
-          "__component": "Slider",
-          "__props": {
-            "arrows": false,
-            "dots": false,
-            "infante": true
-          },
-          "children": [
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-green-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
+            "__component": "Slider",
+            "__props": {
+                "arrows": false,
+                "dots": false,
+                "infante": true
             },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-yellow-200 p-8"
-              },
-              "children": [
+            "children": [
                 {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
+                    "__component": "Division",
+                    "__props": {
+                        "className": "bg-green-200 p-8"
+                    },
+                    "children": [
+                        {
+                            "__component": "Image",
+                            "__props": {
+                                "src": "/vercel.svg"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "__component": "Division",
+                    "__props": {
+                        "className": "bg-yellow-200 p-8"
+                    },
+                    "children": [
+                        {
+                            "__component": "Image",
+                            "__props": {
+                                "src": "/vercel.svg"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "__component": "Division",
+                    "__props": {
+                        "className": "bg-red-200 p-8"
+                    },
+                    "children": [
+                        {
+                            "__component": "Image",
+                            "__props": {
+                                "src": "/vercel.svg"
+                            }
+                        }
+                    ]
                 }
-              ]
+            ]
+        }
+    ],
+    "/help": [
+        {
+            "__component": "Header",
+            "__props": {
+                "orientation": "top",
+                "icon": "/vercel.svg"
+            }
+        },
+        {
+            "__component": "Division",
+            "__props": {
+                "className": "bg-green-200 h-full w-full"
             },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-red-200 p-8"
-              },
-              "children": [
+            "children": [
                 {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
+                    "__component": "TextBox",
+                    "__props": {
+                        "pre": "TEST",
+                        "title": "TEST"
+                    },
+                    "children": []
                 }
-              ]
-            }
-          ]
-        },
-        {
-          "__component": "TextBox",
-          "__props": {
-            "pre": "pre",
-            "title": "TITLE"
-          },
-          "children": [
-            {
-              "__component": "Paragraph",
-              "__props": {
-                "text": "blahs asdlashd askldh askldh lasdh lkash dlkas dklas dhlkskldkasdkl asld asd as.a sda sdaslhdlkas dlkash dklash kld hlkashlkas dklas klsald askldj alsdhasl"
-              }
-            }
-          ]
+            ]
         }
-      ]
-    },
-    {
-      "__component": "Layout",
-      "__props": {
-        "className": "",
-        "type": "split-half-l"
-      },
-      "children": [
+    ],
+    "/test": [
         {
-          "__component": "TextBox",
-          "__props": {
-            "pre": "pre",
-            "title": "TITLE"
-          },
-          "children": [
-            {
-              "__component": "Paragraph",
-              "__props": {
-                "text": "blahs asdlashd askldh askldh lasdh lkash dlkas dklas dhlkskldkasdkl asld asd as.a sda sdaslhdlkas dlkash dklash kld hlkashlkas dklas klsald askldj alsdhasl"
-              }
-            }
-          ]
+            "__component": "Header",
+            "__props": {},
+            "children": {}
         },
         {
-          "__component": "Slider",
-          "__props": {
-            "arrows": false,
-            "dots": false,
-            "infante": true
-          },
-          "children": [
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-green-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
             },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-yellow-200 p-8"
-              },
-              "children": [
+            "children": {}
+        }
+    ],
+    "/test2": [
+        {
+            "__component": "Header",
+            "__props": {},
+            "children": {}
+        },
+        {
+            "__component": "Nav",
+            "__props": {},
+            "children": [
                 {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
+                    "__component": "IndexItem",
+                    "__props": {
+                        "title": "A"
+                    },
+                    "children": [
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-red-500 w-full h-full"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "__component": "IndexItem",
+                    "__props": {
+                        "title": "B"
+                    },
+                    "children": [
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-green-500 w-full h-full"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "__component": "IndexItem",
+                    "__props": {
+                        "title": "C"
+                    },
+                    "children": [
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-yellow-500 w-full h-full"
+                            },
+                            "children": []
+                        }
+                    ]
                 }
-              ]
+            ]
+        }
+    ],
+    "/test3": [
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
             },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-red-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__component": "Parallax",
-      "__props": {
-        "className": "w-full h-[250px] bg-yellow-200"
-      },
-      "children": [
-        {
-          "__component": "Image",
-          "__props": {
-            "src": "/vercel.svg",
-            "className": "p-4"
-          }
-        }
-      ]
-    },
-    {
-      "__component": "Slider",
-      "__props": {
-        "arrows": false,
-        "dots": false,
-        "infante": true,
-        "className": ""
-      },
-      "children": [
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-green-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
+            "children": {}
         },
         {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-yellow-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        },
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-red-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
+            "__component": "Header",
+            "__props": {},
+            "children": {}
         }
-      ]
-    }
-  ],
-  "/test": [],
-  "/test/test": [
-    {
-      "__component": "Header",
-      "__props": {
-        "orientation": "top",
-        "icon": "/vercel.svg"
-      }
-    },
-    {
-      "__component": "Button",
-      "__props": {
-        "label": "HELLO WORLD",
-        "functionToCall": "TEST"
-      }
-    },
-    {
-      "__component": "Slider",
-      "__props": {
-        "arrows": false,
-        "dots": false,
-        "infante": true
-      },
-      "children": [
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-green-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        },
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-yellow-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        },
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-red-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__component": "Parallax",
-      "__props": {
-        "className": "w-full h-[250px] bg-purple-200"
-      },
-      "children": [
-        {
-          "__component": "Image",
-          "__props": {
-            "src": "/vercel.svg",
-            "className": "p-4"
-          }
-        }
-      ]
-    },
-    {
-      "__component": "Layout",
-      "__props": {
-        "className": "",
-        "type": "split-half-r"
-      },
-      "children": [
-        {
-          "__component": "Slider",
-          "__props": {
-            "arrows": false,
-            "dots": false,
-            "infante": true
-          },
-          "children": [
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-green-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
-            },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-yellow-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
-            },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-red-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "__component": "TextBox",
-          "__props": {
-            "pre": "pre",
-            "title": "TITLE"
-          },
-          "children": [
-            {
-              "__component": "Paragraph",
-              "__props": {
-                "text": "blahs asdlashd askldh askldh lasdh lkash dlkas dklas dhlkskldkasdkl asld asd as.a sda sdaslhdlkas dlkash dklash kld hlkashlkas dklas klsald askldj alsdhasl"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__component": "Layout",
-      "__props": {
-        "className": "",
-        "type": "split-half-l"
-      },
-      "children": [
-        {
-          "__component": "TextBox",
-          "__props": {
-            "pre": "pre",
-            "title": "TITLE"
-          },
-          "children": [
-            {
-              "__component": "Paragraph",
-              "__props": {
-                "text": "blahs asdlashd askldh askldh lasdh lkash dlkas dklas dhlkskldkasdkl asld asd as.a sda sdaslhdlkas dlkash dklash kld hlkashlkas dklas klsald askldj alsdhasl"
-              }
-            }
-          ]
-        },
-        {
-          "__component": "Slider",
-          "__props": {
-            "arrows": false,
-            "dots": false,
-            "infante": true
-          },
-          "children": [
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-green-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
-            },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-yellow-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
-            },
-            {
-              "__component": "Division",
-              "__props": {
-                "className": "bg-red-200 p-8"
-              },
-              "children": [
-                {
-                  "__component": "Image",
-                  "__props": {
-                    "src": "/vercel.svg"
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__component": "Parallax",
-      "__props": {
-        "className": "w-full h-[250px] bg-yellow-200"
-      },
-      "children": [
-        {
-          "__component": "Image",
-          "__props": {
-            "src": "/vercel.svg",
-            "className": "p-4"
-          }
-        }
-      ]
-    },
-    {
-      "__component": "Slider",
-      "__props": {
-        "arrows": false,
-        "dots": false,
-        "infante": true,
-        "className": ""
-      },
-      "children": [
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-green-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        },
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-yellow-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        },
-        {
-          "__component": "Division",
-          "__props": {
-            "className": "bg-red-200 p-8"
-          },
-          "children": [
-            {
-              "__component": "Image",
-              "__props": {
-                "src": "/vercel.svg"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]
+    ]
 }

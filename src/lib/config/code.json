@@ -1,3 +1,13 @@
-{
-  "code": "TEST(){ //on button add function to call\n    Popup.fire({\n        icon:\"approved\",\n        title:\"HELLO WORLD\",\n        text:\"test\",\n        canClose:true,\n        background:\"blur\"\n    })\n},\nTOGGLE(){\n    let active = getState(\"test\");\n    if(active){\n        hideState(\"test\")\n    }else{\n        showState(\"test\")\n    }\n},\nSubmit(values){\n    console.log(values)\n}"
-}
+[
+    [
+        [
+            [
+                [
+                    [
+                        "TEST(){\n    Popup.fire({\n        icon:\"approved\",\n        title:\"HELLO WORLD\",\n        text:\"test\",\n        canClose:true,\n        background:\"blur\"\n    })\n},\nTOGGLE(){\n    let active = getState(\"test\");\n    if(active){\n        hideState(\"test\")\n    }else{\n        showState(\"test\")\n    }\n},\nSubmit(values){\n    console.log(values)\n}"
+                    ]
+                ]
+            ]
+        ]
+    ]
+]

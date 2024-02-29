@@ -129,6 +129,8 @@ import { Image } from "./image";
 import { Video } from "./video";
 import { IndexItem } from "./indexItem";
 
+export { default as Page } from "./page";
+
 //export
 export { InputElement, getState, hideState, showState, IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
 export default { InputElement, getState, hideState, showState, IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };

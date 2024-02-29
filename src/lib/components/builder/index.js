@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Tree } from 'react-organizational-chart';
 import { Button, Popup, getState, hideState, showState } from '@components';
 import { Resizable } from 're-resizable';
@@ -11,51 +11,23 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
-import { links, mediaLinks, functions, pages } from "@config";
-
+import { links, mediaLinks, code, pages, styles } from "@config";
 
 function Builder({
-    classNames = ``,
-    code = ``,
     onSave
 }) {
-
+    //variables
     const [Code, setCode] = useState(code);
 
     const [functions, setFunctions] = useState({});
-
-    useEffect(() => {
-        try {
-            setFunctions(Function(`
-                        const [Popup,getState,hideState,showState] = arguments;
-                        return {
-                            ${Code}
-                        }                        
-                        `)(Popup, getState, hideState, showState));
-        } catch (e) {
-
-            console.warn(e)
-        }
-    }, [Code]);
 
     const [Links, setLinks] = useState(JSON.stringify(links, null, 4));
 
     const [MediaLinks, setMediaLinks] = useState(JSON.stringify(mediaLinks, null, 4));
 
-    const [ClassNames, setClassNames] = useState(classNames);
+    const [ClassNames, setClassNames] = useState(styles[0]);
 
-    useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        setTimeout(() => {
-            frame.contentWindow.postMessage(
-                JSON.stringify({
-                    type: "styles",
-                    classNames: ClassNames
-                }),
-                '*'
-            );
-        }, 100)
-    }, [ClassNames]);
+    var Page = "/";
 
     const [history, setHistory] = React.useState([
         {
@@ -63,7 +35,7 @@ function Builder({
                 {
                     __component: "Root",
                     children: [
-                        ...pages["/view"]
+                        ...pages[Page]
                     ]
                 }
             ]
@@ -72,57 +44,10 @@ function Builder({
 
     const [historyIndex, setHistoryIndex] = React.useState(0);
 
-    const setData = (data) => {
-        const newData = Remake(data);
-        setHistory(prev => [...prev.slice(0, historyIndex + 1), newData]);
-        setHistoryIndex(prev => prev + 1);
+    const [expand, setExpand] = useState(false);
 
-        document.getElementById("web-frame").contentWindow.postMessage(
-            JSON.stringify({
-                type: "template",
-                template: newData.children[0].children
-            }),
-            '*'
-        );
-    }
-
-    const sendData = () => {
-        const frame = document.getElementById("web-frame");
-        setTimeout(() => {
-            frame.contentWindow.postMessage(
-                JSON.stringify({
-                    type: "template",
-                    template: pages["/view"]
-                }),
-                '*'
-            );
-        }, 100)
-
-    };
-
-    useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        frame.addEventListener("load", sendData)
-        frame.addEventListener("load", () => {
-            setTimeout(() => {
-                let parsed = [];
-                try {
-                    parsed = JSON.parse(Links)
-                } catch (e) {
-
-                }
-                frame.contentWindow.postMessage(
-                    JSON.stringify({
-                        type: "links",
-                        links: parsed
-                    }),
-                    '*'
-                );
-
-            }, 100);
-        })
-    }, []);
-
+    const [displayPage, setPage] = useState("/");
+    //effects
     useEffect(() => {
         const frame = document.getElementById("web-frame");
         setTimeout(() => {
@@ -223,7 +148,91 @@ function Builder({
         }, 100)
     }, [Links]);
 
+    useEffect(() => {
+        try {
+            setFunctions(Function(`
+                        const [Popup,getState,hideState,showState] = arguments;
+                        return {
+                            ${Code}
+                        }                        
+                        `)(Popup, getState, hideState, showState));
+        } catch (e) {
 
+            console.warn(e)
+        }
+    }, [Code]);
+
+    useEffect(() => {
+        const frm = document.getElementById("web-frame");
+        let i = setInterval(() => {
+            if (frm.contentWindow.window.location.pathname != `${Page}`) {
+                Page = frm.contentWindow.window.location.pathname;
+                setPage(Page);
+                setHistory([
+                    {
+                        children: [
+                            {
+                                __component: "Root",
+                                children: [
+                                    ...pages[frm.contentWindow.window.location.pathname] ? Remake(pages[frm.contentWindow.window.location.pathname]) : []
+                                ]
+                            }
+                        ]
+                    }
+                ]);
+                setHistoryIndex(0);
+
+            }
+        }, 500);
+        return () => {
+            clearInterval(i);
+        }
+    }, []);
+
+    useEffect(() => {
+        const frame = document.getElementById("web-frame");
+        setTimeout(() => {
+            frame.contentWindow.postMessage(
+                JSON.stringify({
+                    type: "styles",
+                    classNames: ClassNames
+                }),
+                '*'
+            );
+        }, 100)
+    }, [ClassNames]);
+
+    useEffect(enableZoomBox, []);
+
+    //functions
+    const setData = (data) => {
+        const newData = Remake(data);
+        setHistory(prev => [...prev.slice(0, historyIndex + 1), newData]);
+        setHistoryIndex(prev => prev + 1);
+
+        document.getElementById("web-frame").contentWindow.postMessage(
+            JSON.stringify({
+                type: "template",
+                template: newData.children[0].children
+            }),
+            '*'
+        );
+
+    }
+
+    const sendData = () => {
+        const frame = document.getElementById("web-frame");
+        setTimeout(() => {
+            frame.contentWindow.postMessage(
+                JSON.stringify({
+                    type: "template",
+                    template: pages[Page]
+                }),
+                '*'
+            );
+        }, 100)
+
+    };
 
     const undo = () => {
         if (historyIndex > 0) {
@@ -243,10 +252,6 @@ function Builder({
             );
             setHistoryIndex(prev => prev + 1);
         }
-    }
-
-    const newLink = () => {
-
     }
 
     const openHelp = () => {
@@ -323,9 +328,8 @@ function Builder({
         return object;
     };
 
-    useEffect(enableZoomBox, []);
 
-    const [expand, setExpand] = useState(false);
+    const frameRef = useRef();
 
     return <div className='flex flex-col w-full h-full'>
 
@@ -428,10 +432,14 @@ function Builder({
                         <div className='h-2/3 w-[1px] bg-white ml-4' />
                         <button onClick={() => expand ? setExpand(false) : setExpand(true)} className='ml-4 text-sm text-white'>{expand ? "COLLAPSE ALL" : "EXPAND ALL"}</button>
                         <div className='h-2/3 w-[1px] bg-white ml-auto' />
-                        <button onClick={onSave} className='ml-4 text-sm text-white'>save</button>
-                        <div className='h-2/3 w-[1px] bg-white mx-4' />
+                        <button onClick={() => {
+                            const frame = document.getElementById("web-frame");
+                            const page = frame.contentWindow.location.pathname;
+                            onSave(Links, MediaLinks, Code, history[historyIndex].children[0].children, ClassNames, page)
+                        }} className='ml-4 text-sm text-white'>save</button>
+                        <div className='h-2/3 w-[1px] bg-white ml-4' />
                         <button onClick={openHelp} className='ml-4 text-sm text-white'>Help</button>
-                        <div className='h-2/3 w-[1px] bg-white mx-4' />
+                        <div className='h-2/3 w-[1px] bg-white ml-4' />
                     </div>
                     <div id="drag-container" className=" drag-me w-full h-full bg-[#222] overflow-auto">
                         <div className='page-drag drag-me p-4  h-full w-full text-white '>
@@ -488,8 +496,10 @@ function Builder({
 
                             }} className='ml-4 text-xs text-white'>↺</button>
                             <div className='h-2/3 w-[1px] bg-white ml-4' />
+                            <button className='ml-4 text-sm text-white'>{displayPage}</button>
+
                         </div>
-                        <iframe id="web-frame" src="/view" className='w-full h-full ' />
+                        <iframe id="web-frame" src={"/"} className='w-full h-full ' />
                     </div>
                 </div>
             </Resizable>
