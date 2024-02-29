@@ -16,6 +16,7 @@ import { links, mediaLinks, code, pages, styles } from "@config";
 function Builder({
     onSave
 }) {
+
     //variables
     const [Code, setCode] = useState(code);
 
@@ -49,37 +50,73 @@ function Builder({
     const [displayPage, setPage] = useState("/");
     //effects
     useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        setTimeout(() => {
-            frame.contentWindow.postMessage(
-                JSON.stringify({
-                    type: "script",
-                    script: Code
-                }),
-                '*'
-            );
-        }, 100)
-    }, [Code]);
-
-    useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        frame.addEventListener("load", () => {
+        if (typeof window !== "undefined") {
+            const frame = document.getElementById("web-frame");
             setTimeout(() => {
-                let parsed = [];
-                try {
-                    parsed = JSON.parse(Links)
-                } catch (e) {
-
-                }
-
                 frame.contentWindow.postMessage(
                     JSON.stringify({
-                        type: "links",
-                        links: parsed
+                        type: "script",
+                        script: Code
                     }),
                     '*'
                 );
             }, 100)
+        }
+
+    }, [Code]);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const frame = document.getElementById("web-frame");
+            frame.addEventListener("load", () => {
+                setTimeout(() => {
+                    let parsed = [];
+                    try {
+                        parsed = JSON.parse(Links)
+                    } catch (e) {
+
+                    }
+
+                    frame.contentWindow.postMessage(
+                        JSON.stringify({
+                            type: "links",
+                            links: parsed
+                        }),
+                        '*'
+                    );
+                }, 100)
+                setTimeout(() => {
+                    let parsed = [];
+                    try {
+                        parsed = JSON.parse(MediaLinks)
+                    } catch (e) {
+
+                    }
+
+                    frame.contentWindow.postMessage(
+                        JSON.stringify({
+                            type: "mediaLinks",
+                            mediaLinks: parsed
+                        }),
+                        '*'
+                    );
+                }, 100)
+                setTimeout(() => {
+                    frame.contentWindow.postMessage(
+                        JSON.stringify({
+                            type: "script",
+                            script: Code
+                        }),
+                        '*'
+                    );
+                }, 100)
+            })
+        }
+    }, []);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const frame = document.getElementById("web-frame");
             setTimeout(() => {
                 let parsed = [];
                 try {
@@ -96,56 +133,29 @@ function Builder({
                     '*'
                 );
             }, 100)
+        }
+    }, [MediaLinks]);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const frame = document.getElementById("web-frame");
             setTimeout(() => {
+                let parsed = [];
+                try {
+                    parsed = JSON.parse(Links)
+                } catch (e) {
+
+                }
+
                 frame.contentWindow.postMessage(
                     JSON.stringify({
-                        type: "script",
-                        script: Code
+                        type: "links",
+                        links: parsed
                     }),
                     '*'
                 );
             }, 100)
-        })
-    }, []);
-
-    useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        setTimeout(() => {
-            let parsed = [];
-            try {
-                parsed = JSON.parse(MediaLinks)
-            } catch (e) {
-
-            }
-
-            frame.contentWindow.postMessage(
-                JSON.stringify({
-                    type: "mediaLinks",
-                    mediaLinks: parsed
-                }),
-                '*'
-            );
-        }, 100)
-    }, [MediaLinks]);
-
-    useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        setTimeout(() => {
-            let parsed = [];
-            try {
-                parsed = JSON.parse(Links)
-            } catch (e) {
-
-            }
-
-            frame.contentWindow.postMessage(
-                JSON.stringify({
-                    type: "links",
-                    links: parsed
-                }),
-                '*'
-            );
-        }, 100)
+        }
     }, [Links]);
 
     useEffect(() => {
@@ -163,43 +173,48 @@ function Builder({
     }, [Code]);
 
     useEffect(() => {
-        const frm = document.getElementById("web-frame");
-        let i = setInterval(() => {
-            if (frm.contentWindow.window.location.pathname != `${Page}`) {
-                Page = frm.contentWindow.window.location.pathname;
-                setPage(Page);
-                setHistory([
-                    {
-                        children: [
-                            {
-                                __component: "Root",
-                                children: [
-                                    ...pages[frm.contentWindow.window.location.pathname] ? Remake(pages[frm.contentWindow.window.location.pathname]) : []
-                                ]
-                            }
-                        ]
-                    }
-                ]);
-                setHistoryIndex(0);
+        if (typeof window !== "undefined") {
+            const frm = document.getElementById("web-frame");
+            let i = setInterval(() => {
+                if (frm.contentWindow.window.location.pathname != `${Page}`) {
+                    Page = frm.contentWindow.window.location.pathname;
+                    setPage(Page);
+                    setHistory([
+                        {
+                            children: [
+                                {
+                                    __component: "Root",
+                                    children: [
+                                        ...pages[frm.contentWindow.window.location.pathname] ? Remake(pages[frm.contentWindow.window.location.pathname]) : []
+                                    ]
+                                }
+                            ]
+                        }
+                    ]);
+                    setHistoryIndex(0);
 
+                }
+            }, 500);
+            return () => {
+                clearInterval(i);
             }
-        }, 500);
-        return () => {
-            clearInterval(i);
+
         }
     }, []);
 
     useEffect(() => {
-        const frame = document.getElementById("web-frame");
-        setTimeout(() => {
-            frame.contentWindow.postMessage(
-                JSON.stringify({
-                    type: "styles",
-                    classNames: ClassNames
-                }),
-                '*'
-            );
-        }, 100)
+        if (typeof window !== "undefined") {
+            const frame = document.getElementById("web-frame");
+            setTimeout(() => {
+                frame.contentWindow.postMessage(
+                    JSON.stringify({
+                        type: "styles",
+                        classNames: ClassNames
+                    }),
+                    '*'
+                );
+            }, 100)
+        }
     }, [ClassNames]);
 
     useEffect(enableZoomBox, []);
@@ -327,9 +342,6 @@ function Builder({
         }
         return object;
     };
-
-
-    const frameRef = useRef();
 
     return <div className='flex flex-col w-full h-full'>
 
@@ -524,116 +536,119 @@ export const Remake = (data) => {
 };
 
 const enableZoomBox = () => {
-    const dragContainer = document.getElementById('drag-container');
+    if (typeof window !== "undefined") {
+        const dragContainer = document.getElementById('drag-container');
 
-    const resize = () => {
-        dragContainer.scrollLeft = (dragContainer.scrollWidth / 5) * 3;
-        dragContainer.scrollTop = (dragContainer.scrollHeight / 7) * 2;
-    }
+        const resize = () => {
+            dragContainer.scrollLeft = (dragContainer.scrollWidth / 5) * 3;
+            dragContainer.scrollTop = (dragContainer.scrollHeight / 7) * 2;
+        }
 
-    resize();
+        resize();
 
-    window.addEventListener("resize", resize)
+        window.addEventListener("resize", resize)
 
-    let isDragging = false;
-    let startX, startY; // Initial drag coordinates
+        let isDragging = false;
+        let startX, startY; // Initial drag coordinates
 
-    const handleMouseDown = (event) => {
-        if (event.target.id == "drag-container" || event.target.classList.contains("page-drag") || event.target.classList.contains("drag-me")) {
+        const handleMouseDown = (event) => {
+            if (event.target.id == "drag-container" || event.target.classList.contains("page-drag") || event.target.classList.contains("drag-me")) {
+                startX = event.clientX;
+                startY = event.clientY;
+                isDragging = true;
+                document.body.classList.add('no-select');
+            }
+
+        };
+
+        const handleMouseMove = (event) => {
+            if (!isDragging) return;
+
+            const deltaX = event.clientX - startX;
+            const deltaY = event.clientY - startY;
+
+            // Invert left/right and top/bottom based on your requirements:
+            const invertedDeltaX = deltaX * (-1); // 1 for normal, -1 for inverted
+            const invertedDeltaY = deltaY * (-1); // 1 for normal, -1 for inverted
+
+            const scrollLeft = dragContainer.scrollLeft + (
+                invertedDeltaX > 0
+                    ? Math.min(invertedDeltaX, dragContainer.scrollWidth - dragContainer.scrollLeft)
+                    : Math.max(invertedDeltaX, -dragContainer.scrollLeft)
+            );
+            const scrollTop = dragContainer.scrollTop + (
+                invertedDeltaY > 0
+                    ? Math.min(invertedDeltaY, dragContainer.scrollHeight - dragContainer.scrollTop)
+                    : Math.max(invertedDeltaY, -dragContainer.scrollTop)
+            );
+
+            dragContainer.scrollLeft = scrollLeft;
+            dragContainer.scrollTop = scrollTop;
+
             startX = event.clientX;
             startY = event.clientY;
-            isDragging = true;
-            document.body.classList.add('no-select');
-        }
+        };
 
-    };
+        const handleMouseUp = () => {
+            isDragging = false;
+            document.body.classList.remove('no-select');
+        };
 
-    const handleMouseMove = (event) => {
-        if (!isDragging) return;
+        const handleTouchStart = (event) => {
+            if (event.target.id == "drag-container" || event.target.classList.contains("page-drag") || event.target.classList.contains("drag-me")) {
+                event.preventDefault();
+                startX = event.touches[0].clientX;
+                startY = event.touches[0].clientY;
+                isDragging = true;
+                document.body.classList.add('no-select');
+            }
+        };
 
-        const deltaX = event.clientX - startX;
-        const deltaY = event.clientY - startY;
-
-        // Invert left/right and top/bottom based on your requirements:
-        const invertedDeltaX = deltaX * (-1); // 1 for normal, -1 for inverted
-        const invertedDeltaY = deltaY * (-1); // 1 for normal, -1 for inverted
-
-        const scrollLeft = dragContainer.scrollLeft + (
-            invertedDeltaX > 0
-                ? Math.min(invertedDeltaX, dragContainer.scrollWidth - dragContainer.scrollLeft)
-                : Math.max(invertedDeltaX, -dragContainer.scrollLeft)
-        );
-        const scrollTop = dragContainer.scrollTop + (
-            invertedDeltaY > 0
-                ? Math.min(invertedDeltaY, dragContainer.scrollHeight - dragContainer.scrollTop)
-                : Math.max(invertedDeltaY, -dragContainer.scrollTop)
-        );
-
-        dragContainer.scrollLeft = scrollLeft;
-        dragContainer.scrollTop = scrollTop;
-
-        startX = event.clientX;
-        startY = event.clientY;
-    };
-
-    const handleMouseUp = () => {
-        isDragging = false;
-        document.body.classList.remove('no-select');
-    };
-
-    const handleTouchStart = (event) => {
-        if (event.target.id == "drag-container" || event.target.classList.contains("page-drag") || event.target.classList.contains("drag-me")) {
+        const handleTouchMove = (event) => {
             event.preventDefault();
+            if (!isDragging) return;
+
+            const deltaX = event.touches[0].clientX - startX;
+            const deltaY = event.touches[0].clientY - startY;
+
+            // Invert deltaX and deltaY here as well
+            const invertedDeltaX = deltaX * (yourLeftRightInversionFactor);
+            const invertedDeltaY = deltaY * (yourTopBottomInversionFactor);
+
+            // Calculate scroll amount and set scrollLeft/scrollTop
+            // ... (same as in handleMouseMove)
+
             startX = event.touches[0].clientX;
             startY = event.touches[0].clientY;
-            isDragging = true;
-            document.body.classList.add('no-select');
-        }
-    };
+        };
 
-    const handleTouchMove = (event) => {
-        event.preventDefault();
-        if (!isDragging) return;
+        const handleTouchEnd = () => {
+            isDragging = false;
+            isDragging = false;
+            document.body.classList.remove('no-select');
+        };
 
-        const deltaX = event.touches[0].clientX - startX;
-        const deltaY = event.touches[0].clientY - startY;
+        // Add event listeners directly to the DOM elements:
+        dragContainer.addEventListener('mousedown', handleMouseDown);
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        dragContainer.addEventListener('touchstart', handleTouchStart);
+        document.addEventListener('touchmove', handleTouchMove);
+        document.addEventListener('touchend', handleTouchEnd);
 
-        // Invert deltaX and deltaY here as well
-        const invertedDeltaX = deltaX * (yourLeftRightInversionFactor);
-        const invertedDeltaY = deltaY * (yourTopBottomInversionFactor);
-
-        // Calculate scroll amount and set scrollLeft/scrollTop
-        // ... (same as in handleMouseMove)
-
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-    };
-
-    const handleTouchEnd = () => {
-        isDragging = false;
-        isDragging = false;
-        document.body.classList.remove('no-select');
-    };
-
-    // Add event listeners directly to the DOM elements:
-    dragContainer.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-    dragContainer.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
-    document.addEventListener('touchend', handleTouchEnd);
-
-    // Remove event listeners on cleanup:
+        // Remove event listeners on cleanup:
 
 
 
-    return () => {
-        dragContainer.removeEventListener('mousedown', handleMouseDown);
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-        dragContainer.removeEventListener('touchstart', handleTouchStart);
-        document.removeEventListener('touchmove', handleTouchMove);
-        document.removeEventListener('touchend', handleTouchEnd);
-        window.removeEventListener("resize", resize);
-    };
+        return () => {
+            dragContainer.removeEventListener('mousedown', handleMouseDown);
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+            dragContainer.removeEventListener('touchstart', handleTouchStart);
+            document.removeEventListener('touchmove', handleTouchMove);
+            document.removeEventListener('touchend', handleTouchEnd);
+            window.removeEventListener("resize", resize);
+        };
+    }
+
 }

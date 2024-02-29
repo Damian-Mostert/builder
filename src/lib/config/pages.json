@@ -159,15 +159,15 @@
     ],
     "/test3": [
         {
+            "__component": "Header",
+            "__props": {},
+            "children": {}
+        },
+        {
             "__component": "Image",
             "__props": {
                 "src": "/vercel.svg"
             },
-            "children": {}
-        },
-        {
-            "__component": "Header",
-            "__props": {},
             "children": {}
         }
     ]

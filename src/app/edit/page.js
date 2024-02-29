@@ -1,16 +1,17 @@
 "use client";
 
 import Builder from "src/lib/components/builder"
-import { Popup, Navigation } from '@components';
+import { Popup } from '@components';
 import { useEffect } from "react";
-import { pages, links, code, mediaLinks, styles } from "@config";
 import axios from "axios";
-
 
 
 export default function BUILD() {
     useEffect(() => {
-        document.getElementById("tailwind")?.remove();
+        if (typeof document != "undefined") {
+            document.getElementById("tailwind")?.remove();
+
+        }
     }, []);
     return <div className="flex flex-col w-screen h-screen">
         <main className="w-full h-full overflow-auto" >

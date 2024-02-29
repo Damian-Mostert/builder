@@ -9,5 +9,5 @@
       "@components": ["src/lib/components/index"],
       "@styles": ["src/lib/styles/styles.scss"]
     }
-  }
+  },
 }
