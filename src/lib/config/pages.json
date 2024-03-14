@@ -15,9 +15,9 @@
             "children":[
                 {
                     "__component":"Paragraph",
-                    "__props":[
+                    "__props":{
                         "test":"404 not found"
-                    ],
+                    },
                     "children":[]
                 }
             ]
