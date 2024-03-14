@@ -62,6 +62,6 @@
   "browser": {
     "fs": false,
     "os": false,
-    "path": true
+    "path": false
   }
 }
