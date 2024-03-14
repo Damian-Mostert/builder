@@ -14,8 +14,8 @@ export function BuildBody({ template, links, mediaLinks, functions }) {
                 />
             ))}
         </>
-    ) : template && (
-        <Components[template.__component]
+    ) : template && (function(Component){
+                <Component
             {...template.__props}
             functions={functions}
             links={links}
@@ -25,7 +25,7 @@ export function BuildBody({ template, links, mediaLinks, functions }) {
                 links,
                 mediaLinks,
                 functions,
-            })}
+            }(Components[template.__component]))}
         />
-    );
+    }());
 }
