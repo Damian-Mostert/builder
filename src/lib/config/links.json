@@ -1,9 +1,5 @@
 [
     {
-        "label": "Edit website",
-        "href": "/edit"
-    },
-    {
         "label": "Home",
         "href": "/"
     },
