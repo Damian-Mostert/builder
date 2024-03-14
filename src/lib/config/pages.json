@@ -1,4 +1,28 @@
 {
+    "not-found":[
+        {
+            "__component": "Header",
+            "__props": {
+                "orientation": "top",
+                "icon": "/vercel.svg"
+            }
+        },
+        {
+            "__component":"Division",
+            "__props":{
+                "className":"w-full h-full"
+            },
+            "children":[
+                {
+                    "__component":"Paragraph",
+                    "__props":[
+                        "test":"404 not found"
+                    ],
+                    "children":[]
+                }
+            ]
+        }
+    ],
     "/": [
         {
             "__component": "Header",
