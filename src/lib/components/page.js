@@ -7,7 +7,8 @@ import { Popup, getState, hideState, showState } from "@components";
 import { links, mediaLinks, functions, pages } from "@config";
 
 export default function View({ url }) {
-    const [template, setTemplate] = useState(pages[url]);
+
+    const [template, setTemplate] = useState(pages[url] ? pages[url] : pages["not-found"]);
     const [Links, setLinks] = useState(links);
     const [MediaLinks, setMediaLinks] = useState(mediaLinks);
 
