@@ -279,7 +279,7 @@ function Builder({ onSave }) {
     }
 
     // Extract child indices from path
-    const indexes = path.split("---").slice(1);
+    var indexes = path.split("---").slice(1);
 
     // Perform the specified operation
     try {
@@ -347,7 +347,14 @@ function Builder({ onSave }) {
           break;
         case "swap":
           if (path == "root---0" || object == "root---0") return;
-          const indexes2 = object.split("---").slice(1);
+          var indexes2 = object.split("---").slice(1);
+
+          if(indexes2 < indexes){
+            var temp = indexes2;
+            indexes2 = indexes;
+            indexes = temp;
+          }
+
           setData(
             Remake(
               Function(
