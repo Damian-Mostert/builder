@@ -1,198 +1,390 @@
 {
-    "not-found":[
+  "not-found": [
+    {
+      "__component": "Header",
+      "__props": {
+        "orientation": "top",
+        "icon": "/vercel.svg"
+      }
+    },
+    {
+      "__component": "Division",
+      "__props": {
+        "className": "w-full h-full flex"
+      },
+      "children": [
         {
-            "__component": "Header",
-            "__props": {
-                "orientation": "top",
-                "icon": "/vercel.svg"
+          "__component": "Paragraph",
+          "__props": {
+            "text": "404 not found",
+            "className": "m-auto"
+          },
+          "children": []
+        }
+      ]
+    }
+  ],
+  "/": [
+    {
+      "__component": "Header",
+      "__props": {
+        "orientation": "left",
+        "icon": "/Teljoy_Logo.svg",
+        "mobileOrientation": "right"
+      }
+    },
+    {
+      "__component": "Slider",
+      "__props": {
+        "arrows": false,
+        "dots": true,
+        "infante": true,
+        "autoplay": true,
+        "speed": 2000,
+        "autoplaySpeed": 2000,
+        "className": ""
+      },
+      "children": [
+        {
+          "__component": "Division",
+          "__props": {
+            "className": "bg-green-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
             }
+          ]
         },
         {
-            "__component":"Division",
-            "__props":{
-                "className":"w-full h-full"
-            },
-            "children":[
-                {
-                    "__component":"Paragraph",
-                    "__props":{
-                        "test":"404 not found"
-                    },
-                    "children":[]
-                }
-            ]
-        }
-    ],
-    "/": [
-        {
-            "__component": "Header",
-            "__props": {
-                "orientation": "top",
-                "icon": "/vercel.svg"
+          "__component": "Division",
+          "__props": {
+            "className": "bg-yellow-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
             }
+          ]
         },
         {
-            "__component": "Slider",
-            "__props": {
-                "arrows": false,
-                "dots": false,
-                "infante": true
-            },
-            "children": [
-                {
-                    "__component": "Division",
-                    "__props": {
-                        "className": "bg-green-200 p-8"
-                    },
-                    "children": [
-                        {
-                            "__component": "Image",
-                            "__props": {
-                                "src": "/vercel.svg"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "__component": "Division",
-                    "__props": {
-                        "className": "bg-yellow-200 p-8"
-                    },
-                    "children": [
-                        {
-                            "__component": "Image",
-                            "__props": {
-                                "src": "/vercel.svg"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "__component": "Division",
-                    "__props": {
-                        "className": "bg-red-200 p-8"
-                    },
-                    "children": [
-                        {
-                            "__component": "Image",
-                            "__props": {
-                                "src": "/vercel.svg"
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "/help": [
-        {
-            "__component": "Header",
-            "__props": {
-                "orientation": "top",
-                "icon": "/vercel.svg"
+          "__component": "Division",
+          "__props": {
+            "className": "bg-red-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
             }
-        },
+          ]
+        }
+      ]
+    },
+    {
+      "__component": "Button",
+      "__props": {
+        "className": "test m-8 mb-0",
+        "label": "sdfsdfsdf",
+        "functionToCall": "TOGGLE"
+      },
+      "children": {}
+    },
+    {
+      "__component": "Button",
+      "__props": {
+        "label": "hi",
+        "functionToCall": "TOGGLE",
+        "className": "m-8"
+      },
+      "children": {}
+    },
+    {
+      "__component": "ShowOnMd",
+      "__props": {},
+      "children": [
         {
-            "__component": "Division",
-            "__props": {
-                "className": "bg-green-200 h-full w-full"
-            },
-            "children": [
+          "__component": "Division",
+          "__props": {
+            "className": "{{ getState(\"test\") ? \"\":\"\" }}"
+          },
+          "children": [
+            {
+              "__component": "ShowState",
+              "__props": {
+                "id": "test",
+                "active": "true"
+              },
+              "children": [
                 {
-                    "__component": "TextBox",
-                    "__props": {
-                        "pre": "TEST",
-                        "title": "TEST"
-                    },
-                    "children": []
+                  "__component": "Image",
+                  "__props": {
+                    "src": "/Teljoy_Logo.svg",
+                    "className": "p-4 bg-black"
+                  },
+                  "children": {}
                 }
-            ]
+              ]
+            }
+          ]
         }
-    ],
-    "/test": [
+      ]
+    },
+    {
+      "__component": "Slider",
+      "__props": {
+        "arrows": false,
+        "dots": true,
+        "infante": true,
+        "autoplay": true,
+        "speed": 2000,
+        "autoplaySpeed": 2000,
+        "className": ""
+      },
+      "children": [
         {
-            "__component": "Header",
-            "__props": {},
-            "children": {}
+          "__component": "Division",
+          "__props": {
+            "className": "bg-green-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
+            }
+          ]
         },
         {
-            "__component": "Image",
-            "__props": {
-                "src": "/vercel.svg"
-            },
-            "children": {}
-        }
-    ],
-    "/test2": [
-        {
-            "__component": "Header",
-            "__props": {},
-            "children": {}
+          "__component": "Division",
+          "__props": {
+            "className": "bg-yellow-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
+            }
+          ]
         },
         {
-            "__component": "Nav",
-            "__props": {},
-            "children": [
-                {
-                    "__component": "IndexItem",
-                    "__props": {
-                        "title": "A"
-                    },
-                    "children": [
-                        {
-                            "__component": "Division",
-                            "__props": {
-                                "className": "bg-red-500 w-full h-full"
-                            },
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "__component": "IndexItem",
-                    "__props": {
-                        "title": "B"
-                    },
-                    "children": [
-                        {
-                            "__component": "Division",
-                            "__props": {
-                                "className": "bg-green-500 w-full h-full"
-                            },
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "__component": "IndexItem",
-                    "__props": {
-                        "title": "C"
-                    },
-                    "children": [
-                        {
-                            "__component": "Division",
-                            "__props": {
-                                "className": "bg-yellow-500 w-full h-full"
-                            },
-                            "children": []
-                        }
-                    ]
-                }
-            ]
+          "__component": "Division",
+          "__props": {
+            "className": "bg-red-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
+            }
+          ]
         }
-    ],
-    "/test3": [
+      ]
+    },
+    {
+      "__component": "Slider",
+      "__props": {
+        "arrows": false,
+        "dots": true,
+        "infante": true,
+        "autoplay": true,
+        "speed": 2000,
+        "autoplaySpeed": 2000,
+        "className": ""
+      },
+      "children": [
         {
-            "__component": "Header",
-            "__props": {},
-            "children": {}
+          "__component": "Division",
+          "__props": {
+            "className": "bg-green-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
+            }
+          ]
         },
         {
-            "__component": "Image",
-            "__props": {
-                "src": "/vercel.svg"
-            },
-            "children": {}
+          "__component": "Division",
+          "__props": {
+            "className": "bg-yellow-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
+            }
+          ]
+        },
+        {
+          "__component": "Division",
+          "__props": {
+            "className": "bg-red-200 p-8"
+          },
+          "children": [
+            {
+              "__component": "Image",
+              "__props": {
+                "src": "/Teljoy_Logo.svg"
+              }
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "__component": "Button",
+      "__props": {
+        "className": "test m-8 mb-0",
+        "label": "sdfsdfsdf",
+        "functionToCall": "TOGGLE"
+      },
+      "children": {}
+    }
+  ],
+  "/help": [
+    {
+      "__component": "Header",
+      "__props": {
+        "orientation": "top",
+        "icon": "/vercel.svg"
+      }
+    },
+    {
+      "__component": "Division",
+      "__props": {
+        "className": "bg-green-200 h-full w-full"
+      },
+      "children": [
+        {
+          "__component": "TextBox",
+          "__props": {
+            "pre": "TEST",
+            "title": "TEST"
+          },
+          "children": []
+        }
+      ]
+    }
+  ],
+  "/test": [
+    {
+      "__component": "Header",
+      "__props": {},
+      "children": {}
+    },
+    {
+      "__component": "Image",
+      "__props": {
+        "src": "/vercel.svg"
+      },
+      "children": {}
+    },
+    {
+      "__component": "Button",
+      "__props": {
+        "functionToCall": "Test",
+        "label": "dfsfsdfsdf",
+        "className": "xxx"
+      },
+      "children": {}
+    }
+  ],
+  "/test2": [
+    {
+      "__component": "Header",
+      "__props": {},
+      "children": {}
+    },
+    {
+      "__component": "Nav",
+      "__props": {},
+      "children": [
+        {
+          "__component": "IndexItem",
+          "__props": {
+            "title": "A"
+          },
+          "children": [
+            {
+              "__component": "Division",
+              "__props": {
+                "className": "bg-red-500 w-full h-full"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "__component": "IndexItem",
+          "__props": {
+            "title": "B"
+          },
+          "children": [
+            {
+              "__component": "Division",
+              "__props": {
+                "className": "bg-green-500 w-full h-full"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "__component": "IndexItem",
+          "__props": {
+            "title": "C"
+          },
+          "children": [
+            {
+              "__component": "Division",
+              "__props": {
+                "className": "bg-yellow-500 w-full h-full"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "/test3": [
+    {
+      "__component": "Header",
+      "__props": {},
+      "children": {}
+    },
+    {
+      "__component": "Image",
+      "__props": {
+        "src": "/vercel.svg"
+      },
+      "children": {}
+    }
+  ],
+  "/hello%20world": [
+    {
+      "__component": "Header",
+      "__props": {},
+      "children": {}
+    }
+  ]
 }

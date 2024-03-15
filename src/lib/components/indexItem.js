@@ -25,6 +25,8 @@ IndexItem.Options = function Options({ data, update }) {
 }
 
 IndexItem.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "Division",
 ]

@@ -1,108 +1,153 @@
-
 import { default as LINK } from "next/link";
 import { useEffect, useState } from "react";
 
+import { Device } from "@modules";
+
+function ShowOnLg({ children }) {
+  const device = Device();
+  return <>{device.lg && <>{children}</>}</>;
+}
+ShowOnLg.Options = () => <div className="w-[200px]"/>;
+ShowOnLg.canAppend = [
+  "ShowOnMd",
+  "ShowOnLg",
+  "Division",
+  "TextBox",
+  "Image",
+  "Video",
+  "Layout",
+  "Section",
+  "Form",
+  "Button",
+  "Nav",
+  "Accordion",
+  "List",
+  "Slider",
+];
+
+function ShowOnMd({ children }) {
+  const device = Device();
+  return <>{device.md && <>{children}</>}</>;
+}
+ShowOnMd.Options = () => <div className="w-[200px]"/>;
+ShowOnMd.canAppend = [
+  "ShowOnMd",
+  "ShowOnLg",
+  "Division",
+  "TextBox",
+  "Image",
+  "Video",
+  "Layout",
+  "Section",
+  "Form",
+  "Button",
+  "Nav",
+  "Accordion",
+  "List",
+  "Slider",
+];
 
 function Link({ children, ...props }) {
-    return <LINK {...props}>
-        {children}
-    </LINK>
+  return <LINK {...props}>{children}</LINK>;
 }
 
 const showState = (id) => {
-    window.States[id].setShow(true)
+  window.States[id].setShow(true);
 };
 
 const hideState = (id) => {
-    window.States[id].setShow(false)
+  window.States[id].setShow(false);
 };
 
-const getState = (id) => (window.States[id].show);
+const getState = (id) => window.States[id].show;
 
 function ShowState({ children, id, active }) {
+  const [show, setShow] = useState(active);
 
+  useEffect(() => {
+    if (!window.states) window.States = {};
 
+    window.States[id] = {
+      show,
+      setShow,
+    };
+  }, [show]);
 
-    const [show, setShow] = useState(active);
+  useEffect(() => {
+    let Active;
 
-    useEffect(() => {
-        if (!window.states)
-            window.States = {}
+    if (typeof active == "string") {
+      Active = active == "false" ? false : true;
+    } else {
+      Active = active;
+    }
 
+    setShow(Active);
+  }, [active]);
 
-        window.States[id] = {
-            show,
-            setShow,
-        }
-
-    }, [show]);
-
-    useEffect(() => {
-        let Active;
-
-        if (typeof active == "string") {
-            Active = active == "false" ? false : true
-        } else {
-            Active = active
-        }
-
-        setShow(Active);
-    }, [active]);
-
-    return <>
-        {show && children}
-    </>
+  return <>{show && children}</>;
 }
 
 ShowState.canAppend = [
-    "Division",
-    "TextBox",
-    "Image",
-    "Video",
-    "Layout",
-    "Section",
-    "Form",
-    "Button",
-    "Nav",
-    "Accordion",
-    "List",
-    "Slider",
+  "ShowOnMd",
+  "ShowOnLg",
+  "Division",
+  "TextBox",
+  "Image",
+  "Video",
+  "Layout",
+  "Section",
+  "Form",
+  "Button",
+  "Nav",
+  "Accordion",
+  "List",
+  "Slider",
 ];
 
 ShowState.Options = function Options({ data, update }) {
-    return <div className='p-2'>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="id" value={data.id} onChange={id => {
-                update({
-                    ...data,
-                    id
-                })
-            }} />
-        </div>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="Show / Hide" value={data.active}
-                type="select"
-                options={[
-                    {
-                        label: "Show",
-                        value: true
-                    },
-                    {
-                        label: "Hide",
-                        value: false
-                    }
-                ]}
-                onChange={active => {
-                    update({
-                        ...data,
-                        active
-                    })
-                }} />
-        </div>
+  return (
+    <div className="p-2">
+      <div className="w-[300px] m-auto">
+        <Input
+          variant="builder"
+          label="id"
+          value={data.id}
+          onChange={(id) => {
+            update({
+              ...data,
+              id,
+            });
+          }}
+        />
+      </div>
+      <div className="w-[300px] m-auto">
+        <Input
+          variant="builder"
+          label="Show / Hide"
+          value={data.active}
+          type="select"
+          options={[
+            {
+              label: "Show",
+              value: true,
+            },
+            {
+              label: "Hide",
+              value: false,
+            },
+          ]}
+          onChange={(active) => {
+            update({
+              ...data,
+              active,
+            });
+          }}
+        />
+      </div>
     </div>
-}
-
-
+  );
+};
 
 //header,footer
 import { Navigation } from "./navigation";
@@ -132,5 +177,67 @@ import { IndexItem } from "./indexItem";
 export { default as Page } from "./page";
 
 //export
-export { InputElement, getState, hideState, showState, IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
-export default { InputElement, getState, hideState, showState, IndexItem, Header, Footer, Navigation, Video, ShowState, Section, Division, Paragraph, Link, Image, Button, Nav, Accordion, Popup, Layout, Input, Table, Form, TextBox, List, ListItem, Parallax, Slider };
+export {
+  InputElement,
+  getState,
+  hideState,
+  showState,
+  IndexItem,
+  Header,
+  Footer,
+  Navigation,
+  Video,
+  ShowState,
+  Section,
+  Division,
+  Paragraph,
+  Link,
+  Image,
+  Button,
+  Nav,
+  Accordion,
+  Popup,
+  Layout,
+  Input,
+  Table,
+  Form,
+  TextBox,
+  List,
+  ListItem,
+  Parallax,
+  Slider,
+  ShowOnLg,
+  ShowOnMd,
+};
+export default {
+  InputElement,
+  getState,
+  hideState,
+  showState,
+  IndexItem,
+  Header,
+  Footer,
+  Navigation,
+  Video,
+  ShowState,
+  Section,
+  Division,
+  Paragraph,
+  Link,
+  Image,
+  Button,
+  Nav,
+  Accordion,
+  Popup,
+  Layout,
+  Input,
+  Table,
+  Form,
+  TextBox,
+  List,
+  ListItem,
+  Parallax,
+  Slider,
+  ShowOnLg,
+  ShowOnMd,
+};

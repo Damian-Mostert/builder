@@ -69,6 +69,8 @@ Layout.Options = function Options({ update, data }) {
 }
 
 Layout.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "Division",
     "TextBox",
