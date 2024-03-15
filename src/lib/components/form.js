@@ -116,6 +116,8 @@ Form.Options = function Options({ update, data, functions }) {
 }
 
 Form.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "InputElement"
 ];

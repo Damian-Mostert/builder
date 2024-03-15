@@ -18,9 +18,15 @@ Division.Options = function Options({ update, data }) {
                 }} />
         </div>
     </div>
+    
 }
 
+
+
+
 Division.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "Division",
     "TextBox",

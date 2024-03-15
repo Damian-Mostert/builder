@@ -1,14 +1,17 @@
 import { NewItem } from "./new";
 import React, { useEffect, useRef, useState } from 'react';
-import { Tree, TreeNode } from 'react-organizational-chart';
-import { Input, Button, Popup } from '@components';
-import { Resizable } from 're-resizable';
+import {  TreeNode } from 'react-organizational-chart';
+import { Button, Popup } from '@components';
+
 import Draggable from 'react-draggable';
+
 import Components from '@components';
 
 import { Build } from "..";
 
-export function Node({ id, index, item, update, expand, links, functions }) {
+export function NodeItem({ id, index, item, update, expand, links, functions }) {
+
+    const draggableRef = useRef(null);
 
     const [closest, setClosest] = useState(null);
 
@@ -80,7 +83,9 @@ export function Node({ id, index, item, update, expand, links, functions }) {
                 "Button",
                 "Layout",
                 "Section",
-                "Parallax"
+                "Parallax",
+                "ShowOnMd",
+                "ShowOnLg"
             ], functions)
         }).then(res => {
             if (!res.close) {
@@ -97,14 +102,14 @@ export function Node({ id, index, item, update, expand, links, functions }) {
     return <TreeNode className="fade-in" key={id + "---" + index} label={
 
         <div className='w-full flex justify-center page-drag '>
-            <Draggable handle={".handle-" + id + "---" + index} position={{ x: 0, y: 0 }} grid={[32, 32]} onStop={(ev) => {
+            <Draggable nodeRef={draggableRef} handle={".handle-" + id + "---" + index} position={{ x: 0, y: 0 }} grid={[32, 32]} onStop={(ev) => {
 
                 setTimeout(() => {
                     update(id + "---" + index, "swap", closest)
                 }, 50);
 
             }}>
-                <div id={id + "---" + index} className='rounded-xl bg-slate-950 max-w-[500px] relative' style={{ marginTop: id == "root" ? "-2rem" : "" }}>
+                <div ref={draggableRef} id={id + "---" + index} className='rounded-xl bg-slate-950 max-w-[500px] relative' style={{ marginTop: id == "root" ? "-2rem" : "" }}>
                     <h2 className={`bg-slate-800 p-1 flex items-center justify-center  ${id == "root" ? "rounded-xl" : "rounded-t-xl"}`} >
                         {id != "root" &&
                             <div onClick={() => Popup.fire({

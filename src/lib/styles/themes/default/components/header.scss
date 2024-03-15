@@ -12,6 +12,12 @@
       --background: white;
       --text: black;
     }
+    &-dark{
+      --background-sub: #111;
+      --background: black;
+      --text: white;
+
+    }
     // Add specific styles for different variants
   }
   &-mobile {

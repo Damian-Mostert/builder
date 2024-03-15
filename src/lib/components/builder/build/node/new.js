@@ -1,8 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Tree, TreeNode } from 'react-organizational-chart';
-import { Input, Button, Popup } from '@components';
-import { Resizable } from 're-resizable';
-import Draggable from 'react-draggable';
+import React, { useRef, useState } from 'react';
+import { Input, Button } from '@components';
 import Components from '@components';
 
 export function NewItem(canAppend, functions) {

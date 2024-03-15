@@ -26,6 +26,8 @@ Parallax.Options = function Options({ update, data }) {
 }
 
 Parallax.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "Division",
     "TextBox",

@@ -17,9 +17,9 @@ export default function BUILD() {
         <main className="w-full h-full overflow-auto" >
             <Builder
                 onSave={(
-                    links, mediaLinks, code, template, className, page
+                    links, medialinks, code, template, className, page
                 ) => {
-                    axios.post("/api/save", { links, mediaLinks, code, template, className, page })
+                    axios.post("/api/save", { links, medialinks, code, template, className, page })
                 }} />
             <Popup />
 

@@ -103,6 +103,8 @@ Nav.Options = function Options({ update, data }) {
 }
 
 Nav.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "IndexItem",
 ]

@@ -61,6 +61,8 @@ Accordion.Options = function Options({ update, data }) {
 }
 
 Accordion.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "IndexItem",
 ];

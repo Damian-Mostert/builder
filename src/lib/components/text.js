@@ -38,6 +38,8 @@ TextBox.Options = function Options({ update, data }) {
 }
 
 TextBox.canAppend = [
+"ShowOnMd",
+"ShowOnLg",
     "ShowState",
     "Paragraph",
     "Button",
