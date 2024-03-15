@@ -9,7 +9,7 @@ export default function View({ url }) {
   useInViewClass();
 
   const [template, setTemplate] = useState(
-    pages[url] ? pages[url] : pages["not-found"]
+    pages[url] ? pages[url] : pages["/not-found"]
   );
   const [Links, setLinks] = useState(links);
   const [MediaLinks, setMediaLinks] = useState(medialinks);

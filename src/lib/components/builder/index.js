@@ -1,16 +1,8 @@
 "use client";
 
-
-
 import React, { useEffect, useState } from "react";
 import { Tree } from "react-organizational-chart";
-import {
-  Button,
-  Popup,
-  getState,
-  hideState,
-  showState,
-} from "@components";
+import { Button, Popup, getState, hideState, showState } from "@components";
 import { Resizable } from "re-resizable";
 import { Build } from "./build";
 import StyleEditor from "react-style-editor";
@@ -466,7 +458,7 @@ function Builder({ onSave }) {
         <Resizable
           onResize={() => {
             const dragContainer = document.getElementById("drag-container");
-            dragContainer.scrollLeft = (dragContainer.scrollWidth / 2.2);
+            dragContainer.scrollLeft = dragContainer.scrollWidth / 2.2;
           }}
           className="h-full overflow-hidden flex flex-col bg-gray-800 border border-gray-900"
           handleClasses={{
@@ -607,7 +599,7 @@ function Builder({ onSave }) {
         <Resizable
           onResize={() => {
             const dragContainer = document.getElementById("drag-container");
-            dragContainer.scrollLeft = (dragContainer.scrollWidth / 2.2);
+            dragContainer.scrollLeft = dragContainer.scrollWidth / 2.2;
           }}
           className="h-full overflow-hidden flex flex-col"
           handleClasses={{
@@ -661,6 +653,17 @@ function Builder({ onSave }) {
                   ↺
                 </button>
                 <div className="h-2/3 w-[1px] bg-white ml-4" />
+                <button
+                  onClick={() => {
+                    const f =
+                      document.getElementById("web-frame").contentWindow.location.href="/not-found";
+                    sendData();
+                  }}
+                  className="ml-4 text-xs text-white"
+                >
+                  Open 404
+                </button>
+                <div className="h-2/3 w-[1px] bg-white ml-4" />
                 <button className="ml-4 text-sm text-white">
                   {displayPage}
                 </button>
@@ -695,7 +698,7 @@ const enableZoomBox = () => {
     const dragContainer = document.getElementById("drag-container");
 
     const resize = () => {
-      dragContainer.scrollLeft = (dragContainer.scrollWidth / 2.2);
+      dragContainer.scrollLeft = dragContainer.scrollWidth / 2.2;
     };
 
     resize();
@@ -852,7 +855,10 @@ function WebsiteLinks({ links, onChange }) {
     Popup.fire({
       icon: "warn",
       background: "blur",
-      text: "Are you sure you want to remove page " + index + "? Note this will not be permanent until saved. Page data will not be removed, but this action will hide the page.",
+      text:
+        "Are you sure you want to remove page " +
+        index +
+        "? Note this will not be permanent until saved. Page data will not be removed, but this action will hide the page.",
       confirmButton: {
         label: "remove",
       },
@@ -928,6 +934,3 @@ function WebsiteLinks({ links, onChange }) {
 function MediaLinksComponent({ links, onChange }) {
   return <></>;
 }
-
-
-

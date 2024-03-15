@@ -1,5 +1,7 @@
 {
     "/": ".test {\r\n    color: blue;\r\n    background: red;\r\n    border: 1px solid red;\r\n}\r\n",
     "/test": ".xxx {\r\n    background: black;\r\n    color: blue;\r\n}\r\n",
-    "/hello%20world": ""
+    "/hello%20world": "",
+    "/not-found": "",
+    "/hehe": ""
 }
