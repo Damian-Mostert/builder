@@ -662,9 +662,7 @@ function Builder({ onSave }) {
                 <div className="h-2/3 w-[1px] bg-white ml-4" />
                 <button
                   onClick={() => {
-                    const f =
                       document.getElementById("web-frame").contentWindow.location.href="/not-found";
-                    sendData();
                   }}
                   className="ml-4 text-xs text-white"
                 >
