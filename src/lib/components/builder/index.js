@@ -11,7 +11,7 @@ import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css"; //Example style, you can use another
-import { links, medialinks, code, pages, styles } from "@config";
+import { links, medialinks, code, pages, styles, modals } from "@config";
 import { Input } from "@components";
 
 function Builder({ onSave }) {
@@ -48,6 +48,8 @@ function Builder({ onSave }) {
   const [displayPage, setPage] = useState("/");
 
   const [showGlobalConfig, setShowGlobalConfig] = useState(false);
+
+  const [showModals,setShowModals] = useState(false);
 
   //effects
   useEffect(() => {
@@ -462,6 +464,28 @@ function Builder({ onSave }) {
           <h3 className="pt-4 text-white ">MEDIA LINKS</h3>
           <MediaLinksComponent links={MediaLinks} onChange={setMediaLinks} />
         </div>
+        <div
+          className={`h-full  ${
+            showModals ? "w-full p-4" : "w-[0]"
+          } overflow-auto absolute top-0 left-0 z-50 bg-slate-700 transition-slow`}
+        >
+          <div
+            className="right-4 top-4 absolute text-white text-2xl  cursor-pointer"
+            onClick={() => setShowModals(false)}
+          >
+            X
+          </div>
+          <h2 className="text-white text-2xl" style={{ fontWeight: "bolder" }}>
+            MODALS
+          </h2>
+          <div className="text-white">
+          {Object.keys(modals).map((name,index)=>{
+            return <div key={index}>
+                {name}
+            </div>
+          })}
+          </div>
+        </div>
         <Resizable
           onResize={() => {
             const dragContainer = document.getElementById("drag-container");
@@ -545,6 +569,17 @@ function Builder({ onSave }) {
                 className="ml-4 text-sm text-white"
               >
                 {"SHOW GLOBAL CONFIG"}
+              </button>
+              <div className="h-2/3 w-[1px] bg-white ml-4" />
+              <button
+                onClick={() =>
+                  showGlobalConfig
+                    ? setShowModals(false)
+                    : setShowModals(true)
+                }
+                className="ml-4 text-sm text-white"
+              >
+                {"SHOW MODALS"}
               </button>
               <div className="h-2/3 w-[1px] bg-white ml-auto" />
               <button
@@ -673,7 +708,9 @@ function Builder({ onSave }) {
                   {displayPage}
                 </button>
               </div>
-              <iframe id="web-frame" src={"/"} className="w-full h-full " />
+              <iframe id="web-frame" src={"/"} className="w-full h-full " style={{
+                zoom:"0.5"
+              }}/>
             </div>
           </div>
         </Resizable>

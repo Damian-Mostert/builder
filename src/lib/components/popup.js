@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
-
+import { medialinks, modals,code ,links,styles} from "@config";
+import Modal from "./modal";
 
 //imports
 import { Button } from ".";
+import { BuildBody } from "../modules/buildbody";
 function Icons({ icon }) {
   switch (icon) {
     case "approved":
@@ -183,6 +185,7 @@ function PopupBox({
 //container and contents
 function Contents({
   modal,
+  rawmodal,
   Resolve,
   icon,
   title,
@@ -190,9 +193,12 @@ function Contents({
   cancelButton,
   confirmButton,
 }) {
+  if(rawmodal){
+    let Component = rawmodal;
+    return <Component Resolve={Resolve}/>
+  }
   if (modal) {
-    const Modal = modal;
-    return <Modal Resolve={Resolve}/>;
+    return <Modal modal={modal} resolve={Resolve} />
   }
   return (
     <PopupBox
@@ -311,18 +317,20 @@ export function Popup() {
     }, 500));
   };
   //fire
-  Popup.fire = async (inputData = {}) => await new Promise(resolve => {
-    if (typeof inputData.z == "undefined") inputData.z = 0;
-    let NData = [...data];
-    NData[inputData.z] = {
-      ...inputData,
-      resolve,
-      timer: inputData.timer ? setTimeout(() => {
-        newResolve(inputData.z)({ timedOut: true }, resolve);
-      }, inputData.timer) : null,
-    }
-    setData([...NData]);
-  });
+  Popup.fire = async (inputData = {}) => {
+    return await new Promise(resolve => {
+      if (typeof inputData.z == "undefined") inputData.z = 0;
+      let NData = [...data];
+      NData[inputData.z] = {
+        ...inputData,
+        resolve,
+        timer: inputData.timer ? setTimeout(() => {
+          newResolve(inputData.z)({ timedOut: true }, resolve);
+        }, inputData.timer) : null,
+      }
+      setData([...NData]);
+    })
+  };
   //close
   Popup.close = async (zIndex = 0) => await newResolve(zIndex)({ closed: true });
   //containers

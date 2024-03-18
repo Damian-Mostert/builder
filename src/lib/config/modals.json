@@ -1,0 +1,25 @@
+{
+  "test":{
+    "__component": "Division",
+    "__props": {
+        "className":"p-4 bg-white rounded-2xl"
+    },
+    "children": [
+      {
+        "__component":"Heading",
+        "__props":{
+          "text":"HELLO WORLD",
+          "className":"text-2xl mb-4"
+        }
+      },
+      {
+        "__component":"Button",
+        "__props":{
+          "className":"m-auto",
+          "functionToCall":"test",
+          "label":"HELLO WORLD"
+        }
+      }
+    ]
+  }
+}

@@ -20,5 +20,5 @@ export async function POST(request, res) {
     writeFileSync("src/lib/config/pages.json", JSON.stringify(pages, null, 4))
     writeFileSync("src/lib/config/styles.json", JSON.stringify(className, null, 4))
 
-    return NextResponse.json({ messsage: "Hello World" });
+    return NextResponse.json({ });
 }

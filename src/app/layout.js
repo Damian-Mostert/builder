@@ -10,7 +10,7 @@ export default async function RootLayout({ children }) {
       <head>
         <link
           id="tailwind"
-          href="/tailwind.min.css"
+          href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
           rel="stylesheet"
         />
         <meta name="description" content=""/>

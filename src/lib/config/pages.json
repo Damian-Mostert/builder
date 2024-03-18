@@ -14,12 +14,20 @@
                     }
                 },
                 {
-                    "__component": "Paragraph",
+                    "__component": "Division",
                     "__props": {
-                        "text": "404 not found",
                         "className": "m-auto"
                     },
-                    "children": []
+                    "children": [
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "404 not found",
+                                "className": "text-red-300 text-3xl text-bold underline p-4 bg-black rounded-2xl"
+                            },
+                            "children": []
+                        }
+                    ]
                 }
             ]
         }
@@ -28,15 +36,201 @@
         {
             "__component": "Header",
             "__props": {
-                "orientation": "left",
-                "icon": "/Teljoy_Logo.svg",
-                "mobileOrientation": "right"
+                "orientation": "top",
+                "icon": "https://cdn.bodyactiongym.co.za/img/logo/body-action-gym-logo.png",
+                "mobileOrientation": "left",
+                "variant": "default",
+                "sticky": true,
+                "fullnav": true,
+                "className": "sdas"
             }
         },
         {
             "__component": "Layout",
             "__props": {
-                "type": "split-half-r"
+                "type": "default"
+            },
+            "children": [
+                {
+                    "__component": "TextBox",
+                    "__props": {
+                        "pre": "",
+                        "title": "Hello world!",
+                        "variant": "title"
+                    },
+                    "children": [
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        }
+                    ]
+                },
+                {
+                    "__component": "Button",
+                    "__props": {
+                        "functionToCall": "TEST",
+                        "label": "ndecwef",
+                        "className": "mt-4"
+                    },
+                    "children": {}
+                }
+            ]
+        },
+        {
+            "__component": "Parallax",
+            "__props": {
+                "className": "w-full max-h-64"
+            },
+            "children": [
+                {
+                    "__component": "ShowOnMd",
+                    "__props": {},
+                    "children": [
+                        {
+                            "__component": "Button",
+                            "__props": {
+                                "functionToCall": "TOGGLE",
+                                "label": "ndecwef",
+                                "className": "mt-4 ml-4"
+                            },
+                            "children": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "split-half-l",
+                "className": ""
+            },
+            "children": [
+                {
+                    "__component": "Division",
+                    "__props": {},
+                    "children": [
+                        {
+                            "__component": "TextBox",
+                            "__props": {
+                                "pre": "hello",
+                                "title": "fdsfsdfsdfsdf fsdfs df sd"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Paragraph",
+                                    "__props": {
+                                        "text": "dfsdfsdf sdsdf sdgf egfdkfj sdjfk gdsjfsd fjk dsfkjsdg fjksdgf jkdsgfkjdg fgkjdgf djkg fjkdsgf jdsf dksjfgds gkjgskdf"
+                                    },
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "Paragraph",
+                                    "__props": {
+                                        "text": "dfsdfsdf sdsdf sdgf egfdkfj sdjfk gdsjfsd fjk dsfkjsdg fjksdgf jkdsgfkjdg fgkjdgf djkg fjkdsgf jdsf dksjfgds gkjgskdf"
+                                    },
+                                    "children": {}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "__component": "Slider",
+                    "__props": {
+                        "arrows": false,
+                        "dots": true,
+                        "infante": true,
+                        "autoplay": true,
+                        "speed": 2000,
+                        "autoplaySpeed": 2000,
+                        "className": ""
+                    },
+                    "children": [
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-green-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-yellow-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-red-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "__component": "Parallax",
+            "__props": {
+                "className": "w-full max-h-64"
+            },
+            "children": [
+                {
+                    "__component": "Image",
+                    "__props": {
+                        "src": "/wp12336561-rick-and-morty-windows-wallpapers.jpg",
+                        "className": "h-full w-full object-center"
+                    },
+                    "children": {}
+                }
+            ]
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "split-half-r",
+                "className": ""
             },
             "children": [
                 {
@@ -119,6 +313,256 @@
                                         "text": "dfsdfsdf sdsdf sdgf egfdkfj sdjfk gdsjfsd fjk dsfkjsdg fjksdgf jkdsgfkjdg fgkjdgf djkg fjkdsgf jdsf dksjfgds gkjgskdf"
                                     },
                                     "children": {}
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "default",
+                "className": ""
+            },
+            "children": [
+                {
+                    "__component": "TextBox",
+                    "__props": {
+                        "pre": "erwerwer",
+                        "title": "erewrwerewrewr"
+                    },
+                    "children": [
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        }
+                    ]
+                },
+                {
+                    "__component": "Button",
+                    "__props": {
+                        "functionToCall": "TEST",
+                        "label": "n",
+                        "className": "mt-4"
+                    },
+                    "children": {}
+                }
+            ]
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "split-half-r",
+                "className": ""
+            },
+            "children": [
+                {
+                    "__component": "Slider",
+                    "__props": {
+                        "arrows": false,
+                        "dots": true,
+                        "infante": true,
+                        "autoplay": true,
+                        "speed": 2000,
+                        "autoplaySpeed": 2000,
+                        "className": ""
+                    },
+                    "children": [
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-green-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-yellow-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-red-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "__component": "Division",
+                    "__props": {},
+                    "children": [
+                        {
+                            "__component": "Form",
+                            "__props": {
+                                "variant": "black-bg",
+                                "className": "w-full",
+                                "title": "Hello world"
+                            },
+                            "children": [
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "split-half-l",
+                "className": ""
+            },
+            "children": [
+                {
+                    "__component": "Division",
+                    "__props": {},
+                    "children": [
+                        {
+                            "__component": "Form",
+                            "__props": {
+                                "variant": "white-bg",
+                                "className": "w-full text-black",
+                                "title": "Hello world"
+                            },
+                            "children": [
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "InputElement",
+                                    "__props": {},
+                                    "children": {}
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "__component": "Slider",
+                    "__props": {
+                        "arrows": false,
+                        "dots": true,
+                        "infante": true,
+                        "autoplay": true,
+                        "speed": 2000,
+                        "autoplaySpeed": 2000,
+                        "className": ""
+                    },
+                    "children": [
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-green-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-yellow-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "__component": "Division",
+                            "__props": {
+                                "className": "bg-red-200 p-8"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Image",
+                                    "__props": {
+                                        "src": "/Teljoy_Logo.svg"
+                                    }
                                 }
                             ]
                         }
@@ -158,11 +602,57 @@
             ]
         },
         {
-            "__component": "Layout",
+            "__component": "Parallax",
             "__props": {
-                "type": "split"
+                "className": "w-full max-h-64"
             },
             "children": [
+                {
+                    "__component": "Image",
+                    "__props": {
+                        "src": "/wp12336561-rick-and-morty-windows-wallpapers.jpg",
+                        "className": "h-full w-full object-center"
+                    },
+                    "children": {}
+                }
+            ]
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "split-half-l",
+                "className": ""
+            },
+            "children": [
+                {
+                    "__component": "Division",
+                    "__props": {},
+                    "children": [
+                        {
+                            "__component": "TextBox",
+                            "__props": {
+                                "pre": "hello",
+                                "title": "fdsfsdfsdfsdf fsdfs df sd"
+                            },
+                            "children": [
+                                {
+                                    "__component": "Paragraph",
+                                    "__props": {
+                                        "text": "dfsdfsdf sdsdf sdgf egfdkfj sdjfk gdsjfsd fjk dsfkjsdg fjksdgf jkdsgfkjdg fgkjdgf djkg fjkdsgf jdsf dksjfgds gkjgskdf"
+                                    },
+                                    "children": {}
+                                },
+                                {
+                                    "__component": "Paragraph",
+                                    "__props": {
+                                        "text": "dfsdfsdf sdsdf sdgf egfdkfj sdjfk gdsjfsd fjk dsfkjsdg fjksdgf jkdsgfkjdg fgkjdgf djkg fjkdsgf jdsf dksjfgds gkjgskdf"
+                                    },
+                                    "children": {}
+                                }
+                            ]
+                        }
+                    ]
+                },
                 {
                     "__component": "Slider",
                     "__props": {
@@ -218,37 +708,92 @@
                             ]
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "__component": "Parallax",
+            "__props": {
+                "className": "w-full max-h-64"
+            },
+            "children": [
+                {
+                    "__component": "Image",
+                    "__props": {
+                        "src": "/wp12336561-rick-and-morty-windows-wallpapers.jpg",
+                        "className": "h-full w-full object-center"
+                    },
+                    "children": {}
+                }
+            ]
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "default"
+            },
+            "children": [
+                {
+                    "__component": "TextBox",
+                    "__props": {
+                        "pre": "",
+                        "title": "Hello world!",
+                        "variant": "title"
+                    },
+                    "children": [
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        }
+                    ]
                 },
                 {
-                    "__component": "Division",
+                    "__component": "Button",
+                    "__props": {
+                        "functionToCall": "TEST",
+                        "label": "ndecwef",
+                        "className": "mt-4"
+                    },
+                    "children": {}
+                },
+                {
+                    "__component": "ShowOnMd",
                     "__props": {},
                     "children": [
                         {
-                            "__component": "TextBox",
+                            "__component": "Button",
                             "__props": {
-                                "pre": "hello",
-                                "title": "fdsfsdfsdfsdf fsdfs df sd"
+                                "functionToCall": "TOGGLE",
+                                "label": "ndecwef",
+                                "className": "mt-4 ml-4"
                             },
-                            "children": [
-                                {
-                                    "__component": "Paragraph",
-                                    "__props": {
-                                        "text": "dfsdfsdf sdsdf sdgf egfdkfj sdjfk gdsjfsd fjk dsfkjsdg fjksdgf jkdsgfkjdg fgkjdgf djkg fjkdsgf jdsf dksjfgds gkjgskdf"
-                                    },
-                                    "children": {}
-                                },
-                                {
-                                    "__component": "Paragraph",
-                                    "__props": {
-                                        "text": "dfsdfsdf sdsdf sdgf egfdkfj sdjfk gdsjfsd fjk dsfkjsdg fjksdgf jkdsgfkjdg fgkjdgf djkg fjkdsgf jdsf dksjfgds gkjgskdf"
-                                    },
-                                    "children": {}
-                                }
-                            ]
+                            "children": {}
                         }
                     ]
                 }
             ]
+        },
+        {
+            "__component": "Footer",
+            "__props": {},
+            "children": {}
         }
     ],
     "/help": [
@@ -279,7 +824,9 @@
     "/test": [
         {
             "__component": "Header",
-            "__props": {},
+            "__props": {
+                "sticky": true
+            },
             "children": {}
         },
         {
@@ -295,6 +842,105 @@
                 "functionToCall": "Test",
                 "label": "dfsfsdfsdf",
                 "className": "xxx"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Button",
+            "__props": {
+                "functionToCall": "Test",
+                "label": "dfsfsdfsdf",
+                "className": "xxx"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Button",
+            "__props": {
+                "functionToCall": "Test",
+                "label": "dfsfsdfsdf",
+                "className": "xxx"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Button",
+            "__props": {
+                "functionToCall": "Test",
+                "label": "dfsfsdfsdf",
+                "className": "xxx"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Button",
+            "__props": {
+                "functionToCall": "Test",
+                "label": "dfsfsdfsdf",
+                "className": "xxx"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
+            },
+            "children": {}
+        },
+        {
+            "__component": "Image",
+            "__props": {
+                "src": "/vercel.svg"
             },
             "children": {}
         }

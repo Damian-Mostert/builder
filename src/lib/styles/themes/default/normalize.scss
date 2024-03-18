@@ -1,14 +1,16 @@
 //keep the same as md variable in tailwind config for layouts;
 
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One&family=Maven+Pro:wght@400..900&display=swap');
+
 $screen: 1124px; //md;
 
 :root {
     --screen: 1124px; //md;
 
     //body;
-    --body-color: #e2e8f0;
-    --text-color: #544141;
-    --font: Hero-Light-Light;
+    --body-color: #333;
+    --text-color: white;
+    --font:  "Contrail One", sans-serif;//"Maven Pro", sans-serif;
 
     //scrollbar config;
     --scroll-bar-bg-color: grey;
@@ -25,6 +27,13 @@ body {
     letter-spacing: 2px;
     color: var(--text-color);
     font-family: var(--font);
+}
+h1,h2,h3,h4,h5,h6,p,label,a{
+    font-family: var(--font);
+
+}
+p{
+    font-size: 0.8rem;
 }
 
 main {

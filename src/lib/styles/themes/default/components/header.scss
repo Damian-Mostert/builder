@@ -3,7 +3,7 @@
   background-color: var(--background);
   color: var(--text);
 
-  @apply shadow-lg relative z-50 flex;
+  @apply shadow-lg relative z-50 flex w-full;
 
   // Variant styles (e.g., .header-primary, .header-secondary)
   &-variant {
@@ -11,11 +11,17 @@
       --background-sub: #ededed;
       --background: white;
       --text: black;
+      --fullnav-bg:black;
+      --fullnav-text:white;
+      --header-index-color:red;
     }
     &-dark{
       --background-sub: #111;
       --background: black;
       --text: white;
+      --fullnav-bg:#222;
+      --fullnav-text:white;
+      --header-index-color:red;
 
     }
     // Add specific styles for different variants
@@ -40,12 +46,13 @@
       img {
         height: 50px;
         width: auto;
+        object-fit: contain;
       }
     }
   }
   &-body {
-    @apply flex m-auto;
-    max-width: calc(var(--screen) + 2rem);
+    @apply flex m-auto w-full px-8;
+    max-width: calc(var(--screen));
   }
   &-top {
     @apply flex-col;
@@ -54,6 +61,7 @@
       img {
         width: auto;
         height: 50px;
+        object-fit: contain;
       }
     }
   }
@@ -64,6 +72,7 @@
       img {
         width: auto;
         height: 50px;
+        object-fit: contain;
       }
     }
   } // Bottom alignment
@@ -75,6 +84,7 @@
       img {
         width: auto;
         height: 50px;
+        object-fit: contain;
       }
     }
   } // Align content to the left
@@ -85,11 +95,14 @@
       img {
         width: auto;
         height: 50px;
+        object-fit: contain;
       }
     }
   }
   &-nav {
+    width:100%;
     display: flex;
+    justify-content: space-between;
   }
 
   // Icon styles
@@ -125,7 +138,15 @@
     // Sub-links within dropdown
   }
   &-title {
-    @apply px-4 py-2 flex items-center justify-center;
+    @apply px-4 py-2 flex items-center justify-center text-[0.8rem];
+    &-active{
+      color:var(--header-index-color)
+    }
+  }
+  &-fullnav{
+    background: var(--fullnav-bg);
+    color:var(--fullnav-text);
+    display: flex;
   }
 }
 
@@ -134,6 +155,7 @@
   height: min-content;
   cursor: pointer;
   color: var(--text);
+  margin-right: 2rem;
 }
 .activeHamburger {
   color: var(--text);

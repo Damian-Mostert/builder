@@ -34,6 +34,31 @@ TextBox.Options = function Options({ update, data }) {
                 })
             }} />
         </div>
+        <div className="w-[300px] m-auto">
+        <Input
+          variant="builder"
+          label="variant"
+          type="select"
+          value={data.variant}
+          size="full"
+          options={[
+            {
+              label: "default",
+              value: "default",
+            },
+            {
+              label: "title",
+              value: "title",
+            },
+          ]}
+          onChange={(variant) => {
+            update({
+              ...data,
+            variant
+            });
+          }}
+        />
+      </div>
     </div>
 }
 

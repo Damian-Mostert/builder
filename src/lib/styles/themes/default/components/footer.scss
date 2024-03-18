@@ -1,0 +1,23 @@
+.footer{
+    &-default{
+        --footer-bg:black;
+        
+    }
+    @apply w-full bg-[var(--footer-bg)] flex py-8;
+    &-body{
+        @apply m-auto lg:w-1/2 px-4 w-full max-w-[var(--screen)] flex flex-wrap;
+    }
+    &-link{
+        @apply p-2 border-b border-white text-center w-full;
+        &s{
+            @apply w-full lg:w-1/2;
+        }
+
+    }
+    &-logos{
+        @apply flex justify-end w-full lg:w-1/2 md:justify-center md:pt-8;
+    }
+    &-app-logo{
+        @apply w-[250px] my-auto;
+    }
+}

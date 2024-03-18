@@ -69,6 +69,10 @@ Form.Options = function Options({ update, data, functions }) {
                     {
                         label: "white-bg",
                         value: "white-bg"
+                    },
+                    {
+                        label: "black-bg",
+                        value: "black-bg"
                     }
                 ]}
                 onChange={variant => {

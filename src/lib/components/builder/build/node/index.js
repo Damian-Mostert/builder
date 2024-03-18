@@ -68,7 +68,7 @@ export function NodeItem({ id, index, item, update, expand, links, functions }) 
         Popup.fire({
             background: "blur",
             canClose: true,
-            modal: NewItem(Components[item.__component] ? Components[item.__component].canAppend : [
+            rawmodal: NewItem(Components[item.__component] ? Components[item.__component].canAppend : [
                 "Header",
                 "Footer",
                 "Division",

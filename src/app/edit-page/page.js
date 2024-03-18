@@ -19,6 +19,7 @@ export default function BUILD() {
                 onSave={(
                     links, medialinks, code, template, className, page
                 ) => {
+                    console.log({links,medialinks,code,template,className,page});
                     axios.post("/api/edit-page", { links, medialinks, code, template, className, page })
                 }} />
             <Popup />

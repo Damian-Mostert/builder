@@ -3,10 +3,10 @@
   &-variant {
     &-default {
       transition: 0.5s all;
-      @apply bg-slate-300 text-[var(--text-color)] shadow-lg;
+      @apply bg-black text-[var(--text-color)] shadow-lg;
 
       &:hover {
-        @apply bg-gray-600 text-white;
+        @apply bg-gray-900 text-white;
       }
     }
   }
