@@ -443,7 +443,7 @@ function Builder({ onSave }) {
   };
 
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-full text-black">
       <div className="w-full h-full flex relative">
         <div
           className={`h-full  ${
@@ -618,11 +618,13 @@ function Builder({ onSave }) {
                   className="drag-me flex justify-center pt-8"
                   style={{ width: "1000%", height: "1000%" }}
                 >
+                  <div  style={{scale:"0.5"}}>
                   <Tree
                     className="flex justify-center"
                     lineBorderRadius="10px"
                     lineWidth="4px"
                     lineColor="purple"
+                   
                   >
                     <Build
                       obj={history[historyIndex]}
@@ -632,6 +634,8 @@ function Builder({ onSave }) {
                       functions={functions}
                     />
                   </Tree>
+                  </div>
+                 
                 </div>
               </div>
             </div>

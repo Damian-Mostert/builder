@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Input } from "./input";
 import { Device } from "@modules";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -13,7 +12,6 @@ function Header({
   variant = "default",
   sticky,
   links = [],
-  className,
   fullnav = true,
 }) {
   const router = useRouter();
@@ -42,13 +40,11 @@ function Header({
         document.body.getBoundingClientRect().y * -1 ||
         document.body.scrollTop
       ) {
-        headerRef.current.style =
-          "top:0px;left:0px;position:fixed;";
+        headerRef.current.style = "top:0px;left:0px;position:fixed;";
         document.body.style.paddingTop =
           headerRef.current.getBoundingClientRect().height + "px";
       } else {
-        headerRef.current.style =
-          "top:0px;left:0px;position:relative;";
+        headerRef.current.style = "top:0px;left:0px;position:relative;";
         document.body.style.paddingTop = "0px";
       }
     }
@@ -79,7 +75,9 @@ function Header({
                       {item.links.map((item, sub_index) => {
                         return (
                           <Link
-                            className={`header-title ${pathname == item.href ? "header-title-active":""}`}
+                            className={`header-title ${
+                              pathname == item.href ? "header-title-active" : ""
+                            }`}
                             key={index + "-" + sub_index}
                             href={item.href}
                           >
@@ -92,9 +90,12 @@ function Header({
                 );
               }
               return (
-                <Link key={index} href={item.href} 
-                className={`header-title ${pathname == item.href ? "header-title-active":""}`}
-                            
+                <Link
+                  key={index}
+                  href={item.href}
+                  className={`header-title ${
+                    pathname == item.href ? "header-title-active" : ""
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -113,7 +114,7 @@ function Header({
           ref={headerRef}
           className={`header ${
             fullnav ? "flex-wrap" : ""
-          } header-variant-${variant} ${className}`}
+          } header-variant-${variant}`}
         >
           {fullnav && orientation == "bottom" && <FullNav />}
           <div
@@ -144,8 +145,11 @@ function Header({
                           {item.links.map((item, sub_index) => {
                             return (
                               <Link
-                              className={`header-title ${pathname == item.href ? "header-title-active":""}`}
-                            
+                                className={`header-title ${
+                                  pathname == item.href
+                                    ? "header-title-active"
+                                    : ""
+                                }`}
                                 key={index + "-" + sub_index}
                                 href={item.href}
                               >
@@ -158,7 +162,12 @@ function Header({
                     );
                   }
                   return (
-                    <Link key={index} href={item.href} className={`header-title ${pathname == item.href ? "header-title-active":""}`}
+                    <Link
+                      key={index}
+                      href={item.href}
+                      className={`header-title ${
+                        pathname == item.href ? "header-title-active" : ""
+                      }`}
                     >
                       {item.label}
                     </Link>
@@ -214,7 +223,13 @@ function Header({
                 return;
               }
               return (
-                <Link key={index} href={item.href} className={`header-title ${pathname == item.href ? "header-title-active":""}`}>
+                <Link
+                  key={index}
+                  href={item.href}
+                  className={`header-title ${
+                    pathname == item.href ? "header-title-active" : ""
+                  }`}
+                >
                   {item.label}
                 </Link>
               );
@@ -226,180 +241,97 @@ function Header({
   );
 }
 
-Header.Options = function Options({ data, update }) {
-  return (
-    <>
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="variant"
-          type="select"
-          value={data.variant}
-          size="full"
-          options={[
-            {
-              label: "default",
-              value: "default",
-            },
-            {
-              label: "dark",
-              value: "dark",
-            },
-          ]}
-          onChange={(variant) => {
-            update({
-              ...data,
-              variant,
-            });
-          }}
-        />
-      </div>
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="sticky"
-          type="select"
-          value={Boolean(data.sticky)}
-          size="full"
-          options={[
-            {
-              label: "Yes",
-              value: true,
-            },
-            {
-              label: "No",
-              value: false,
-            },
-          ]}
-          onChange={(sticky) => {
-            update({
-              ...data,
-              sticky: sticky == "true" ? true : false,
-            });
-          }}
-        />
-      </div>
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="full navigation"
-          type="select"
-          value={Boolean(data.sticky)}
-          size="full"
-          options={[
-            {
-              label: "Yes",
-              value: true,
-            },
-            {
-              label: "No",
-              value: false,
-            },
-          ]}
-          onChange={(fullnav) => {
-            update({
-              ...data,
-              fullnav: fullnav == "true" ? true : false,
-            });
-          }}
-        />
-      </div>
-
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="orientation"
-          type="select"
-          value={data.orientation}
-          size="full"
-          options={[
-            {
-              label: "top",
-              value: "top",
-            },
-            {
-              label: "bottom",
-              value: "bottom",
-            },
-            {
-              label: "right",
-              value: "right",
-            },
-            {
-              label: "left",
-              value: "left",
-            },
-          ]}
-          onChange={(orientation) => {
-            update({
-              ...data,
-              orientation,
-            });
-          }}
-        />
-      </div>
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="mobile orientation"
-          type="select"
-          value={data.mobileOrientation}
-          size="full"
-          options={[
-            {
-              label: "top",
-              value: "top",
-            },
-            {
-              label: "bottom",
-              value: "bottom",
-            },
-            {
-              label: "right",
-              value: "right",
-            },
-            {
-              label: "left",
-              value: "left",
-            },
-          ]}
-          onChange={(mobileOrientation) => {
-            update({
-              ...data,
-              mobileOrientation,
-            });
-          }}
-        />
-      </div>
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="icon"
-          value={data.icon}
-          onChange={(icon) => {
-            update({
-              ...data,
-              icon,
-            });
-          }}
-        />
-      </div>
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="class"
-          value={data.className}
-          onChange={(className) => {
-            update({
-              ...data,
-              className,
-            });
-          }}
-        />
-      </div>
-    </>
-  );
-};
+Header.Options = [
+  {
+    type: "select",
+    value: "variant",
+    options: [
+      {
+        label: "default",
+        value: "default",
+      },
+      {
+        label: "dark",
+        value: "dark",
+      },
+    ],
+  },
+  {
+    type: "select-boolean",
+    value: "sticky",
+    options: [
+      {
+        label: "Yes",
+        value: true,
+      },
+      {
+        label: "No",
+        value: false,
+      },
+    ],
+  },
+  {
+    type: "select-boolean",
+    value: "fullnav",
+    options: [
+      {
+        label: "Yes",
+        value: true,
+      },
+      {
+        label: "No",
+        value: false,
+      },
+    ],
+  },
+  {
+    type: "select",
+    value: "orientation",
+    options: [
+      {
+        label: "top",
+        value: "top",
+      },
+      {
+        label: "bottom",
+        value: "bottom",
+      },
+      {
+        label: "right",
+        value: "right",
+      },
+      {
+        label: "left",
+        value: "left",
+      },
+    ],
+  },
+  {
+    type: "select",
+    value: "mobileOrientation",
+    options: [
+      {
+        label: "top",
+        value: "top",
+      },
+      {
+        label: "bottom",
+        value: "bottom",
+      },
+      {
+        label: "right",
+        value: "right",
+      },
+      {
+        label: "left",
+        value: "left",
+      },
+    ],
+  },
+  {
+    value: "icon",
+  },
+];
 
 Header.canAppend = false;
 

@@ -13,7 +13,9 @@
       --text: black;
       --fullnav-bg:black;
       --fullnav-text:white;
-      --header-index-color:red;
+      --header-index-color:#999;
+      --header-index-border-color:#999;
+      --header-index-background:#333;
     }
     &-dark{
       --background-sub: #111;
@@ -21,8 +23,9 @@
       --text: white;
       --fullnav-bg:#222;
       --fullnav-text:white;
-      --header-index-color:red;
-
+      --header-index-color:yellow;
+      --header-index-border-color:#999;
+      --header-index-background:#333;
     }
     // Add specific styles for different variants
   }
@@ -138,9 +141,11 @@
     // Sub-links within dropdown
   }
   &-title {
-    @apply px-4 py-2 flex items-center justify-center text-[0.8rem];
+    @apply px-4 py-2 flex items-center justify-center text-[0.8rem] w-full;
     &-active{
-      color:var(--header-index-color)
+      color:var(--header-index-color);
+      background: var(--header-index-background);
+      border:1px solid var(--header-index-border-color);
     }
   }
   &-fullnav{

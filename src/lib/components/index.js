@@ -1,12 +1,11 @@
 import { default as LINK } from "next/link";
 import { useEffect, useState } from "react";
 
-//header,footer
-import { Navigation } from "./navigation";
-import { Header } from "./header";
-import { Footer } from "./footer";
+
 
 //general components
+import { Header } from "./header";
+import { Footer } from "./footer";
 import { Heading } from "./heading";
 import { Button } from "./button";
 import { Nav } from "./nav";
@@ -21,7 +20,6 @@ import { List, ListItem } from "./list";
 import { Parallax } from "./parallax";
 import { Slider } from "./slider";
 import { Paragraph } from "./paragraph";
-import { Section } from "./section";
 import { Division } from "./division";
 import { Image } from "./image";
 import { Video } from "./video";
@@ -48,87 +46,25 @@ function MapData({slug,component}){
     })}</>
 }
 
-MapData.Options = function Options({ data, update }) {
-    return (
-      <div className="p-2">
-        <div className="w-[300px] m-auto">
-          <Input
-            variant="builder"
-            label="slug"
-            value={data.slug}
-            onChange={(slug) => {
-              update({
-                ...data,
-                slug,
-              });
-            }}
-          />
-        </div>
-        <div className="w-[300px] m-auto">
-          <Input
-            variant="builder"
-            label="Component"
-            value={data.active}
-            type="select"
-            options={Object.keys(COMPONENTS).map((name)=>({
-                label:name,
-                value:name
-            }))}
-            onChange={(active) => {
-              update({
-                ...data,
-                active,
-              });
-            }}
-          />
-        </div>
-      </div>
-    );
-  };
+MapData.Options = [
+  {
+    value:"slug"
+  }
+]
 
 function ShowOnLg({ children }) {
   const device = Device();
   return <>{device.lg && <>{children}</>}</>;
 }
-ShowOnLg.Options = () => <div className="w-[200px]"/>;
-ShowOnLg.canAppend = [
-  "ShowOnMd",
-  "ShowOnLg",
-  "Division",
-  "TextBox",
-  "Image",
-  "Video",
-  "Layout",
-  "Section",
-  "Form",
-  "Button",
-  "Nav",
-  "Accordion",
-  "List",
-  "Slider",
-];
+ShowOnLg.Options = false;
+ShowOnLg.canAppend = true;
 
 function ShowOnMd({ children }) {
   const device = Device();
   return <>{device.md && <>{children}</>}</>;
 }
-ShowOnMd.Options = () => <div className="w-[200px]"/>;
-ShowOnMd.canAppend = [
-  "ShowOnMd",
-  "ShowOnLg",
-  "Division",
-  "TextBox",
-  "Image",
-  "Video",
-  "Layout",
-  "Section",
-  "Form",
-  "Button",
-  "Nav",
-  "Accordion",
-  "List",
-  "Slider",
-];
+ShowOnMd.Options = false;
+ShowOnMd.canAppend = true;
 
 function Link({ children, ...props }) {
   return <LINK {...props}>{children}</LINK>;
@@ -170,67 +106,27 @@ function ShowState({ children, id, active }) {
 
   return <>{show && children}</>;
 }
+ShowState.canAppend = true;
+ShowState.Options = [
+  {
+    value:"id",
+  },
+  {
+    type: "select-boolean",
+    value: "active",
+    options: [
+      {
+        label: "Yes",
+        value: true,
+      },
+      {
+        label: "No",
+        value: false,
+      },
+    ],
+  },
+]
 
-ShowState.canAppend = [
-  "ShowOnMd",
-  "ShowOnLg",
-  "Division",
-  "TextBox",
-  "Image",
-  "Video",
-  "Layout",
-  "Section",
-  "Form",
-  "Button",
-  "Nav",
-  "Accordion",
-  "List",
-  "Slider",
-];
-
-ShowState.Options = function Options({ data, update }) {
-  return (
-    <div className="p-2">
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="id"
-          value={data.id}
-          onChange={(id) => {
-            update({
-              ...data,
-              id,
-            });
-          }}
-        />
-      </div>
-      <div className="w-[300px] m-auto">
-        <Input
-          variant="builder"
-          label="Show / Hide"
-          value={data.active}
-          type="select"
-          options={[
-            {
-              label: "Show",
-              value: true,
-            },
-            {
-              label: "Hide",
-              value: false,
-            },
-          ]}
-          onChange={(active) => {
-            update({
-              ...data,
-              active,
-            });
-          }}
-        />
-      </div>
-    </div>
-  );
-};
 
 const COMPONENTS = {
     InputElement,
@@ -240,10 +136,8 @@ const COMPONENTS = {
     IndexItem,
     Header,
     Footer,
-    Navigation,
     Video,
     ShowState,
-    Section,
     Division,
     Paragraph,
     Link,
@@ -276,10 +170,8 @@ export {
   IndexItem,
   Header,
   Footer,
-  Navigation,
   Video,
   ShowState,
-  Section,
   Division,
   Paragraph,
   Link,

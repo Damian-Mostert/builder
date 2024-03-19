@@ -9,6 +9,14 @@
         @apply bg-gray-900 text-white;
       }
     }
+    &-light {
+      transition: 0.5s all;
+      @apply bg-white text-black shadow-lg;
+
+      &:hover {
+        @apply bg-teal-200 text-black;
+      }
+    }
   }
   @apply min-w-[110px]  py-2 px-4 flex justify-center items-center relative cursor-pointer text-[12px] lg:text-[16px] rounded-[10px] tracking-widest uppercase;
 

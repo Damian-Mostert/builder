@@ -36,8 +36,8 @@
         {
             "__component": "Header",
             "__props": {
-                "orientation": "top",
-                "icon": "https://cdn.bodyactiongym.co.za/img/logo/body-action-gym-logo.png",
+                "orientation": "left",
+                "icon": "/vercel.svg",
                 "mobileOrientation": "left",
                 "variant": "default",
                 "sticky": true,
@@ -48,7 +48,8 @@
         {
             "__component": "Layout",
             "__props": {
-                "type": "default"
+                "type": "default",
+                "className": "mt-8"
             },
             "children": [
                 {
@@ -90,29 +91,6 @@
                         "className": "mt-4"
                     },
                     "children": {}
-                }
-            ]
-        },
-        {
-            "__component": "Parallax",
-            "__props": {
-                "className": "w-full max-h-64"
-            },
-            "children": [
-                {
-                    "__component": "ShowOnMd",
-                    "__props": {},
-                    "children": [
-                        {
-                            "__component": "Button",
-                            "__props": {
-                                "functionToCall": "TOGGLE",
-                                "label": "ndecwef",
-                                "className": "mt-4 ml-4"
-                            },
-                            "children": {}
-                        }
-                    ]
                 }
             ]
         },
@@ -173,7 +151,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -187,7 +165,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -201,7 +179,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -219,7 +197,7 @@
                 {
                     "__component": "Image",
                     "__props": {
-                        "src": "/wp12336561-rick-and-morty-windows-wallpapers.jpg",
+                        "src": "https://cdn.britannica.com/17/83817-050-67C814CD/Mount-Everest.jpg",
                         "className": "h-full w-full object-center"
                     },
                     "children": {}
@@ -254,7 +232,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -268,7 +246,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -282,7 +260,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -396,7 +374,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -410,7 +388,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -424,7 +402,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -440,27 +418,38 @@
                             "__props": {
                                 "variant": "black-bg",
                                 "className": "w-full",
-                                "title": "Hello world"
+                                "title": "Hello world",
+                                "buttonvariant": "light",
+                                "buttonlabel": "HELLO WORLD"
                             },
                             "children": [
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test"
+                                    },
                                     "children": {}
                                 },
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test"
+                                    },
                                     "children": {}
                                 },
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test",
+                                        "variant": "default"
+                                    },
                                     "children": {}
                                 },
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test"
+                                    },
                                     "children": {}
                                 }
                             ]
@@ -490,22 +479,30 @@
                             "children": [
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test"
+                                    },
                                     "children": {}
                                 },
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test"
+                                    },
                                     "children": {}
                                 },
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test"
+                                    },
                                     "children": {}
                                 },
                                 {
                                     "__component": "InputElement",
-                                    "__props": {},
+                                    "__props": {
+                                        "label": "test"
+                                    },
                                     "children": {}
                                 }
                             ]
@@ -533,7 +530,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -547,7 +544,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -561,7 +558,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -590,7 +587,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg",
+                                        "src": "/vercel.svg",
                                         "className": "p-4 bg-black"
                                     },
                                     "children": {}
@@ -610,7 +607,7 @@
                 {
                     "__component": "Image",
                     "__props": {
-                        "src": "/wp12336561-rick-and-morty-windows-wallpapers.jpg",
+                        "src": "https://cdn.britannica.com/17/83817-050-67C814CD/Mount-Everest.jpg",
                         "className": "h-full w-full object-center"
                     },
                     "children": {}
@@ -674,7 +671,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -688,7 +685,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -702,7 +699,7 @@
                                 {
                                     "__component": "Image",
                                     "__props": {
-                                        "src": "/Teljoy_Logo.svg"
+                                        "src": "/vercel.svg"
                                     }
                                 }
                             ]
@@ -720,7 +717,7 @@
                 {
                     "__component": "Image",
                     "__props": {
-                        "src": "/wp12336561-rick-and-morty-windows-wallpapers.jpg",
+                        "src": "https://cdn.britannica.com/17/83817-050-67C814CD/Mount-Everest.jpg",
                         "className": "h-full w-full object-center"
                     },
                     "children": {}
@@ -792,8 +789,60 @@
         },
         {
             "__component": "Footer",
-            "__props": {},
+            "__props": {
+                "variant": "light",
+                "orientation": "bottom"
+            },
             "children": {}
+        },
+        {
+            "__component": "Layout",
+            "__props": {
+                "type": "default",
+                "className": "mt-8"
+            },
+            "children": [
+                {
+                    "__component": "TextBox",
+                    "__props": {
+                        "pre": "",
+                        "title": "Hello world!",
+                        "variant": "title"
+                    },
+                    "children": [
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        },
+                        {
+                            "__component": "Paragraph",
+                            "__props": {
+                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                            },
+                            "children": {}
+                        }
+                    ]
+                },
+                {
+                    "__component": "Button",
+                    "__props": {
+                        "functionToCall": "TEST",
+                        "label": "ndecwef",
+                        "className": "mt-4"
+                    },
+                    "children": {}
+                }
+            ]
         }
     ],
     "/help": [
@@ -825,7 +874,8 @@
         {
             "__component": "Header",
             "__props": {
-                "sticky": true
+                "sticky": true,
+                "variant": "dark"
             },
             "children": {}
         },

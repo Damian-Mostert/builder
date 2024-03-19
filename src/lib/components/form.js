@@ -4,132 +4,137 @@ import { Input } from "./input";
 import { useRef } from "react";
 
 function Form({
-    className = "",
-    title = "",
-    variant = "default",
-    children = [],
-    toggle = false,
-    submitButton = {
-        label: "submit",
-        variant: "default"
-    },
-    onSubmit = () => { },
-    functionToCall,
-    functions,
-    ...props
+  className = "",
+  title = "",
+  variant = "default",
+  children = [],
+  toggle = false,
+  buttonvariant = "default",
+  buttonlabel = "submit",
+  onSubmit = () => {},
+  functionToCall,
+  functions,
+  ...props
 }) {
+  const [submited, setSubmitted] = useState(false);
 
-    const [submited, setSubmitted] = useState(false)
+  const [busy, setBusy] = useState(false);
 
-    const [busy, setBusy] = useState(false);
+  const refs = [
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
+  ];
 
-    const refs = [
-        useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(), useRef(),
-    ];
-
-    const inputs = children.props.children.map((item, index) => {
-        return {
-            ...item.props.__props,
-            ref: refs[index]
-        }
-    });
-
-    const handleSubmit = async ev => {
-        if (!busy) {
-            ev.preventDefault();
-            setBusy(true);
-            var valid = true;
-            let values = inputs.map(input => {
-                const validation = input.ref.current.validate();
-                if (valid) valid = validation;
-                return input.ref.current.value;
-            });
-            if (valid) {
-                setSubmitted(functionToCall ? await functions[functionToCall](inputs) : await onSubmit(values));
-            }
-            setBusy(false);
-        }
+  const inputs = children.props.children.map((item, index) => {
+    return {
+      ...item.props.__props,
+      ref: refs[index],
     };
+  });
 
-    return <form onSubmit={handleSubmit} className={`form form-variant-${variant} ${className}`} {...props}>
-        <h2>{title}</h2>
-        {inputs.map((item, index) => {
-            return <Input key={index} {...item} />
-        })}
-        <Button {...submitButton} className="mt-4 mx-auto" />
+  const handleSubmit = async (ev) => {
+    if (!busy) {
+      ev.preventDefault();
+      setBusy(true);
+      var valid = true;
+      let values = inputs.map((input) => {
+        const validation = input.ref.current.validate();
+        if (valid) valid = validation;
+        return input.ref.current.value;
+      });
+      if (valid) {
+        setSubmitted(
+          functionToCall
+            ? await functions[functionToCall](inputs)
+            : await onSubmit(values)
+        );
+      }
+      setBusy(false);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={`form form-variant-${variant} ${className}`}
+      {...props}
+    >
+      <h2>{title}</h2>
+      {inputs.map((item, index) => {
+        return <Input key={index} {...item} />;
+      })}
+      <Button
+        label={buttonlabel}
+        variant={buttonvariant}
+        className="mt-4 mx-auto"
+      />
     </form>
+  );
 }
 
-Form.Options = function Options({ update, data, functions }) {
-    return <div className='p-2'>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="variant" value={data.variant}
-                type="select"
-                options={[
-                    {
-                        label: "white-bg",
-                        value: "white-bg"
-                    },
-                    {
-                        label: "black-bg",
-                        value: "black-bg"
-                    }
-                ]}
-                onChange={variant => {
-                    update({
-                        ...data,
-                        variant
-                    })
-                }} />
-        </div>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="title" value={data.title}
-                onChange={title => {
-                    update({
-                        ...data,
-                        title
-                    })
-                }} />
-        </div>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="class" value={data.className}
-                onChange={className => {
-                    update({
-                        ...data,
-                        className
-                    })
-                }} />
-        </div>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="function to call" value={data.functionToCall}
-                type="select"
-                options={Object.keys(functions).map(item => {
-                    return {
-                        label: item,
-                        value: item
-                    }
-                })}
-                onChange={functionToCall => {
-                    update({
-                        ...data,
-                        functionToCall
-                    })
-                }} />
-        </div>
-    </div>
-}
-
-Form.canAppend = [
-"ShowOnMd",
-"ShowOnLg",
-    "ShowState",
-    "InputElement"
+Form.Options = [
+  {
+    type: "select",
+    value: "variant",
+    options: [
+      {
+        label: "white-bg",
+        value: "white-bg",
+      },
+      {
+        label: "black-bg",
+        value: "black-bg",
+      },
+    ],
+  },
+  {
+    type: "select",
+    value: "button",
+    options: [
+      {
+        label: "default",
+        value: "default",
+      },
+      {
+        label: "light",
+        value: "light",
+      },
+    ],
+  },
+  {
+    value: "title",
+  },
+  {
+    value: "buttonlabel",
+  },
+  {
+    value: "className",
+  },
+  {
+    value: "functionToCall",
+    type: "select",
+    options: "functions",
+  },
 ];
 
+Form.canAppend = ["ShowOnMd", "ShowOnLg", "ShowState", "InputElement"];
+
 function InputElement(props) {
-    return {
-        ...props,
-    }
+  return {
+    ...props,
+  };
 }
 
 InputElement.Options = Input.Options;

@@ -4,8 +4,9 @@ export function Heading({text,...props}){
     </h1>
 }
 
-Heading.Options = function Options(){
-
-}
-
+Heading.Options = [
+    {
+        value:"text"
+    }
+]
 Heading.canAppend = false;

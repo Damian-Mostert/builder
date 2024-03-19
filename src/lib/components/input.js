@@ -1,7 +1,13 @@
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-
-const Input = forwardRef(function Input({
+const Input = forwardRef(function Input(
+  {
     variant = "default",
     value = "",
     type = "text",
@@ -10,120 +16,120 @@ const Input = forwardRef(function Input({
     errorMessage = "This input is required.",
     size = "full",
     className = "",
-    onChange = () => { },
+    onChange = () => {},
     ref = useRef(),
     ...props
-}, Ref) {
+  },
+  Ref
+) {
+  const [Value, setValue] = useState(value);
 
+  const [error, setError] = useState(null);
 
-    const [Value, setValue] = useState(value);
-
-    const [error, setError] = useState(null);
-
-    function validate() {
-        if (require) {
-            switch (type) {
-                case "text": case "name": case "textarea":
-                    if (Value.length) return true;
-                    setError(errorMessage);
-                    return false;
-                case "email":
-                    if (Value.match()) return true;
-                    setError(errorMessage);
-                    return false;
-
-            }
-        }
-        return true;
+  function validate() {
+    if (require) {
+      switch (type) {
+        case "text":
+        case "name":
+        case "textarea":
+          if (Value.length) return true;
+          setError(errorMessage);
+          return false;
+        case "email":
+          if (Value.match()) return true;
+          setError(errorMessage);
+          return false;
+      }
     }
+    return true;
+  }
 
-    useImperativeHandle(Ref, function () {
-        return {
-            value: Value,
-            setValue: setValue,
-            validate: validate,
-        }
-    });
-
-
-    const handleInstantChange = (ev) => {
-        setValue(ev.target.value);
-        onChange(ev.target.value);
+  useImperativeHandle(Ref, function () {
+    return {
+      value: Value,
+      setValue: setValue,
+      validate: validate,
     };
+  });
 
+  const handleInstantChange = (ev) => {
+    setValue(ev.target.value);
+    onChange(ev.target.value);
+  };
 
-    return <div className={`input-container input-variant-${variant} input-type-${type} input-size-${size} ${className}`} {...props}>
-        {function () {
-            switch (type) {
-                case "text": case "name": case "email": case "date": case "password":
-                    return <>
-                        {label && <label className="label">{label}</label>}
-                        <input className="input" value={Value} onChange={handleInstantChange} />
-                        {error && <div className="input-error">{error}</div>}
-                    </>
-                case "select":
-                    return <>
-                        {label && <label className="label">{label}</label>}
-                        <select value={Value} onChange={handleInstantChange}>
-                            <option value={-1}>Please select a item</option>
-                            {props.options && props.options.map((item, index) => {
-                                return <option key={index} value={item.value}>{item.label}</option>
-                            })}
-                        </select>
-                        {error && <div className="input-error">{error}</div>}
-                    </>
-                case "file":
-                    return <>
-                    </>
-                case "image":
-                    return <>
-                    </>
-                case "hex":
-                    return <>
-                    </>
-            }
-        }()}
+  return (
+    <div
+      className={`input-container input-variant-${variant} input-type-${type} input-size-${size} ${className}`}
+      {...props}
+    >
+      {(function () {
+        switch (type) {
+          case "text":
+          case "name":
+          case "email":
+          case "date":
+          case "password":
+            return (
+              <>
+                {label && <label className="label">{label}</label>}
+                <input
+                  className="input"
+                  value={Value}
+                  onChange={handleInstantChange}
+                />
+                {error && <div className="input-error">{error}</div>}
+              </>
+            );
+          case "select":
+            return (
+              <>
+                {label && <label className="label">{label}</label>}
+                <select value={Value} onChange={handleInstantChange}>
+                  <option value={-1}>Please select a item</option>
+                  {props.options &&
+                    props.options.map((item, index) => {
+                      return (
+                        <option key={index} value={item.value}>
+                          {item.label}
+                        </option>
+                      );
+                    })}
+                </select>
+                {error && <div className="input-error">{error}</div>}
+              </>
+            );
+          case "file":
+            return <></>;
+          case "image":
+            return <></>;
+          case "hex":
+            return <></>;
+        }
+      })()}
     </div>
-
-})
-
-Input.Options = function Options({ update, data }) {
-    return <div className='p-2'>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="variant" value={data.variant}
-                type="select"
-                options={[
-                    {
-                        label: "default",
-                        value: "default"
-                    }
-                ]}
-                onChange={variant => {
-                    update({
-                        ...data,
-                        variant
-                    })
-                }} />
-        </div>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="class" value={data.className}
-                onChange={className => {
-                    update({
-                        ...data,
-                        className
-                    })
-                }} />
-        </div>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="value" value={data.label} onChange={value => {
-                update({
-                    ...data,
-                    value
-                })
-            }} />
-        </div>
-    </div>
-}
+  );
+});
+Input.Options = [
+  {
+    type: "select",
+    value: "variant",
+    options: [
+      {
+        label: "default",
+        value: "default",
+      },
+    ],
+  },
+  {
+    value: "className",
+  },
+  {
+    value: "value",
+  },
+  {
+    value: "label",
+  },
+];
 
 Input.canAppend = false;
 

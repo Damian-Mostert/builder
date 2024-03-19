@@ -2,13 +2,33 @@
     @apply flex flex-wrap;
     h2{
         @apply w-full text-center text-[2rem];
+            letter-spacing: 4px;
+            font-style: italic;
+            text-transform: uppercase;
+            color: transparent !important;
+            -webkit-text-stroke: 0.5px;
+            stroke: 0.5px;
+            -webkit-text-stroke-color: white;
+            text-shadow: 2px 2px 0px rgba(242, 242, 76, 0.662);
     }
     &-variant{
         &-white-bg{
             @apply p-8 rounded-xl bg-white;
+            h2{
+                @apply w-full text-center text-[2rem];
+                    letter-spacing: 4px;
+                    font-style: italic;
+                    text-transform: uppercase;
+                    color: transparent !important;
+                    -webkit-text-stroke: 0.5px;
+                    stroke: 0.5px;
+                    -webkit-text-stroke-color: black;
+                    text-shadow: 2px 2px 0px rgba(242, 242, 76, 0.662);
+            }
         }
         &-black-bg{
             @apply p-8 rounded-xl bg-black;
+            
         }
     }
 }

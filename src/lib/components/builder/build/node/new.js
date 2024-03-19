@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Input, Button } from '@components';
 import Components from '@components';
 
+
 export function NewItem(canAppend, functions) {
     return function ({ Resolve }) {
         const componentRef = useRef();
@@ -39,13 +40,15 @@ export function NewItem(canAppend, functions) {
             />
             {function () {
                 var Options = Components[component]?.Options;
+                
 
                 if (!Options) {
                     Options = function () {
                         return <></>
                     }
                 }
-                return <Options data={data} update={setData} functions={functions} />
+
+                return (<BuildOptions options={Options} data={data} update={setData} functions={functions}/>)
 
             }()}
             <Button variant='builder' label="Create" onClick={Return} className={"m-auto mt-4"} />

@@ -12,18 +12,11 @@ function Parallax({ className, children }) {
     </ParallaxProvider>
 };
 
-Parallax.Options = function Options({ update, data }) {
-    return <div className='py-2 flex flex-wrap'>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="class" value={data.className} onChange={className => {
-                update({
-                    ...data,
-                    className
-                })
-            }} />
-        </div>
-    </div>
-}
+Parallax.Options =[
+    {
+        value:"className"
+    }
+]
 
 Parallax.canAppend = [
 "ShowOnMd",

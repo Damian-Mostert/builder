@@ -9,6 +9,8 @@ import Components from '@components';
 
 import { Build } from "..";
 
+import { BuildOptions } from "../../buildOptions";
+
 export function NodeItem({ id, index, item, update, expand, links, functions }) {
 
     const draggableRef = useRef(null);
@@ -63,30 +65,30 @@ export function NodeItem({ id, index, item, update, expand, links, functions }) 
         Options = function () {
             return <></>
         }
+    
+        const all = Object.keys(Components);
+
+    const modal = () =>{
+        if(Components[item.__component]){
+            if(typeof Components[item.__component].canAppend == "object"){
+                return Components[item.__component].canAppend
+            }else if(typeof Components[item.__component]?.canAppend == "boolean"){
+                if(Components[item.__component].canAppend == true){
+                    return all;
+                }else{
+                    return {};
+                }
+            }
+        }else{
+            return all;
+        }
+    };
 
     const handleNewItem = () => {
         Popup.fire({
             background: "blur",
             canClose: true,
-            rawmodal: NewItem(Components[item.__component] ? Components[item.__component].canAppend : [
-                "Header",
-                "Footer",
-                "Division",
-                "Image",
-                "Video",
-                "List",
-                "Slider",
-                "Accordion",
-                "Nav",
-                "Form",
-
-                "Button",
-                "Layout",
-                "Section",
-                "Parallax",
-                "ShowOnMd",
-                "ShowOnLg"
-            ], functions)
+            rawmodal: NewItem(modal(),functions)
         }).then(res => {
             if (!res.close) {
                 setOpen(true);
@@ -131,7 +133,7 @@ export function NodeItem({ id, index, item, update, expand, links, functions }) 
                         </div>
                     </h2>
                     {item.__component != "Root" && <div className="w-full p-4">
-                        <Options update={UpdateThis} data={item.__props} functions={functions} />
+                        <BuildOptions options={Options} data={item.__props} update={UpdateThis} functions={functions}/>
                     </div>}
                     {Components[item.__component]?.canAppend && item.__component != "Root" && <div className='w-full flex'>
                         <Button variant={`builder-toggle${open ? "-invert" : ""}`} onClick={() => open ? setOpen(false) : setOpen(true)} className="m-auto mb-2" />

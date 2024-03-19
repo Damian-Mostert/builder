@@ -11,18 +11,11 @@ function IndexItem({
     }
 }
 
-IndexItem.Options = function Options({ data, update }) {
-    return <>
-        <div className='w-[300px] m-auto'>
-            <Input variant="builder" label="title" value={data.title} onChange={title => {
-                update({
-                    ...data,
-                    title
-                })
-            }} />
-        </div>
-    </>
-}
+IndexItem.Options = [
+    {
+        value:"title"
+    }
+]
 
 IndexItem.canAppend = [
 "ShowOnMd",
