@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { BuildBody, } from "@modules";
-import { Popup, getState, hideState, showState } from "@components";
+import { Popup, getState,setState } from "@components";
 import {  code, modals } from "@config";
 
 export default function Modal({ resolve, modal }) {
@@ -14,11 +14,11 @@ export default function Modal({ resolve, modal }) {
   const [functions, setFunctions] = useState(
     code["Modal-"+modal]
       ? Function(`
-    const [Popup,getState,hideState,showState,Resolve] = arguments;
+    const [Popup,getState,setState,Resolve] = arguments;
     return {
         ${code["Modal-"+modal]}
     }                        
-    `)(Popup, getState, hideState, showState,resolve)
+    `)(Popup, getState, setState,resolve)
       : {}
   );
 
@@ -33,11 +33,11 @@ export default function Modal({ resolve, modal }) {
           try {
             setFunctions(
               Function(`
-                        const [Popup,getState,hideState,showState,resolve] = arguments;
+                        const [Popup,getState,setState,resolve] = arguments;
                         return {
                             ${message.script}
                         }                        
-                        `)(Popup, getState, hideState, showState,resolve)
+                        `)(Popup, getState, setState,resolve)
             );
           } catch (e) {
             console.warn(e);

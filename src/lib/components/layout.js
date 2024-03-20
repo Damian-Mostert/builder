@@ -1,7 +1,7 @@
 import { BuildBody } from "@modules";
 import { Input } from "./input";
 
-function Layout({ type = "default", children, className = "", ...props }) {
+function Layout({ type = "default", children, className = "",functions,links,medialinks, ...props }) {
     if (type.startsWith("split")) {
         return <div className={`layout-${type} ${className}`} {...props}>
             <div className={`layout-${type}-container-a`}>

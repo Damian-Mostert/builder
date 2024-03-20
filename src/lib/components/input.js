@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -18,6 +17,8 @@ const Input = forwardRef(function Input(
     className = "",
     onChange = () => {},
     ref = useRef(),
+    functionToCall,
+    functions = {},
     ...props
   },
   Ref
@@ -55,6 +56,7 @@ const Input = forwardRef(function Input(
   const handleInstantChange = (ev) => {
     setValue(ev.target.value);
     onChange(ev.target.value);
+    functionToCall && functions[functionToCall](ev.target.value)
   };
 
   return (
@@ -121,6 +123,20 @@ Input.Options = [
     ],
   },
   {
+    type: "select-boolean",
+    value: "required",
+    options: [
+      {
+        label: "Yes",
+        value: true,
+      },
+      {
+        label: "No",
+        value: false,
+      },
+    ],
+  },
+  {
     value: "className",
   },
   {
@@ -128,6 +144,11 @@ Input.Options = [
   },
   {
     value: "label",
+  },
+  {
+    value: "functionToCall",
+    type:"select",
+    options:"functions"
   },
 ];
 

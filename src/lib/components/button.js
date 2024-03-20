@@ -12,9 +12,10 @@ function Button({
   functionToCall,
   target,
   className,
+  links,
+  medialinks,
   ...props
 }) {
-
   return (
     <>
       {href && (
@@ -25,7 +26,8 @@ function Button({
           onClick={onClick}
           {...props}
         >
-          <span />{label}
+          <span />
+          {label}
         </Link>
       )}
       {!href && !target && (
@@ -35,10 +37,10 @@ function Button({
           htmlFor={target}
           {...props}
         >
-          <span />{label}
-        </button >
-      )
-      }
+          <span />
+          {label}
+        </button>
+      )}
       {!href && target && (
         <label
           className={`button button-variant-${variant} ${className}`}
@@ -46,40 +48,41 @@ function Button({
           htmlFor={target}
           {...props}
         >
-          <span />{label}
-        </label >
-      )
-      }
+          <span />
+          {label}
+        </label>
+      )}
     </>
   );
 }
 
 Button.Options = [
   {
-value:"variant",
-type:"select",
-options:[
-  {
-    label:"default",
-    value:"default"
-  },{
-    label:"light",
-    value:"light"
-  }
-]
-  },
+    value: "variant",
+    type: "select",
+    options: [
       {
-        value:"className"
-    },
-    {
-        value:"value"
-    },
-    {
-      type:"select",
-      value:"functionToCall",
-      options:"functions"
-    }
-]
+        label: "default",
+        value: "default",
+      },
+      {
+        label: "light",
+        value: "light",
+      },
+    ],
+  },
+  {
+    value: "className",
+  },
+  {
+    value: "value",
+  },
+  {
+    type: "select",
+    value: "functionToCall",
+    options: "functions",
+  },
+];
 
 Button.canAppend = false;
 

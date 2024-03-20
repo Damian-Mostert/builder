@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { BuildBody, useInViewClass } from "@modules";
-import { Popup, getState, hideState, showState } from "@components";
+import { Popup, getState, setState } from "@components";
 import { links, medialinks, code, pages, styles } from "@config";
 
-export default function View({ url }) {
+
+
+export default function Page({ url }) {
   useInViewClass();
 
   const [template, setTemplate] = useState(
@@ -18,11 +20,11 @@ export default function View({ url }) {
   const [functions, setFunctions] = useState(
     code[url]
       ? Function(`
-    const [Popup,getState,hideState,showState] = arguments;
+    const [Popup,getState,setState] = arguments;
     return {
         ${code[url]}
     }                        
-    `)(Popup, getState, hideState, showState)
+    `)(Popup, getState, setState)
       : {}
   );
 
@@ -46,11 +48,11 @@ export default function View({ url }) {
           try {
             setFunctions(
               Function(`
-                        const [Popup,getState,hideState,showState] = arguments;
+                        const [Popup,getState,setState] = arguments;
                         return {
                             ${message.script}
                         }                        
-                        `)(Popup, getState, hideState, showState)
+                        `)(Popup, getState, setState)
             );
           } catch (e) {
             console.warn(e);

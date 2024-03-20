@@ -208,7 +208,7 @@
             "__component": "Layout",
             "__props": {
                 "type": "split-half-r",
-                "className": ""
+                "className": "{{ getState(\"test\") ? \"bg-black\":\"bg-red-500\" }}"
             },
             "children": [
                 {
@@ -302,7 +302,7 @@
             "__component": "Layout",
             "__props": {
                 "type": "default",
-                "className": ""
+                "className": "{{ getState(\"test\") ? \"bg-black\":\"bg-red-500\" }}"
             },
             "children": [
                 {
@@ -338,7 +338,7 @@
                 {
                     "__component": "Button",
                     "__props": {
-                        "functionToCall": "TEST",
+                        "functionToCall": "TOGGLE",
                         "label": "n",
                         "className": "mt-4"
                     },
@@ -350,7 +350,7 @@
             "__component": "Layout",
             "__props": {
                 "type": "split-half-r",
-                "className": ""
+                "className": "bg-blue-200"
             },
             "children": [
                 {
@@ -578,7 +578,7 @@
                     },
                     "children": [
                         {
-                            "__component": "ShowState",
+                            "__component": "State",
                             "__props": {
                                 "id": "test",
                                 "active": "true"
@@ -813,21 +813,21 @@
                         {
                             "__component": "Paragraph",
                             "__props": {
-                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                                "text": "{{getState(\"test\")}}"
                             },
                             "children": {}
                         },
                         {
                             "__component": "Paragraph",
                             "__props": {
-                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                                "text": "{{getState(\"test\")}}"
                             },
                             "children": {}
                         },
                         {
                             "__component": "Paragraph",
                             "__props": {
-                                "text": "jkkbkjbjk je hjwc erovw rtw hrewh lwke rklvwher kweh rkhwe rvlkwherv wekr we hwe riowe rlwhe rkehroiweht iowehtoiwe"
+                                "text": "{{getState(\"test\")}}"
                             },
                             "children": {}
                         }
@@ -843,6 +843,47 @@
                     "children": {}
                 }
             ]
+        },
+        {
+            "__component": "State",
+            "__props": {
+                "id": "test",
+                "active": true,
+                "val": false
+            },
+            "children": []
+        },
+        {
+            "__component": "Division",
+            "__props": {
+                "className": "bg-white p-4"
+            },
+            "children": [
+                {
+                    "__component": "Input",
+                    "__props": {
+                        "functionToCall": "InputHandle",
+                        "label": "trdy"
+                    },
+                    "children": {}
+                },
+                {
+                    "__component": "Input",
+                    "__props": {
+                        "functionToCall": "InputHandle",
+                        "label": "rydgfdf"
+                    },
+                    "children": {}
+                }
+            ]
+        },
+        {
+            "__component": "MapData",
+            "__props": {
+                "slug": "test-map",
+                "component": "TextBox"
+            },
+            "children": {}
         }
     ],
     "/help": [
@@ -1079,6 +1120,29 @@
             "__component": "Header",
             "__props": {},
             "children": {}
+        },
+        {
+            "__component": "Division",
+            "__props": {
+                "className": "{{getState(\"test\")}}"
+            },
+            "children": []
+        },
+        {
+            "__component": "State",
+            "__props": {
+                "id": "test",
+                "val": "bg-red-500 p-32"
+            },
+            "children": [
+                {
+                    "__component": "Image",
+                    "__props": {
+                        "src": "/vercel.svg"
+                    },
+                    "children": {}
+                }
+            ]
         }
     ]
 }

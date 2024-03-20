@@ -7,6 +7,9 @@ function TextBox({
   children = [],
   variant = "default",
   className = "",
+  functions,
+  links,
+  medialinks,
   ...props
 }) {
   return (
@@ -23,7 +26,7 @@ function TextBox({
   );
 }
 
-TextBox.Options  = [
+TextBox.Options = [
   {
     value: "variant",
     type: "select",
@@ -45,8 +48,6 @@ TextBox.Options  = [
     value: "title",
   },
 ];
-
-
 
 TextBox.canAppend = [
   "ShowOnMd",

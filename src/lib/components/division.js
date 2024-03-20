@@ -1,12 +1,11 @@
-function Division({ children, ...props }) {
-    return <div {...props}>
+function Division({ children,functions,links,medialinks,className, ...props }) {
+    return <div {...props} className={className}>
         {children}
     </div>
 }
 
 Division.Options = [
     {
-        label:"class",
         value:"className",
     }
 ];

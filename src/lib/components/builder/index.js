@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Tree } from "react-organizational-chart";
-import { Button, Popup, getState, hideState, showState } from "@components";
+import { Button, Popup, getState, setState} from "@components";
 import { Resizable } from "re-resizable";
 import { Build } from "./build";
 import StyleEditor from "react-style-editor";
@@ -156,11 +156,11 @@ function Builder({ onSave }) {
     try {
       setFunctions(
         Function(`
-            const [Popup,getState,hideState,showState] = arguments;
+            const [Popup,getState,setState] = arguments;
             return {
                 ${Code}
             }                        
-        `)(Popup, getState, hideState, showState)
+        `)(Popup, getState, setState)
       );
     } catch (e) {
       console.warn(e);

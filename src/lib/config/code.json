@@ -1,5 +1,5 @@
 {
-    "/": "async TEST(){\n    Popup.fire({\n//        z:0,\n //       modal:\"test\",\n\n       icon:\"loading\",\n        canClose:true,\n        background:\"blur\",\n    }).then(res=>console.log(res));\n},\nTOGGLE(){\n    let active = getState(\"test\");\n    if(active){\n        hideState(\"test\")\n    }else{\n        showState(\"test\")\n    }\n},\nSubmit(values){\n    console.log(values)\n}",
+    "/": "async TEST(){\n    Popup.fire({\n//        z:0,\n //       modal:\"test\",\n\n       icon:\"loading\",\n        canClose:true,\n        background:\"blur\",\n    }).then(res=>console.log(res));\n},\nInputHandle(value){\n  setState(\"test\",value)\n},\nTOGGLE(){\n  getState(\"test\")?setState(\"test\",false):setState(\"test\",true)\n},\nSubmit(values){\n    console.log(values)\n}",
     "/test": "Test(){\n  Popup.fire({\n    canClose:true,\n    background:\"blur\",\n    text:\"hello world\"\n  })\n}",
     "/hello%20world": "",
     "/not-found": "",
